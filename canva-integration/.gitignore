@@ -1,0 +1,4 @@
+.canva_tokens.json
+last_design.json
+__pycache__/
+*.pyc
