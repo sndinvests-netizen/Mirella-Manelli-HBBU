@@ -222,7 +222,7 @@ thead th:first-child {
 }
 
 thead th:hover { color: var(--white); }
-thead th.on { color: var(--white); background: rgba(250,81,133,.3); }
+thead th.on { color: var(--white); background: rgba(255,255,255,.14); }
 
 .arr { margin-left: 3px; font-size: 8px; opacity: .4; }
 th.on .arr { opacity: 1; }
@@ -297,12 +297,12 @@ input.cb {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  position: relative;          /* ← fixes ★ positioning */
-  width: 28px;
+  position: relative;
+  width: 34px;
   height: 24px;
   border-radius: 4px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   transition: opacity .2s;
 }
 
@@ -322,15 +322,16 @@ input.cb {
 .h1  { background: #ff6f65; color: #ffffff; }
 .h0  { background: #ff5050; color: #ffffff; }
 
-/* ★ best in column */
+/* ★ best in column — top-left dot so it never overlaps the number */
 .sc.best::after {
-  content: '★';
+  content: '';
   position: absolute;
-  top: 1px;
-  right: 1px;
-  font-size: 6px;
-  color: rgba(255,255,255,.8);
-  line-height: 1;
+  top: 3px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.7);
 }
 
 /* total cell */
@@ -353,12 +354,12 @@ input.cb {
 .t60 { background: #ff9f9a; color: #4a0008; }
 .tlo { background: #ff8880; color: #ffffff; }
 
-/* tooltips */
+/* tooltips — appear BELOW headers (sticky headers clip upward tooltips) */
 [data-tip] { cursor: help; position: relative; }
 [data-tip]:hover::before {
   content: attr(data-tip);
   position: absolute;
-  bottom: calc(100% + 6px);
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   background: var(--green);
@@ -374,11 +375,11 @@ input.cb {
 [data-tip]:hover::after {
   content: '';
   position: absolute;
-  bottom: calc(100% + 0px);
+  top: calc(100% + 2px);
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid transparent;
-  border-top-color: var(--green);
+  border-bottom-color: var(--green);
   z-index: 999;
   pointer-events: none;
 }
@@ -765,8 +766,8 @@ function render() {
   empty.style.display = 'none';
   cnt.textContent = `${view.length} product${view.length!==1?'s':''}`;
 
-  tb.innerHTML = view.map(p => {
-    const gi  = DATA.indexOf(p);
+  tb.innerHTML = view.map((p, i) => {
+    const gi  = DATA.indexOf(p);                              // global rank for colour
     const rkC = gi===0?'r1':gi===1?'r2':gi===2?'r3':'rn';
     const inC = cmp.includes(p.name);
 
@@ -782,7 +783,7 @@ function render() {
       <td>
         <div class="prow">
           <input type="checkbox" class="cb" ${inC?'checked':''} onchange="toggleCmp('${safe}',this)">
-          <span class="rnk ${rkC}">${gi+1}</span>
+          <span class="rnk ${rkC}">${i+1}</span>
           <span class="pname">${p.name}</span>
           ${bestVal.includes(p.name)?'<span class="vtag">Value</span>':''}
         </div>
