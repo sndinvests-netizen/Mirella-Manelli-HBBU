@@ -3,741 +3,668 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Manelli Scale — Mirella Manelli</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>The Manelli Scale</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  /* ── BRAND TOKENS ──────────────────────────────── */
-  :root {
-    --cream:      #F8EEE5;
-    --pink-light: #FFB8B5;
-    --pink-hot:   #FA5185;
-    --green:      #015A42;
-    --brown:      #8A5A3E;
-    --white:      #FFFFFF;
-    --text-dark:  #1A0F0A;
-    --text-mid:   #5A3A2A;
-    --text-light: #9A7A6A;
-    --border:     #F0DDD5;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--cream);
-    font-family: 'Open Sans', sans-serif;
-    color: var(--text-dark);
-    min-height: 100vh;
-  }
-
-  /* ── HEADER ─────────────────────────────────────── */
-  .site-header {
-    background: var(--green);
-    padding: 28px 48px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .header-left { display: flex; flex-direction: column; gap: 4px; }
-
-  .brand-script {
-    font-family: 'Brush Script MT', 'Dancing Script', cursive;
-    font-size: 32px;
-    color: var(--pink-hot);
-    line-height: 1;
-    letter-spacing: 0.01em;
-  }
-
-  .header-sub {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--pink-light);
-  }
-
-  .header-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-  }
-
-  .scale-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: 0.02em;
-  }
-
-  .scale-meta {
-    font-size: 11px;
-    color: rgba(255,184,181,0.75);
-    letter-spacing: 0.06em;
-  }
-
-  /* ── CONTROLS ───────────────────────────────────── */
-  .controls {
-    background: var(--white);
-    border-bottom: 2px solid var(--border);
-    padding: 14px 48px;
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .search-wrap {
-    position: relative;
-    min-width: 220px;
-    flex: 1;
-    max-width: 300px;
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--pink-hot);
-  }
-
-  input[type="text"] {
-    width: 100%;
-    padding: 9px 12px 9px 36px;
-    border: 1.5px solid var(--border);
-    border-radius: 6px;
-    font-size: 13px;
-    font-family: 'Open Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text-dark);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  input[type="text"]:focus { border-color: var(--pink-hot); }
-  input[type="text"]::placeholder { color: var(--text-light); }
-
-  .ctrl-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .ctrl-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    white-space: nowrap;
-  }
-
-  select {
-    padding: 9px 30px 9px 12px;
-    border: 1.5px solid var(--border);
-    border-radius: 6px;
-    font-size: 12px;
-    font-family: 'Open Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text-dark);
-    outline: none;
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23FA5185' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    transition: border-color 0.2s;
-  }
-
-  select:focus { border-color: var(--pink-hot); }
-
-  .tier-pills { display: flex; gap: 6px; }
-
-  .pill {
-    padding: 7px 16px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: 1.5px solid var(--border);
-    background: var(--cream);
-    color: var(--text-light);
-    transition: all 0.2s;
-  }
-
-  .pill:hover { border-color: var(--pink-hot); color: var(--pink-hot); }
-  .pill.active { background: var(--pink-hot); border-color: var(--pink-hot); color: var(--white); }
-
-  .count-tag {
-    margin-left: auto;
-    background: var(--green);
-    color: var(--pink-light);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 12px;
-    letter-spacing: 0.06em;
-  }
-
-  /* ── LEGEND ─────────────────────────────────────── */
-  .legend {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .legend-label {
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-light);
-  }
-
-  .legend-bar {
-    display: flex;
-    gap: 2px;
-  }
-
-  .leg { width: 16px; height: 16px; border-radius: 3px; }
-
-  /* ── TABLE WRAP ─────────────────────────────────── */
-  .table-wrap {
-    padding: 28px 48px 80px;
-    overflow-x: auto;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-size: 13px;
-    background: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 20px rgba(1,90,66,0.08);
-  }
-
-  /* ── THEAD ──────────────────────────────────────── */
-  thead {
-    background: var(--green);
-  }
-
-  thead th {
-    padding: 14px 12px;
-    text-align: center;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--pink-light);
-    cursor: pointer;
-    user-select: none;
-    white-space: nowrap;
-    transition: color 0.2s, background 0.2s;
-    position: sticky;
-    top: 73px;
-    background: var(--green);
-    z-index: 10;
-  }
-
-  thead th:first-child {
-    text-align: left;
-    min-width: 230px;
-    padding-left: 20px;
-    border-radius: 12px 0 0 0;
-  }
-
-  thead th:last-child { border-radius: 0 12px 0 0; }
-
-  thead th:hover { color: var(--white); }
-  thead th.sorted { color: var(--white); background: rgba(250,81,133,0.25); }
-
-  .sort-arrow { margin-left: 4px; font-size: 9px; opacity: 0.5; }
-  th.sorted .sort-arrow { opacity: 1; }
-
-  /* ── TBODY ──────────────────────────────────────── */
-  tbody tr { transition: background 0.15s; }
-
-  tbody tr:nth-child(even) td { background: #fdf7f2; }
-
-  tbody tr:hover td {
-    background: #fff0f3 !important;
-    cursor: default;
-  }
-
-  tbody td {
-    padding: 11px 12px;
-    text-align: center;
-    border-bottom: 1px solid #f5ece6;
-    transition: background 0.2s;
-  }
-
-  tbody td:first-child {
-    text-align: left;
-    padding-left: 20px;
-    padding-right: 16px;
-  }
-
-  /* ── RANK ───────────────────────────────────────── */
-  .rank-wrap {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .rank-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    font-size: 9px;
-    font-weight: 800;
-    flex-shrink: 0;
-  }
-
-  .rank-1 { background: var(--green); color: var(--pink-light); }
-  .rank-2 { background: var(--pink-hot); color: var(--white); }
-  .rank-3 { background: var(--pink-light); color: var(--green); }
-  .rank-n { background: #f0e8e0; color: var(--text-light); }
-
-  .product-name {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-dark);
-    letter-spacing: 0.01em;
-  }
-
-  .value-tag {
-    display: inline-block;
-    margin-left: 8px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: var(--green);
-    color: var(--pink-light);
-    padding: 2px 8px;
-    border-radius: 8px;
-    vertical-align: middle;
-  }
-
-  /* ── SCORE CELL ─────────────────────────────────── */
-  .sc {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 26px;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 12px;
-  }
-
-  /* Heat map using brand palette */
-  .h10 { background: #014d38; color: #a8e8cc; }
-  .h9  { background: #015A42; color: #b8f0d8; }
-  .h8  { background: #1a7a5a; color: #d0f5e8; }
-  .h7  { background: #3a9a78; color: #e8fff5; }
-  .h6  { background: #FFB8B5; color: #8A0030; }
-  .h5  { background: #ffc8b8; color: #7A1020; }
-  .h4  { background: #ffddd0; color: #6A1010; }
-  .h3  { background: #fde8d8; color: #8A3A10; }
-  .h2  { background: #fef0e8; color: #9A5020; }
-  .h1  { background: #fff5f0; color: #AA6030; }
-  .h0  { background: #f5f0f0; color: #9A8080; }
-
-  /* Total heat */
-  .t85 { background: #014d38; color: #a8e8cc; font-weight: 800; }
-  .t80 { background: #015A42; color: #c0f0d8; font-weight: 800; }
-  .t75 { background: #1a7a5a; color: #e0fff0; font-weight: 700; }
-  .t70 { background: #FFB8B5; color: #5A0020; font-weight: 700; }
-  .t65 { background: #ffc8b8; color: #5A1010; font-weight: 600; }
-  .t60 { background: #ffddd0; color: #6A1010; font-weight: 600; }
-  .tlo { background: #fef0e8; color: #8A4020; font-weight: 600; }
-
-  .tc {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 30px;
-    border-radius: 6px;
-    font-size: 14px;
-  }
-
-  /* ── CATEGORY STAR ──────────────────────────────── */
-  .best-cell { position: relative; }
-  .best-cell::after {
-    content: '★';
-    position: absolute;
-    top: 0px;
-    right: 2px;
-    font-size: 7px;
-    color: var(--pink-hot);
-  }
-
-  /* ── TOOLTIPS ───────────────────────────────────── */
-  [data-tip] { position: relative; cursor: help; }
-  [data-tip]:hover::before {
-    content: attr(data-tip);
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--green);
-    color: var(--white);
-    font-size: 11px;
-    padding: 6px 11px;
-    border-radius: 6px;
-    white-space: nowrap;
-    z-index: 999;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    letter-spacing: 0;
-    text-transform: none;
-    pointer-events: none;
-    box-shadow: 0 4px 12px rgba(1,90,66,0.25);
-  }
-  [data-tip]:hover::after {
-    content: '';
-    position: absolute;
-    bottom: calc(100% + 2px);
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: var(--green);
-    z-index: 999;
-    pointer-events: none;
-  }
-
-  /* ── COMPARE CHECKBOX ───────────────────────────── */
-  .row-cb {
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    accent-color: var(--pink-hot);
-    margin-right: 6px;
-    flex-shrink: 0;
-  }
-
-  /* ── COMPARE BAR ────────────────────────────────── */
-  .cmp-bar {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: var(--green);
-    border-top: 3px solid var(--pink-hot);
-    padding: 14px 48px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    z-index: 200;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    box-shadow: 0 -4px 24px rgba(1,90,66,0.3);
-  }
-
-  .cmp-bar.visible { transform: translateY(0); }
-
-  .cmp-label {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--pink-light);
-    white-space: nowrap;
-  }
-
-  .cmp-slots { display: flex; gap: 8px; flex: 1; flex-wrap: wrap; }
-
-  .cmp-slot {
-    padding: 6px 14px;
-    background: rgba(255,255,255,0.1);
-    border: 1.5px solid var(--pink-light);
-    border-radius: 6px;
-    font-size: 11px;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .cmp-slot .x {
-    cursor: pointer;
-    color: var(--pink-hot);
-    font-size: 16px;
-    line-height: 1;
-  }
-
-  .btn-cmp {
-    padding: 10px 22px;
-    background: var(--pink-hot);
-    color: var(--white);
-    border: none;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .btn-cmp:hover { opacity: 0.88; }
-  .btn-cmp:disabled { opacity: 0.35; cursor: not-allowed; }
-
-  .btn-clear {
-    padding: 10px 18px;
-    background: transparent;
-    color: var(--pink-light);
-    border: 1.5px solid var(--pink-light);
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .btn-clear:hover { opacity: 0.75; }
-
-  /* ── NO RESULTS ─────────────────────────────────── */
-  .no-res {
-    text-align: center;
-    padding: 80px 20px;
-    color: var(--text-light);
-    font-size: 14px;
-    display: none;
-  }
-
-  /* ── MODAL ──────────────────────────────────────── */
-  .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(1,30,20,0.55);
-    z-index: 300;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(2px);
-  }
-
-  .overlay.open { display: flex; }
-
-  .modal {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 40px;
-    max-width: 860px;
-    width: 92vw;
-    max-height: 86vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(1,90,66,0.25);
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 16px; right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--text-light);
-    background: none;
-    border: none;
-    line-height: 1;
-    transition: color 0.2s;
-  }
-
-  .modal-close:hover { color: var(--pink-hot); }
-
-  .modal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--green);
-    margin-bottom: 28px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--border);
-  }
-
-  .radar-row {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-  }
-
-  canvas.radar {
-    border-radius: 12px;
-    background: var(--cream);
-  }
-
-  .cmp-table { width: 100%; border-collapse: collapse; }
-
-  .cmp-table tr { border-bottom: 1px solid var(--border); }
-
-  .cmp-table td {
-    padding: 10px 14px;
-    font-size: 12px;
-    text-align: center;
-    border-right: 1px solid var(--border);
-  }
-
-  .cmp-table td:last-child { border-right: none; }
-  .cmp-table td.lbl {
-    text-align: left;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    background: var(--cream);
-  }
-
-  .cmp-table thead td {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--white);
-    background: var(--green);
-    padding: 12px 14px;
-  }
-
-  .cmp-table thead td.lbl { background: var(--green); color: var(--pink-light); }
-
-  .total-big {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--pink-hot);
-  }
-
+:root {
+  --cream:   #F8EEE5;
+  --pink-lt: #FFB8B5;
+  --pink:    #FA5185;
+  --green:   #015A42;
+  --brown:   #8A5A3E;
+  --white:   #FFFFFF;
+  --txt:     #1A0F0A;
+  --txt-dim: #9A7A6A;
+  --border:  #EDD9CF;
+  --ctrl-h:  52px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--cream);
+  font-family: 'Open Sans', sans-serif;
+  color: var(--txt);
+}
+
+/* ── HERO HEADER (not sticky — scrolls away) ── */
+.hero {
+  background: var(--green);
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-name {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 28px;
+  color: var(--pink);
+  line-height: 1;
+}
+
+.brand-sub {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pink-lt);
+  margin-top: 3px;
+}
+
+.hero-right {
+  text-align: right;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.hero-meta {
+  font-size: 10px;
+  color: rgba(255,184,181,0.7);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* ── CONTROLS BAR (sticky) ── */
+.ctrl {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--ctrl-h);
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 40px;
+}
+
+.ctrl-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.search-wrap {
+  position: relative;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.search-wrap svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--pink);
+  pointer-events: none;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 7px 10px 7px 32px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font: 12px 'Open Sans', sans-serif;
+  background: var(--cream);
+  color: var(--txt);
+  outline: none;
+  transition: border-color .2s;
+}
+
+input[type="text"]:focus { border-color: var(--pink); }
+input[type="text"]::placeholder { color: var(--txt-dim); }
+
+.lbl {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--txt-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+select {
+  padding: 7px 26px 7px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font: 12px 'Open Sans', sans-serif;
+  background: var(--cream);
+  color: var(--txt);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23FA5185' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  transition: border-color .2s;
+}
+
+select:focus { border-color: var(--pink); }
+
+.pills { display: flex; gap: 4px; }
+
+.pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: none;
+  color: var(--txt-dim);
+  transition: all .15s;
+  white-space: nowrap;
+}
+
+.pill:hover { border-color: var(--pink); color: var(--pink); }
+.pill.on { background: var(--pink); border-color: var(--pink); color: var(--white); }
+
+.count {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--green);
+  padding: 3px 10px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── TABLE ── */
+.wrap {
+  padding: 20px 40px 72px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(1,90,66,.07);
+}
+
+/* thead sticky below ctrl bar */
+thead th {
+  position: sticky;
+  top: var(--ctrl-h);
+  z-index: 20;
+  background: var(--green);
+  padding: 11px 10px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--pink-lt);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: color .15s, background .15s;
+}
+
+thead th:first-child {
+  text-align: left;
+  padding-left: 16px;
+  min-width: 220px;
+}
+
+thead th:hover { color: var(--white); }
+thead th.on { color: var(--white); background: rgba(250,81,133,.3); }
+
+.arr { margin-left: 3px; font-size: 8px; opacity: .4; }
+th.on .arr { opacity: 1; }
+
+/* tbody */
+tbody tr:nth-child(even) td { background: #fdf6f1; }
+tbody tr:hover td { background: #fff0f4 !important; }
+
+tbody td {
+  padding: 8px 10px;
+  text-align: center;
+  border-bottom: 1px solid #f5ebe4;
+}
+
+tbody td:first-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* product name cell */
+.prow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rnk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 8px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.r1 { background: var(--green); color: var(--pink-lt); }
+.r2 { background: var(--pink);  color: var(--white); }
+.r3 { background: var(--pink-lt); color: var(--green); }
+.rn { background: #f0e8e0; color: var(--txt-dim); }
+
+input.cb {
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  accent-color: var(--pink);
+  flex-shrink: 0;
+}
+
+.pname {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--txt);
+}
+
+.vtag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: var(--pink-lt);
+  padding: 1px 6px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* score cells */
+.sc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;          /* ← fixes ★ positioning */
+  width: 28px;
+  height: 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  transition: opacity .2s;
+}
+
+/* dim non-highlighted columns */
+.sc.dim { opacity: .18; }
+
+/* heat map — green=high, pink=low */
+.h10 { background: #013d2d; color: #90e8c0; }
+.h9  { background: #015A42; color: #a8f0d0; }
+.h8  { background: #1a7a58; color: #ccf5e5; }
+.h7  { background: #3a9a75; color: #e5fff4; }
+.h6  { background: #ffd8d5; color: #7a1030; }
+.h5  { background: #ffcac6; color: #7a1020; }
+.h4  { background: #ffb8b5; color: #6a0820; }
+.h3  { background: #ff9f9a; color: #5a0010; }
+.h2  { background: #ff8880; color: #4a0008; }
+.h1  { background: #ff6f65; color: #ffffff; }
+.h0  { background: #ff5050; color: #ffffff; }
+
+/* ★ best in column */
+.sc.best::after {
+  content: '★';
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  font-size: 6px;
+  color: rgba(255,255,255,.8);
+  line-height: 1;
+}
+
+/* total cell */
+.tot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 28px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.t85 { background: #013d2d; color: #90e8c0; }
+.t80 { background: #015A42; color: #b0f0d8; }
+.t75 { background: #1a7a58; color: #ddfff0; }
+.t70 { background: #ffd8d5; color: #6a0820; }
+.t65 { background: #ffb8b5; color: #5a0010; }
+.t60 { background: #ff9f9a; color: #4a0008; }
+.tlo { background: #ff8880; color: #ffffff; }
+
+/* tooltips */
+[data-tip] { cursor: help; position: relative; }
+[data-tip]:hover::before {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--green);
+  color: var(--white);
+  font: 400 11px 'Open Sans', sans-serif;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 999;
+  pointer-events: none;
+  box-shadow: 0 3px 10px rgba(1,90,66,.3);
+}
+[data-tip]:hover::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 0px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--green);
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* no results */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--txt-dim);
+  font-size: 13px;
+  display: none;
+}
+
+/* ── COMPARE BAR ── */
+.cbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--green);
+  border-top: 2px solid var(--pink);
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 200;
+  transform: translateY(100%);
+  transition: transform .25s ease;
+  box-shadow: 0 -4px 20px rgba(1,90,66,.35);
+}
+
+.cbar.show { transform: translateY(0); }
+
+.clbl {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--pink-lt);
+  flex-shrink: 0;
+}
+
+.cslots { display: flex; gap: 6px; flex: 1; flex-wrap: wrap; }
+
+.cslot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,184,181,.5);
+  border-radius: 5px;
+  font-size: 11px;
+  color: var(--white);
+}
+
+.cx {
+  cursor: pointer;
+  color: var(--pink);
+  font-size: 15px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.cbtn {
+  padding: 8px 20px;
+  background: var(--pink);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font: 700 11px 'Open Sans', sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity .2s;
+}
+
+.cbtn:hover { opacity: .85; }
+.cbtn:disabled { opacity: .3; cursor: not-allowed; }
+
+.clrbtn {
+  padding: 8px 14px;
+  background: transparent;
+  color: rgba(255,184,181,.8);
+  border: 1px solid rgba(255,184,181,.4);
+  border-radius: 6px;
+  font: 700 11px 'Open Sans', sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity .2s;
+}
+
+.clrbtn:hover { opacity: .7; }
+
+/* ── MODAL ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,15,8,.5);
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+
+.overlay.open { display: flex; }
+
+.modal {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 36px;
+  max-width: 820px;
+  width: 92vw;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(1,90,66,.3);
+}
+
+.mclose {
+  position: absolute;
+  top: 14px; right: 18px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: var(--txt-dim);
+  cursor: pointer;
+  transition: color .15s;
+}
+
+.mclose:hover { color: var(--pink); }
+
+.mtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+}
+
+.radars {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+canvas.rc {
+  border-radius: 10px;
+  background: var(--cream);
+}
+
+.ctbl { width: 100%; border-collapse: collapse; }
+.ctbl tr { border-bottom: 1px solid var(--border); }
+.ctbl td {
+  padding: 9px 12px;
+  font-size: 12px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.ctbl td:last-child { border-right: none; }
+.ctbl td.rlbl {
+  text-align: left;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--txt-dim);
+  background: var(--cream);
+  min-width: 90px;
+}
+.ctbl thead td {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--green);
+  padding: 11px 12px;
+}
+.ctbl thead td.rlbl { color: var(--pink-lt); }
+
+.big { font-size: 20px; font-weight: 800; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="site-header">
-  <div class="header-left">
-    <div class="brand-script">Mirella Manelli</div>
-    <div class="header-sub">Hair B&B University</div>
+<!-- HERO -->
+<header class="hero">
+  <div>
+    <div class="brand-name">Mirella Manelli</div>
+    <div class="brand-sub">Hair B&amp;B University</div>
   </div>
-  <div class="header-right">
-    <div class="scale-title">The Manelli Scale</div>
-    <div class="scale-meta">50 Professional Bleaches · 10 Criteria</div>
+  <div class="hero-right">
+    <div class="hero-title">The Manelli Scale</div>
+    <div class="hero-meta">50 bleaches · 10 criteria · rated by Mirella</div>
   </div>
 </header>
 
-<!-- CONTROLS -->
-<div class="controls">
+<!-- CONTROLS (sticky) -->
+<div class="ctrl">
   <div class="search-wrap">
-    <svg class="search-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
-    <input type="text" id="search" placeholder="Search bleach brand..." oninput="applyFilters()">
+    <input type="text" id="search" placeholder="Search brand…" oninput="run()">
   </div>
 
-  <div class="ctrl-group">
-    <span class="ctrl-label">Score</span>
-    <select id="scoreFilter" onchange="applyFilters()">
-      <option value="0">All</option>
-      <option value="80">80+ Elite</option>
-      <option value="75">75+ Great</option>
-      <option value="70">70+ Good</option>
-    </select>
+  <div class="ctrl-divider"></div>
+  <span class="lbl">Score</span>
+  <select id="minScore" onchange="run()">
+    <option value="0">All</option>
+    <option value="80">80+</option>
+    <option value="75">75+</option>
+    <option value="70">70+</option>
+  </select>
+
+  <div class="ctrl-divider"></div>
+  <span class="lbl">Focus</span>
+  <select id="hl" onchange="run()">
+    <option value="">All columns</option>
+    <option value="dust">Dust</option>
+    <option value="odor">Odor</option>
+    <option value="viscosity">Viscosity</option>
+    <option value="timing">Timing</option>
+    <option value="swell">Swell</option>
+    <option value="lift">Lift</option>
+    <option value="integrity">Integrity</option>
+    <option value="neutral">Neutral</option>
+    <option value="versatility">Versatility</option>
+    <option value="price">Price</option>
+  </select>
+
+  <div class="ctrl-divider"></div>
+  <div class="pills">
+    <div class="pill on" onclick="setTier(this,'all')">All</div>
+    <div class="pill"    onclick="setTier(this,'top')">Top 85+</div>
+    <div class="pill"    onclick="setTier(this,'val')">Best Value</div>
   </div>
 
-  <div class="ctrl-group">
-    <span class="ctrl-label">Highlight</span>
-    <select id="hlCol" onchange="applyFilters()">
-      <option value="">All Criteria</option>
-      <option value="dust">Dust</option>
-      <option value="odor">Odor</option>
-      <option value="viscosity">Viscosity</option>
-      <option value="timing">Timing</option>
-      <option value="swell">Swell</option>
-      <option value="lift">Lift</option>
-      <option value="integrity">Integrity</option>
-      <option value="neutral">Neutral</option>
-      <option value="versatility">Versatility</option>
-      <option value="price">Price</option>
-    </select>
-  </div>
-
-  <div class="tier-pills">
-    <div class="pill active" onclick="setTier(this,'all')">All</div>
-    <div class="pill" onclick="setTier(this,'elite')">Elite 85+</div>
-    <div class="pill" onclick="setTier(this,'budget')">Best Value</div>
-  </div>
-
-  <span class="count-tag" id="cnt">50 products</span>
-
-  <div class="legend">
-    <span class="legend-label">Low</span>
-    <div class="legend-bar">
-      <div class="leg" style="background:#fef0e8"></div>
-      <div class="leg" style="background:#ffddd0"></div>
-      <div class="leg" style="background:#FFB8B5"></div>
-      <div class="leg" style="background:#3a9a78"></div>
-      <div class="leg" style="background:#015A42"></div>
-      <div class="leg" style="background:#014d38"></div>
-    </div>
-    <span class="legend-label">High</span>
-  </div>
+  <span class="count" id="cnt">50 products</span>
 </div>
 
 <!-- TABLE -->
-<div class="table-wrap">
-  <table id="mainTbl">
+<div class="wrap">
+  <table>
     <thead>
       <tr>
-        <th onclick="sortBy('name')" id="th-name">Product <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('dust')"        id="th-dust"        data-tip="Dust level when mixing — 10 = minimal dust">Dust <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('odor')"        id="th-odor"        data-tip="Scent experience — 10 = pleasant or odorless">Odor <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('viscosity')"   id="th-viscosity"   data-tip="Consistency & spreadability — 10 = ideal texture">Viscosity <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('timing')"      id="th-timing"      data-tip="Processing time predictability — 10 = very consistent">Timing <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('swell')"       id="th-swell"       data-tip="Product expansion on hair — affects saturation">Swell <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('lift')"        id="th-lift"        data-tip="Levels of lightening achieved — 10 = max lift">Lift <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('integrity')"   id="th-integrity"   data-tip="Hair condition after processing — 10 = least damage">Integrity <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('neutral')"     id="th-neutral"     data-tip="Tone neutrality — 10 = no unwanted warmth">Neutral <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('versatility')" id="th-versatility" data-tip="Range of techniques it works well with">Versatility <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('price')"       id="th-price"       data-tip="Value for money — 10 = best value">Price <span class="sort-arrow">↕</span></th>
-        <th onclick="sortBy('total')"       id="th-total" class="sorted">Total <span class="sort-arrow">↓</span></th>
+        <th onclick="sort('name')"        id="h-name">Product <span class="arr">↕</span></th>
+        <th onclick="sort('dust')"        id="h-dust"        data-tip="Mess when mixing — 10 = no dust">Dust <span class="arr">↕</span></th>
+        <th onclick="sort('odor')"        id="h-odor"        data-tip="Scent during processing — 10 = pleasant">Odor <span class="arr">↕</span></th>
+        <th onclick="sort('viscosity')"   id="h-viscosity"   data-tip="Texture &amp; spreadability — 10 = ideal">Visc <span class="arr">↕</span></th>
+        <th onclick="sort('timing')"      id="h-timing"      data-tip="Consistency of processing time — 10 = predictable">Time <span class="arr">↕</span></th>
+        <th onclick="sort('swell')"       id="h-swell"       data-tip="How much product expands on hair">Swell <span class="arr">↕</span></th>
+        <th onclick="sort('lift')"        id="h-lift"        data-tip="Levels of lift achieved — 10 = maximum">Lift <span class="arr">↕</span></th>
+        <th onclick="sort('integrity')"   id="h-integrity"   data-tip="Hair condition post-bleach — 10 = least damage">Integ <span class="arr">↕</span></th>
+        <th onclick="sort('neutral')"     id="h-neutral"     data-tip="Tone neutrality — 10 = no unwanted warmth">Neut <span class="arr">↕</span></th>
+        <th onclick="sort('versatility')" id="h-versatility" data-tip="Works across many techniques">Verst <span class="arr">↕</span></th>
+        <th onclick="sort('price')"       id="h-price"       data-tip="Value for money — 10 = best value">Price <span class="arr">↕</span></th>
+        <th onclick="sort('total')"       id="h-total" class="on">Total <span class="arr">↓</span></th>
       </tr>
     </thead>
-    <tbody id="tbody"></tbody>
+    <tbody id="tb"></tbody>
   </table>
-  <div class="no-res" id="noRes">No products match your filters.</div>
+  <div class="empty" id="empty">No products match.</div>
 </div>
 
 <!-- COMPARE BAR -->
-<div class="cmp-bar" id="cmpBar">
-  <span class="cmp-label">Compare</span>
-  <div class="cmp-slots" id="cmpSlots"></div>
-  <button class="btn-cmp" id="cmpBtn" onclick="openModal()" disabled>Side-by-Side →</button>
-  <button class="btn-clear" onclick="clearCmp()">Clear</button>
+<div class="cbar" id="cbar">
+  <span class="clbl">Compare</span>
+  <div class="cslots" id="cslots"></div>
+  <button class="cbtn" id="cbtn" onclick="openModal()" disabled>Side-by-Side →</button>
+  <button class="clrbtn" onclick="clearCmp()">Clear</button>
 </div>
 
 <!-- MODAL -->
-<div class="overlay" id="overlay" onclick="closeOverlay(event)">
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-title">Side-by-Side Comparison</div>
-    <div class="radar-row" id="radarRow"></div>
-    <table class="cmp-table" id="cmpTable"></table>
+    <button class="mclose" onclick="closeModal()">×</button>
+    <div class="mtitle">Side-by-Side Comparison</div>
+    <div class="radars" id="radars"></div>
+    <table class="ctbl" id="ctbl"></table>
   </div>
 </div>
 
@@ -796,21 +723,22 @@ const DATA = [
   {name:"Saloncare Blue Flash",                dust:8, odor:0, viscosity:9,timing:7, swell:4,lift:7,integrity:0, neutral:6, versatility:5,price:1,total:47},
 ];
 
-// Best value = highest total among products with price >= 7
-const bestValue = [...DATA].filter(p=>p.price>=7).sort((a,b)=>b.total-a.total).slice(0,3).map(p=>p.name);
-const colBest = {};
-COLS.forEach(c => { colBest[c] = Math.max(...DATA.map(p=>p[c])); });
+// Pre-compute
+const bestVal = [...DATA].filter(p=>p.price>=7).sort((a,b)=>b.total-a.total).slice(0,3).map(p=>p.name);
+const colMax  = Object.fromEntries(COLS.map(c=>[c, Math.max(...DATA.map(p=>p[c]))]));
 
-let view = [...DATA];
-let sortCol = 'total';
-let sortDir = -1;
-let tier = 'all';
-let cmpList = [];
+let view   = [...DATA];
+let scol   = 'total';
+let sdir   = -1;
+let tier   = 'all';
+let cmp    = [];
 
+// ── heatmap class
 function hc(v) {
-  return ['h0','h1','h2','h3','h4','h5','h6','h7','h8','h9','h10'][Math.min(v,10)];
+  return ['h0','h1','h2','h3','h4','h5','h6','h7','h8','h9','h10'][Math.min(Math.max(v,0),10)];
 }
 
+// ── total class
 function tc(v) {
   if(v>=85) return 't85';
   if(v>=80) return 't80';
@@ -821,223 +749,221 @@ function tc(v) {
   return 'tlo';
 }
 
+// ── render
 function render() {
-  const tbody = document.getElementById('tbody');
-  const noRes = document.getElementById('noRes');
+  const tb    = document.getElementById('tb');
+  const empty = document.getElementById('empty');
   const cnt   = document.getElementById('cnt');
-  const hl    = document.getElementById('hlCol').value;
+  const focus = document.getElementById('hl').value;
 
-  if(view.length === 0) {
-    tbody.innerHTML = '';
-    noRes.style.display = 'block';
+  if (!view.length) {
+    tb.innerHTML = '';
+    empty.style.display = 'block';
     cnt.textContent = '0 products';
     return;
   }
 
-  noRes.style.display = 'none';
+  empty.style.display = 'none';
   cnt.textContent = `${view.length} product${view.length!==1?'s':''}`;
 
-  tbody.innerHTML = view.map(p => {
-    const gi = DATA.indexOf(p);
-    const rk = gi===0?'rank-1':gi===1?'rank-2':gi===2?'rank-3':'rank-n';
-    const isVal = bestValue.includes(p.name);
-    const isCmp = cmpList.includes(p.name);
+  tb.innerHTML = view.map(p => {
+    const gi  = DATA.indexOf(p);
+    const rkC = gi===0?'r1':gi===1?'r2':gi===2?'r3':'rn';
+    const inC = cmp.includes(p.name);
 
-    const scoreCells = COLS.map(c => {
-      const v = p[c];
-      const isBest = v === colBest[c];
-      const cls = (hl==='' || hl===c) ? hc(v) : 'h0';
-      return `<td><span class="sc ${cls}${isBest?' best-cell':''}">${v}</span></td>`;
+    const cells = COLS.map(c => {
+      const v    = p[c];
+      const dim  = focus && focus !== c ? ' dim' : '';
+      const best = v === colMax[c] ? ' best' : '';
+      return `<td><span class="sc ${hc(v)}${dim}${best}">${v}</span></td>`;
     }).join('');
 
+    const safe = p.name.replace(/'/g, "\\'");
     return `<tr>
       <td>
-        <div class="rank-wrap">
-          <input type="checkbox" class="row-cb" ${isCmp?'checked':''} onchange="toggleCmp('${p.name.replace(/'/g,"\\'")}',this)">
-          <span class="rank-badge ${rk}">${gi+1}</span>
-          <span class="product-name">${p.name}${isVal?'<span class="value-tag">Value</span>':''}</span>
+        <div class="prow">
+          <input type="checkbox" class="cb" ${inC?'checked':''} onchange="toggleCmp('${safe}',this)">
+          <span class="rnk ${rkC}">${gi+1}</span>
+          <span class="pname">${p.name}</span>
+          ${bestVal.includes(p.name)?'<span class="vtag">Value</span>':''}
         </div>
       </td>
-      ${scoreCells}
-      <td><span class="tc ${tc(p.total)}">${p.total}</span></td>
+      ${cells}
+      <td><span class="tot ${tc(p.total)}">${p.total}</span></td>
     </tr>`;
   }).join('');
 }
 
-function sortBy(col) {
-  if(sortCol===col) sortDir*=-1; else { sortCol=col; sortDir=-1; }
-  document.querySelectorAll('thead th').forEach(t=>t.classList.remove('sorted'));
-  document.getElementById(`th-${col}`)?.classList.add('sorted');
-  applyFilters();
+// ── sort
+function sort(col) {
+  if (scol===col) sdir *= -1;
+  else { scol=col; sdir=-1; }
+  document.querySelectorAll('thead th').forEach(t=>t.classList.remove('on'));
+  const th = document.getElementById(`h-${col}`);
+  if (th) {
+    th.classList.add('on');
+    th.querySelector('.arr').textContent = sdir===-1 ? '↓' : '↑';
+  }
+  run();
 }
 
-function applyFilters() {
+// ── filter + sort + render
+function run() {
   const q  = document.getElementById('search').value.toLowerCase();
-  const ms = parseInt(document.getElementById('scoreFilter').value)||0;
-  const hl = document.getElementById('hlCol').value; // needed to re-render
+  const ms = +document.getElementById('minScore').value || 0;
 
   view = DATA.filter(p => {
-    if(q && !p.name.toLowerCase().includes(q)) return false;
-    if(p.total < ms) return false;
-    if(tier==='elite' && p.total<85) return false;
-    if(tier==='budget' && !bestValue.includes(p.name)) return false;
+    if (q  && !p.name.toLowerCase().includes(q)) return false;
+    if (p.total < ms) return false;
+    if (tier==='top' && p.total<85) return false;
+    if (tier==='val' && !bestVal.includes(p.name)) return false;
     return true;
   });
 
   view.sort((a,b) => {
-    if(sortCol==='name') return sortDir * a.name.localeCompare(b.name);
-    return sortDir * (b[sortCol]-a[sortCol]);
+    if (scol==='name') return sdir * a.name.localeCompare(b.name);
+    return sdir * (b[scol] - a[scol]);
   });
 
   render();
 }
 
 function setTier(el, t) {
-  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
   tier = t;
-  applyFilters();
+  run();
 }
 
+// ── compare
 function toggleCmp(name, cb) {
-  if(cb.checked) {
-    if(cmpList.length>=4){ cb.checked=false; alert('Max 4 products.'); return; }
-    if(!cmpList.includes(name)) cmpList.push(name);
+  if (cb.checked) {
+    if (cmp.length >= 4) { cb.checked = false; return; }
+    if (!cmp.includes(name)) cmp.push(name);
   } else {
-    cmpList = cmpList.filter(n=>n!==name);
+    cmp = cmp.filter(n=>n!==name);
   }
-  updateCmpBar();
+  syncCbar();
 }
 
-function updateCmpBar() {
-  const bar = document.getElementById('cmpBar');
-  const slots = document.getElementById('cmpSlots');
-  const btn = document.getElementById('cmpBtn');
+function syncCbar() {
+  const bar = document.getElementById('cbar');
+  const slots = document.getElementById('cslots');
+  document.getElementById('cbtn').disabled = cmp.length < 2;
 
-  if(cmpList.length===0){ bar.classList.remove('visible'); return; }
-  bar.classList.add('visible');
-  btn.disabled = cmpList.length < 2;
+  if (!cmp.length) { bar.classList.remove('show'); return; }
+  bar.classList.add('show');
 
-  slots.innerHTML = cmpList.map(n =>
-    `<div class="cmp-slot">
-      ${n.length>26?n.slice(0,26)+'…':n}
-      <span class="x" onclick="removeCmp('${n.replace(/'/g,"\\'")}')">×</span>
-    </div>`
-  ).join('');
+  slots.innerHTML = cmp.map(n => {
+    const safe = n.replace(/'/g,"\\'");
+    return `<div class="cslot">${n.length>28?n.slice(0,28)+'…':n}<span class="cx" onclick="removeCmp('${safe}')">×</span></div>`;
+  }).join('');
 }
 
 function removeCmp(name) {
-  cmpList = cmpList.filter(n=>n!==name);
-  updateCmpBar();
+  cmp = cmp.filter(n=>n!==name);
+  syncCbar();
   render();
 }
 
 function clearCmp() {
-  cmpList = [];
-  updateCmpBar();
+  cmp = [];
+  syncCbar();
   render();
 }
 
+// ── modal
 function openModal() {
-  const prods = DATA.filter(p=>cmpList.includes(p.name));
+  const prods = DATA.filter(p=>cmp.includes(p.name));
 
-  // Radar charts
-  const rr = document.getElementById('radarRow');
-  rr.innerHTML = prods.map((_,i)=>`<canvas class="radar" id="r${i}" width="200" height="210"></canvas>`).join('');
-  setTimeout(()=>prods.forEach((p,i)=>drawRadar(document.getElementById(`r${i}`),p)),30);
+  // radar
+  const radars = document.getElementById('radars');
+  radars.innerHTML = prods.map((_,i)=>`<canvas class="rc" id="rc${i}" width="196" height="206"></canvas>`).join('');
+  setTimeout(()=>prods.forEach((p,i)=>drawRadar(document.getElementById(`rc${i}`),p)), 20);
 
-  // Table
-  const rows = [
-    {key:'name',   label:'Product'},
-    ...COLS.map(c=>({key:c,label:c[0].toUpperCase()+c.slice(1)})),
-    {key:'total', label:'Total'}
-  ];
-
-  const thead = `<thead><tr>${['<td class="lbl"></td>',...prods.map(p=>`<td>${p.name.length>24?p.name.slice(0,24)+'…':p.name}</td>`)].join('')}</tr></thead>`;
-
-  const tbody = rows.map(r => {
+  // table
+  const ROWS = [{key:'name',label:'Product'},...COLS.map(c=>({key:c,label:c[0].toUpperCase()+c.slice(1)})),{key:'total',label:'Total'}];
+  const head = `<thead><tr><td class="rlbl"></td>${prods.map(p=>`<td>${p.name.length>22?p.name.slice(0,22)+'…':p.name}</td>`).join('')}</tr></thead>`;
+  const body = ROWS.map(r => {
     const cells = prods.map(p => {
       const v = p[r.key];
-      let cls = '';
-      if(r.key==='total') cls = `total-big ${tc(v)}`;
-      else if(r.key!=='name') cls = hc(v);
+      const cls = r.key==='total' ? `big ${tc(v)}` : r.key!=='name' ? hc(v) : '';
       return `<td class="${cls}">${v}</td>`;
-    });
-    return `<tr><td class="lbl">${r.label}</td>${cells.join('')}</tr>`;
+    }).join('');
+    return `<tr><td class="rlbl">${r.label}</td>${cells}</tr>`;
   }).join('');
 
-  document.getElementById('cmpTable').innerHTML = thead + `<tbody>${tbody}</tbody>`;
+  document.getElementById('ctbl').innerHTML = head + `<tbody>${body}</tbody>`;
   document.getElementById('overlay').classList.add('open');
 }
 
-function drawRadar(canvas, product) {
+function drawRadar(canvas, p) {
   const ctx = canvas.getContext('2d');
-  const cx=100, cy=100, r=72;
-  const vals = COLS.map(c=>product[c]/10);
-  const n = COLS.length;
+  const W=196, H=206, cx=W/2, cy=H/2-8, r=72, n=COLS.length;
   const step = (Math.PI*2)/n;
+  ctx.clearRect(0,0,W,H);
 
-  ctx.clearRect(0,0,200,210);
-
-  // rings
-  for(let ring=1;ring<=5;ring++){
+  // grid rings
+  for (let ring=1; ring<=5; ring++) {
     ctx.beginPath();
-    for(let i=0;i<n;i++){
+    for (let i=0; i<n; i++) {
       const a=i*step-Math.PI/2, rr=r*(ring/5);
       const x=cx+rr*Math.cos(a), y=cy+rr*Math.sin(a);
-      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
     }
     ctx.closePath();
-    ctx.strokeStyle='#f0ddd5'; ctx.lineWidth=1; ctx.stroke();
+    ctx.strokeStyle='#e8d8cc'; ctx.lineWidth=1; ctx.stroke();
   }
 
   // axes
-  for(let i=0;i<n;i++){
+  for (let i=0; i<n; i++) {
     const a=i*step-Math.PI/2;
     ctx.beginPath(); ctx.moveTo(cx,cy);
-    ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
-    ctx.strokeStyle='#f0ddd5'; ctx.stroke();
+    ctx.lineTo(cx+r*Math.cos(a), cy+r*Math.sin(a));
+    ctx.strokeStyle='#e8d8cc'; ctx.lineWidth=1; ctx.stroke();
   }
 
-  // shape
+  // data shape
   ctx.beginPath();
-  for(let i=0;i<n;i++){
-    const a=i*step-Math.PI/2, rv=r*vals[i];
-    const x=cx+rv*Math.cos(a), y=cy+rv*Math.sin(a);
-    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  for (let i=0; i<n; i++) {
+    const a=i*step-Math.PI/2, rv=r*(p[COLS[i]]/10);
+    i===0 ? ctx.moveTo(cx+rv*Math.cos(a), cy+rv*Math.sin(a))
+          : ctx.lineTo(cx+rv*Math.cos(a), cy+rv*Math.sin(a));
   }
   ctx.closePath();
-  ctx.fillStyle='rgba(250,81,133,0.2)'; ctx.fill();
-  ctx.strokeStyle='#FA5185'; ctx.lineWidth=2.5; ctx.stroke();
+  ctx.fillStyle='rgba(250,81,133,.18)'; ctx.fill();
+  ctx.strokeStyle='#FA5185'; ctx.lineWidth=2; ctx.stroke();
 
   // dots
-  for(let i=0;i<n;i++){
-    const a=i*step-Math.PI/2, rv=r*vals[i];
+  COLS.forEach((c,i) => {
+    const a=i*step-Math.PI/2, rv=r*(p[c]/10);
     ctx.beginPath();
-    ctx.arc(cx+rv*Math.cos(a),cy+rv*Math.sin(a),3.5,0,Math.PI*2);
+    ctx.arc(cx+rv*Math.cos(a), cy+rv*Math.sin(a), 3, 0, Math.PI*2);
     ctx.fillStyle='#FA5185'; ctx.fill();
-  }
+  });
 
   // labels
-  ctx.font='8.5px Open Sans,sans-serif';
-  ctx.fillStyle='#8A5A3E'; ctx.textAlign='center'; ctx.textBaseline='middle';
-  for(let i=0;i<n;i++){
+  ctx.font = '8px Open Sans,sans-serif';
+  ctx.fillStyle = '#8A5A3E';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  COLS.forEach((c,i) => {
     const a=i*step-Math.PI/2;
-    ctx.fillText(COLS[i].slice(0,4).toUpperCase(), cx+(r+16)*Math.cos(a), cy+(r+16)*Math.sin(a));
-  }
+    ctx.fillText(c.slice(0,4).toUpperCase(), cx+(r+15)*Math.cos(a), cy+(r+15)*Math.sin(a));
+  });
 
   // name
-  ctx.font='bold 9.5px Open Sans,sans-serif';
-  ctx.fillStyle='#015A42'; ctx.textAlign='center'; ctx.textBaseline='top';
-  const sn = product.name.length>22?product.name.slice(0,22)+'…':product.name;
-  ctx.fillText(sn, cx, 188);
+  ctx.font = 'bold 9px Open Sans,sans-serif';
+  ctx.fillStyle = '#015A42';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  const sn = p.name.length>22 ? p.name.slice(0,22)+'…' : p.name;
+  ctx.fillText(sn, cx, H-16);
 }
 
-function closeOverlay(e) { if(e.target===document.getElementById('overlay')) closeModal(); }
+function overlayClick(e) { if(e.target===document.getElementById('overlay')) closeModal(); }
 function closeModal() { document.getElementById('overlay').classList.remove('open'); }
 
 // init
-applyFilters();
+run();
 </script>
 </body>
 </html>
