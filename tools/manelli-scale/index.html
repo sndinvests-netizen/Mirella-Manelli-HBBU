@@ -183,7 +183,7 @@ select:focus { border-color: var(--pink); }
 /* ── TABLE ── */
 .wrap {
   padding: 20px 40px 72px;
-  overflow-x: auto;
+  overflow-x: clip; /* clip ≠ scroll container — keeps sticky thead working */
 }
 
 table {
