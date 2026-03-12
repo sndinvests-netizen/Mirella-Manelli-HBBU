@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Manelli Scale — Embed</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:   #F8EEE5;
+  --pink-lt: #FFB8B5;
+  --pink:    #FA5185;
+  --green:   #015A42;
+  --brown:   #8A5A3E;
+  --white:   #FFFFFF;
+  --txt:     #1A0F0A;
+  --txt-dim: #9A7A6A;
+  --border:  #EDD9CF;
+  --ctrl-h:  52px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--cream);
+  font-family: 'Open Sans', sans-serif;
+  color: var(--txt);
+}
+
+/* ── CONTROLS BAR (sticky) ── */
+.ctrl {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--ctrl-h);
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 40px;
+}
+
+.ctrl-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.search-wrap {
+  position: relative;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.search-wrap svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--pink);
+  pointer-events: none;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 7px 10px 7px 32px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font: 12px 'Open Sans', sans-serif;
+  background: var(--cream);
+  color: var(--txt);
+  outline: none;
+  transition: border-color .2s;
+}
+
+input[type="text"]:focus { border-color: var(--pink); }
+input[type="text"]::placeholder { color: var(--txt-dim); }
+
+.lbl {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--txt-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+select {
+  padding: 7px 26px 7px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font: 12px 'Open Sans', sans-serif;
+  background: var(--cream);
+  color: var(--txt);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23FA5185' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  transition: border-color .2s;
+}
+
+select:focus { border-color: var(--pink); }
+
+.pills { display: flex; gap: 4px; }
+
+.pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: none;
+  color: var(--txt-dim);
+  transition: all .15s;
+  white-space: nowrap;
+}
+
+.pill:hover { border-color: var(--pink); color: var(--pink); }
+.pill.on { background: var(--pink); border-color: var(--pink); color: var(--white); }
+
+.count {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--green);
+  padding: 3px 10px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── TABLE ── */
+.wrap {
+  padding: 20px 40px 72px;
+  /* overflow-x:clip clips the .cht header track without creating a scroll container
+     (unlike overflow:hidden which breaks position:sticky) */
+  overflow-x: clip;
+}
+
+/* overflow-x:auto for horizontal scroll on data table only.
+   .col-head lives OUTSIDE this div so sticky is not broken. */
+.tbl-outer {
+  overflow-x: auto;
+  box-shadow: 0 2px 16px rgba(1,90,66,.07);
+}
+
+/* Data table — auto layout so product column naturally expands */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--white);
+}
+
+/* Rounded corners on corner cells */
+.cht th:first-child                     { border-radius: 10px 0 0 0; }
+.cht th:last-child                      { border-radius: 0 10px 0 0; }
+tbody tr:last-child td:first-child      { border-radius: 0 0 0 10px; }
+tbody tr:last-child td:last-child       { border-radius: 0 0 10px 0; }
+
+/* Sticky column header — sits ABOVE tbl-outer, outside the overflow-x:auto container */
+.col-head {
+  position: sticky;
+  top: var(--ctrl-h);
+  z-index: 20;
+  overflow: visible;
+  background: var(--green); /* fills any gap between .cht columns */
+}
+
+/* Track that slides left via JS translateX to mirror horizontal scroll of tbl-outer */
+.col-head-track {
+  will-change: transform;
+  display: inline-block;
+  min-width: 100%;
+}
+
+/* Header mirror-table — table-layout:fixed, column widths set by JS after render */
+.cht {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 100%;
+}
+
+.cht th {
+  background: var(--green);
+  padding: 11px 10px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--pink-lt);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: color .15s, background .15s;
+}
+
+.cht th:first-child {
+  text-align: left;
+  /* 16px base + 13px checkbox + 8px gap + 20px rank badge + 8px gap = 65px */
+  padding-left: 65px;
+}
+
+.cht th:hover { color: var(--white); }
+.cht th.on { color: var(--white); background: rgba(255,255,255,.14); }
+
+.arr { margin-left: 3px; font-size: 8px; opacity: .4; }
+th.on .arr { opacity: 1; }
+
+/* tbody */
+tbody tr:nth-child(even) td { background: #fdf6f1; }
+tbody tr:hover td { background: #fff0f4 !important; }
+
+tbody td {
+  padding: 8px 10px;
+  text-align: center;
+  border-bottom: 1px solid #f5ebe4;
+}
+
+tbody td:first-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* product name cell */
+.prow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rnk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 8px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.r1 { background: var(--green); color: var(--pink-lt); }
+.r2 { background: var(--pink);  color: var(--white); }
+.r3 { background: var(--pink-lt); color: var(--green); }
+.rn { background: #f0e8e0; color: var(--txt-dim); }
+
+input.cb {
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  accent-color: var(--pink);
+  flex-shrink: 0;
+}
+
+.pname {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--txt);
+}
+
+.vtag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: var(--pink-lt);
+  padding: 1px 6px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* score cells */
+.sc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 34px;
+  height: 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 11px;
+  transition: opacity .2s;
+}
+
+/* dim non-highlighted columns */
+.sc.dim { opacity: .18; }
+
+/* heat map — green=high, pink=low */
+.h10 { background: #013d2d; color: #90e8c0; }
+.h9  { background: #015A42; color: #a8f0d0; }
+.h8  { background: #1a7a58; color: #ccf5e5; }
+.h7  { background: #3a9a75; color: #e5fff4; }
+.h6  { background: #ffd8d5; color: #7a1030; }
+.h5  { background: #ffcac6; color: #7a1020; }
+.h4  { background: #ffb8b5; color: #6a0820; }
+.h3  { background: #ff9f9a; color: #5a0010; }
+.h2  { background: #ff8880; color: #4a0008; }
+.h1  { background: #ff6f65; color: #ffffff; }
+.h0  { background: #ff5050; color: #ffffff; }
+
+/* ★ best in column — top-left dot so it never overlaps the number */
+.sc.best::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.7);
+}
+
+/* total cell */
+.tot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 28px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.t85 { background: #013d2d; color: #90e8c0; }
+.t80 { background: #015A42; color: #b0f0d8; }
+.t75 { background: #1a7a58; color: #ddfff0; }
+.t70 { background: #ffd8d5; color: #6a0820; }
+.t65 { background: #ffb8b5; color: #5a0010; }
+.t60 { background: #ff9f9a; color: #4a0008; }
+.tlo { background: #ff8880; color: #ffffff; }
+
+/* tooltips — appear BELOW headers (sticky headers clip upward tooltips) */
+[data-tip] { cursor: help; position: relative; }
+[data-tip]:hover::before {
+  content: attr(data-tip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--green);
+  color: var(--white);
+  font: 400 11px 'Open Sans', sans-serif;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 999;
+  pointer-events: none;
+  box-shadow: 0 3px 10px rgba(1,90,66,.3);
+}
+[data-tip]:hover::after {
+  content: '';
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: var(--green);
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* notes column */
+.note-cell {
+  text-align: left !important;
+  min-width: 200px;
+  padding: 8px 14px !important;
+}
+
+.note-txt {
+  font-size: 10px;
+  color: var(--txt-dim);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.cht th#h-notes {
+  text-align: left;
+}
+
+/* Notes sort arrow is always hot pink — stands out from other column arrows */
+#h-notes .arr {
+  color: var(--pink);
+  opacity: 1;
+}
+#h-notes.on .arr {
+  color: var(--pink);
+}
+
+/* no results */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--txt-dim);
+  font-size: 13px;
+  display: none;
+}
+
+/* ── COMPARE BAR ── */
+.cbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--green);
+  border-top: 2px solid var(--pink);
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 200;
+  transform: translateY(100%);
+  transition: transform .25s ease;
+  box-shadow: 0 -4px 20px rgba(1,90,66,.35);
+}
+
+.cbar.show { transform: translateY(0); }
+
+.clbl {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--pink-lt);
+  flex-shrink: 0;
+}
+
+.cslots { display: flex; gap: 6px; flex: 1; flex-wrap: wrap; }
+
+.cslot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,184,181,.5);
+  border-radius: 5px;
+  font-size: 11px;
+  color: var(--white);
+}
+
+.cx {
+  cursor: pointer;
+  color: var(--pink);
+  font-size: 15px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.cbtn {
+  padding: 8px 20px;
+  background: var(--pink);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font: 700 11px 'Open Sans', sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity .2s;
+}
+
+.cbtn:hover { opacity: .85; }
+.cbtn:disabled { opacity: .3; cursor: not-allowed; }
+
+.clrbtn {
+  padding: 8px 14px;
+  background: transparent;
+  color: rgba(255,184,181,.8);
+  border: 1px solid rgba(255,184,181,.4);
+  border-radius: 6px;
+  font: 700 11px 'Open Sans', sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity .2s;
+}
+
+.clrbtn:hover { opacity: .7; }
+
+/* ── MODAL ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,15,8,.5);
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+
+.overlay.open { display: flex; }
+
+.modal {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 36px;
+  max-width: 820px;
+  width: 92vw;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(1,90,66,.3);
+}
+
+.mclose {
+  position: absolute;
+  top: 14px; right: 18px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: var(--txt-dim);
+  cursor: pointer;
+  transition: color .15s;
+}
+
+.mclose:hover { color: var(--pink); }
+
+.mtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+}
+
+.radars {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+canvas.rc {
+  border-radius: 10px;
+  background: var(--cream);
+}
+
+.ctbl { width: 100%; border-collapse: collapse; }
+.ctbl tr { border-bottom: 1px solid var(--border); }
+.ctbl td {
+  padding: 9px 12px;
+  font-size: 12px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.ctbl td:last-child { border-right: none; }
+.ctbl td.rlbl {
+  text-align: left;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--txt-dim);
+  background: var(--cream);
+  min-width: 90px;
+}
+.ctbl thead td {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--green);
+  padding: 11px 12px;
+}
+.ctbl thead td.rlbl { color: var(--pink-lt); }
+
+.big { font-size: 20px; font-weight: 800; }
+
+/* ── EMBED OVERRIDES ── */
+html, body { height: 100%; overflow: hidden; }
+
+.embed-hero {
+  background: var(--green);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.embed-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.embed-meta {
+  font-size: 9px;
+  color: rgba(255,184,181,0.8);
+  letter-spacing: 0.06em;
+}
+
+.ctrl { padding: 0 20px; gap: 8px; }
+.wrap { padding: 12px 20px 60px; }
+
+</style>
+</head>
+<body>
+
+<!-- EMBED HEADER (compact) -->
+<header class="embed-hero">
+  <span class="embed-title">The Manelli Scale</span>
+  <span class="embed-meta">50 bleaches · 10 criteria · rated by Mirella Manelli</span>
+</header>
+
+<!-- CONTROLS (sticky) -->
+<div class="ctrl">
+  <div class="search-wrap">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="search" placeholder="Search brand…" oninput="run()">
+  </div>
+
+  <div class="ctrl-divider"></div>
+  <span class="lbl">Score</span>
+  <select id="minScore" onchange="run()">
+    <option value="0">All</option>
+    <option value="80">80+</option>
+    <option value="75">75+</option>
+    <option value="70">70+</option>
+  </select>
+
+  <div class="ctrl-divider"></div>
+  <span class="lbl">Focus</span>
+  <select id="hl" onchange="run()">
+    <option value="">All columns</option>
+    <option value="dust">Dust</option>
+    <option value="odor">Odor</option>
+    <option value="viscosity">Viscosity</option>
+    <option value="timing">Timing</option>
+    <option value="swell">Swell</option>
+    <option value="lift">Lift</option>
+    <option value="integrity">Integrity</option>
+    <option value="neutral">Neutral</option>
+    <option value="versatility">Versatility</option>
+    <option value="price">Price</option>
+  </select>
+
+  <div class="ctrl-divider"></div>
+  <div class="pills">
+    <div class="pill on" onclick="setTier(this,'all')">All</div>
+    <div class="pill"    onclick="setTier(this,'top')">Top 85+</div>
+    <div class="pill"    onclick="setTier(this,'val')">Best Value</div>
+  </div>
+
+  <span class="count" id="cnt">50 products</span>
+</div>
+
+<!-- TABLE -->
+<div class="wrap">
+  <!-- col-head is OUTSIDE tbl-outer so overflow-x:auto on tbl-outer doesn't clip sticky -->
+  <div class="col-head" id="colHead">
+    <div class="col-head-track" id="colHeadTrack">
+      <table class="cht" id="chtTable">
+        <tbody>
+          <tr>
+            <th onclick="sort('name')"        id="h-name">Product <span class="arr">↕</span></th>
+            <th onclick="sort('dust')"        id="h-dust"        data-tip="Mess when mixing — 10 = no dust">Dust <span class="arr">↕</span></th>
+            <th onclick="sort('odor')"        id="h-odor"        data-tip="Scent during processing — 10 = pleasant">Odor <span class="arr">↕</span></th>
+            <th onclick="sort('viscosity')"   id="h-viscosity"   data-tip="Texture &amp; spreadability — 10 = ideal">Visc <span class="arr">↕</span></th>
+            <th onclick="sort('timing')"      id="h-timing"      data-tip="Consistency of processing time — 10 = predictable">Time <span class="arr">↕</span></th>
+            <th onclick="sort('swell')"       id="h-swell"       data-tip="How much product expands on hair">Swell <span class="arr">↕</span></th>
+            <th onclick="sort('lift')"        id="h-lift"        data-tip="Levels of lift achieved — 10 = maximum">Lift <span class="arr">↕</span></th>
+            <th onclick="sort('integrity')"   id="h-integrity"   data-tip="Hair condition post-bleach — 10 = least damage">Integ <span class="arr">↕</span></th>
+            <th onclick="sort('neutral')"     id="h-neutral"     data-tip="Tone neutrality — 10 = no unwanted warmth">Neut <span class="arr">↕</span></th>
+            <th onclick="sort('versatility')" id="h-versatility" data-tip="Works across many techniques">Verst <span class="arr">↕</span></th>
+            <th onclick="sort('price')"       id="h-price"       data-tip="Value for money — 10 = best value">Price <span class="arr">↕</span></th>
+            <th onclick="sort('total')"       id="h-total" class="on">Total <span class="arr">↓</span></th>
+            <th onclick="sort('notes')" id="h-notes">Notes <span class="arr">↕</span></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tbl-outer" id="tblOuter">
+    <table id="dataTable">
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <div class="empty" id="empty">No products match.</div>
+</div>
+
+<!-- COMPARE BAR -->
+<div class="cbar" id="cbar">
+  <span class="clbl">Compare</span>
+  <div class="cslots" id="cslots"></div>
+  <button class="cbtn" id="cbtn" onclick="openModal()" disabled>Side-by-Side →</button>
+  <button class="clrbtn" onclick="clearCmp()">Clear</button>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+  <div class="modal">
+    <button class="mclose" onclick="closeModal()">×</button>
+    <div class="mtitle">Side-by-Side Comparison</div>
+    <div class="radars" id="radars"></div>
+    <table class="ctbl" id="ctbl"></table>
+  </div>
+</div>
+
+<script>
+const COLS = ['dust','odor','viscosity','timing','swell','lift','integrity','neutral','versatility','price'];
+
+// Short attribute notes — top 10 sourced from Mirella's ranked article on mirellamanelli.com
+const NOTES = {
+  "Alterego Blondego Ultra 9 Lightener": "Zero dust, odorless, no swell — creamy benchmark for salon integrity.",
+  "Framesi Decolor B Infinity+": "Colorless formula, hyaluronic acid, 10+ levels of lift — no bond builder needed.",
+  "Blonde Solutions": "Blue pigment base, up to 9 levels, flexible 2-hour processing window.",
+  "Danger Jones": "Level 9 in 60 minutes, golden even lift, moderate dust and swell.",
+  "Wella Blondor Plex9": "Dust-free, integrated Plex bond protection — fast on- and off-scalp lifter.",
+  "Davines Century": "Low odor, eco-conscious, gentle on scalp — 40-minute max processing.",
+  "Joico Silverlight": "Charcoal base neutralizes yellow mid-lift; versatile but dusty and pricey.",
+  "Matrix Light Master": "Budget-friendly, consistent lift, creamy mix — add bond builder for damaged hair.",
+  "Lanza Healing Color": "Healing actives keep fragile hair soft; slower lift, exceptional integrity.",
+  "L'Oreal Blonde St. 9": "Oil Delivery System adds shine; 9-level lift, fast and creamy in foil.",
+  "Oligo Backlight": "Plex-enhanced cream lightener; smooth, controlled lift with bond protection.",
+  "Redken Flashlift": "Reliable workhorse with bonder; consistent results across all techniques.",
+  "Trionics XO 40": "High-lift powder, aggressive on stubborn dark bases, widely salon-trusted.",
+  "Trionics KO 20": "Gentler companion to XO 40; ideal for fine hair and on-scalp applications.",
+  "R+Co": "Boutique formula, pleasant scent, clean ingredients — solid mid-range performer.",
+  "Kenra Blue Powder": "Blue-tinted powder controls brass during lift; reliable for foil and balayage.",
+  "Paul Mitchell Synchrolift+": "Ultra-consistent, creamy, low swell — salon staple with near-zero odor.",
+  "Bond Bar": "Bond-building lightener that protects hair structure during aggressive lift sessions.",
+  "Evo BB": "Cruelty-free, conditioning formula; completely odorless with a pleasant post-bleach feel.",
+  "Goldwell Oxycur": "Long-standing German formula; strong lift, thick consistency, no-frills reliable.",
+  "Schwarzkoph Blonde Me": "Integrated bond enforcing, anti-yellow agents, 9-level lift with solid integrity.",
+  "Lanza Healing Blonde": "Keratin-healing formula; gentler than Ultra Blonde, best for maintenance lifts.",
+  "Generic Value Products": "Sally Beauty budget powder; surprising dust/odor/viscosity scores — value standout.",
+  "Kenra Beyond Blonde": "Versatile cream lightener, smooth application, solid lift without heavy dust.",
+  "Joico Blondelife": "Brightening system for blondes; maintains vibrancy and condition between lifts.",
+  "Chi Bleach & Shine": "Silk-infused formula adds shine post-lift; moderate lift, gentle on fine hair.",
+  "Joico Verolight": "Dust-free lightener for open-air techniques; controlled, even lift on highlights.",
+  "Rusk Deepshine": "Oil-enriched formula, low odor, smooth application — good integrity for fine hair.",
+  "Pulp Riot Blonde AF": "Clay-based lightener; creamy, low-dust, strong lift favored by fashion colorists.",
+  "Moonlights": "Gentle oil-infused lightener; best value in this tier for sensitive scalp highlight work.",
+  "Guy Tang Mydentity": "Bond-multiplying technology; community favorite with solid all-around lift.",
+  "GK Juvexin": "Keratin protein base protects hair mid-lift; very predictable timing, lower versatility.",
+  "Goldwell Silklift": "High-lift clay lightener; strong lift, controlled swell, good scalp compatibility.",
+  "Pravana Purelight": "Pure clay-based formula; decent lift, low odor, works well for balayage freehand.",
+  "Scruples": "Mid-range powder lightener; reliable for everyday salon use, moderate dust.",
+  "Aloxxi": "Bond-building lightener with protective complex; average lift, good hair condition.",
+  "Milbon": "Japanese precision formula; ultra-gentle, low dust, ideal for fine or fragile hair.",
+  "Wella Color Charm": "Accessible powder lightener; good viscosity but poor neutrality — watch brass tones.",
+  "Moroccanoil": "Argan oil-infused lightener; low odor, nourishing feel — limited lift and high dust.",
+  "JKS": "Best price scoring on the list but very poor viscosity — runny and difficult to control.",
+  "BW2": "Classic Clairol powder; strong, fast lift — workhorse but heavy dust, low integrity.",
+  "Ageful Ultra Blonde": "Gentle mid-lift formula for sensitized hair; lower lift power, low swell.",
+  "Ion Bright White": "Affordable Sally Beauty powder; high dust, near-zero integrity — avoid on fine hair.",
+  "L'Oreal Super Blanc": "High-lift powder for stubborn bases; aggressive, dusty, poor odor and neutrality.",
+  "Quick White": "Fast-acting powder for speed results; very heavy dust, low integrity — budget tier.",
+  "Blonde Brilliance": "Consumer-grade kit lightener; limited lift and thin consistency, high dust.",
+  "Quick Blue": "Classic Clairol powder; fast and strong but extremely dusty, very harsh on hair.",
+  "Light Fast Bleach Kit": "Entry-level kit lightener; near-zero integrity — highest damage risk on this list.",
+  "Saloncare Blue Flash": "Budget blue powder; zero odor rating but zero integrity — not for compromised hair.",
+};
+
+const DATA = [
+  {name:"Alterego Blondego Ultra 9 Lightener", dust:10,odor:10,viscosity:9,timing:9,swell:8,lift:8,integrity:10,neutral:8,versatility:8,price:5,total:85},
+  {name:"Framesi Decolor B Infinity+",         dust:10,odor:9, viscosity:9,timing:9,swell:8,lift:8,integrity:10,neutral:7,versatility:7,price:7,total:84},
+  {name:"Blonde Solutions",                    dust:9, odor:7, viscosity:8,timing:10,swell:7,lift:9,integrity:7, neutral:10,versatility:9,price:7,total:83},
+  {name:"Danger Jones",                        dust:7, odor:8, viscosity:9,timing:8, swell:7,lift:9,integrity:9, neutral:10,versatility:9,price:7,total:83},
+  {name:"Wella Blondor Plex9",                 dust:10,odor:9, viscosity:9,timing:8, swell:7,lift:8,integrity:9, neutral:8, versatility:7,price:8,total:83},
+  {name:"Davines Century",                     dust:8, odor:9, viscosity:8,timing:7, swell:9,lift:8,integrity:9, neutral:7, versatility:9,price:9,total:83},
+  {name:"Joico Silverlight",                   dust:7, odor:8, viscosity:8,timing:9, swell:9,lift:8,integrity:9, neutral:9, versatility:10,price:5,total:82},
+  {name:"Matrix Light Master",                 dust:9, odor:9, viscosity:8,timing:8, swell:8,lift:7,integrity:8, neutral:7, versatility:9,price:9,total:82},
+  {name:"Lanza Healing Color",                 dust:8, odor:8, viscosity:8,timing:9, swell:8,lift:8,integrity:10,neutral:8, versatility:9,price:6,total:82},
+  {name:"L'Oreal Blonde St. 9",               dust:6, odor:9, viscosity:9,timing:8, swell:9,lift:8,integrity:8, neutral:8, versatility:9,price:7,total:81},
+  {name:"Oligo Backlight",                     dust:8, odor:8, viscosity:9,timing:9, swell:8,lift:8,integrity:7, neutral:5, versatility:10,price:9,total:81},
+  {name:"Redken Flashlift",                    dust:9, odor:9, viscosity:8,timing:7, swell:8,lift:8,integrity:7, neutral:7, versatility:9,price:8,total:80},
+  {name:"Trionics XO 40",                      dust:10,odor:8, viscosity:8,timing:7, swell:9,lift:8,integrity:8, neutral:7, versatility:9,price:6,total:80},
+  {name:"Trionics KO 20",                      dust:9, odor:9, viscosity:8,timing:10,swell:9,lift:7,integrity:7, neutral:7, versatility:8,price:6,total:80},
+  {name:"R+Co",                                dust:8, odor:8, viscosity:7,timing:8, swell:9,lift:8,integrity:10,neutral:5, versatility:9,price:7,total:79},
+  {name:"Kenra Blue Powder",                   dust:9, odor:7, viscosity:8,timing:7, swell:7,lift:8,integrity:8, neutral:8, versatility:9,price:8,total:79},
+  {name:"Paul Mitchell Synchrolift+",          dust:8, odor:10,viscosity:9,timing:7, swell:8,lift:7,integrity:9, neutral:7, versatility:6,price:8,total:79},
+  {name:"Bond Bar",                            dust:8, odor:7, viscosity:7,timing:8, swell:8,lift:7,integrity:10,neutral:7, versatility:10,price:7,total:79},
+  {name:"Evo BB",                              dust:5, odor:10,viscosity:9,timing:7, swell:9,lift:8,integrity:9, neutral:8, versatility:7,price:6,total:78},
+  {name:"Goldwell Oxycur",                     dust:10,odor:8, viscosity:6,timing:7, swell:7,lift:8,integrity:10,neutral:6, versatility:7,price:8,total:77},
+  {name:"Schwarzkoph Blonde Me",               dust:9, odor:8, viscosity:9,timing:7, swell:7,lift:7,integrity:8, neutral:7, versatility:9,price:6,total:77},
+  {name:"Lanza Healing Blonde",                dust:8, odor:8, viscosity:8,timing:9, swell:8,lift:8,integrity:7, neutral:7, versatility:9,price:5,total:77},
+  {name:"Generic Value Products",              dust:10,odor:10,viscosity:10,timing:8,swell:7,lift:7,integrity:8, neutral:7, versatility:9,price:1,total:77},
+  {name:"Kenra Beyond Blonde",                 dust:9, odor:8, viscosity:9,timing:7, swell:6,lift:7,integrity:7, neutral:8, versatility:8,price:7,total:76},
+  {name:"Joico Blondelife",                    dust:7, odor:3, viscosity:8,timing:9, swell:9,lift:8,integrity:8, neutral:8, versatility:10,price:6,total:76},
+  {name:"Chi Bleach & Shine",                  dust:9, odor:6, viscosity:7,timing:8, swell:7,lift:7,integrity:9, neutral:7, versatility:10,price:6,total:76},
+  {name:"Joico Verolight",                     dust:6, odor:7, viscosity:8,timing:10,swell:8,lift:8,integrity:5, neutral:7, versatility:9,price:7,total:75},
+  {name:"Rusk Deepshine",                      dust:9, odor:9, viscosity:8,timing:7, swell:8,lift:7,integrity:8, neutral:7, versatility:4,price:8,total:75},
+  {name:"Pulp Riot Blonde AF",                 dust:5, odor:9, viscosity:6,timing:7, swell:8,lift:8,integrity:8, neutral:8, versatility:9,price:7,total:75},
+  {name:"Moonlights",                          dust:5, odor:7, viscosity:8,timing:7, swell:9,lift:7,integrity:8, neutral:6, versatility:8,price:9,total:74},
+  {name:"Guy Tang Mydentity",                  dust:9, odor:9, viscosity:6,timing:7, swell:9,lift:7,integrity:7, neutral:4, versatility:8,price:7,total:73},
+  {name:"GK Juvexin",                          dust:7, odor:8, viscosity:4,timing:10,swell:8,lift:9,integrity:6, neutral:9, versatility:3,price:9,total:73},
+  {name:"Goldwell Silklift",                   dust:9, odor:8, viscosity:8,timing:7, swell:8,lift:7,integrity:6, neutral:5, versatility:7,price:6,total:71},
+  {name:"Pravana Purelight",                   dust:5, odor:5, viscosity:7,timing:8, swell:8,lift:8,integrity:9, neutral:6, versatility:9,price:6,total:71},
+  {name:"Scruples",                            dust:6, odor:5, viscosity:7,timing:7, swell:8,lift:7,integrity:8, neutral:7, versatility:8,price:7,total:70},
+  {name:"Aloxxi",                              dust:5, odor:7, viscosity:8,timing:8, swell:4,lift:7,integrity:7, neutral:6, versatility:9,price:8,total:69},
+  {name:"Milbon",                              dust:5, odor:7, viscosity:7,timing:7, swell:4,lift:8,integrity:7, neutral:7, versatility:9,price:8,total:69},
+  {name:"Wella Color Charm",                   dust:8, odor:9, viscosity:9,timing:8, swell:8,lift:7,integrity:7, neutral:3, versatility:9,price:1,total:69},
+  {name:"Moroccanoil",                         dust:2, odor:5, viscosity:8,timing:9, swell:2,lift:8,integrity:7, neutral:8, versatility:9,price:8,total:66},
+  {name:"JKS",                                 dust:5, odor:7, viscosity:2,timing:7, swell:7,lift:8,integrity:8, neutral:7, versatility:4,price:10,total:65},
+  {name:"BW2",                                 dust:8, odor:7, viscosity:8,timing:8, swell:6,lift:7,integrity:3, neutral:3, versatility:9,price:1,total:60},
+  {name:"Ageful Ultra Blonde",                 dust:9, odor:3, viscosity:4,timing:9, swell:3,lift:8,integrity:7, neutral:7, versatility:7,price:1,total:58},
+  {name:"Ion Bright White",                    dust:6, odor:8, viscosity:5,timing:8, swell:8,lift:7,integrity:1, neutral:3, versatility:9,price:1,total:56},
+  {name:"L'Oreal Super Blanc",                dust:4, odor:3, viscosity:8,timing:10,swell:6,lift:7,integrity:5, neutral:3, versatility:8,price:1,total:55},
+  {name:"Quick White",                         dust:8, odor:3, viscosity:7,timing:7, swell:6,lift:7,integrity:7, neutral:3, versatility:5,price:1,total:54},
+  {name:"Blonde Brilliance",                   dust:9, odor:5, viscosity:4,timing:8, swell:6,lift:7,integrity:3, neutral:3, versatility:8,price:1,total:54},
+  {name:"Quick Blue",                          dust:7, odor:3, viscosity:7,timing:8, swell:6,lift:7,integrity:5, neutral:3, versatility:3,price:1,total:50},
+  {name:"Light Fast Bleach Kit",               dust:9, odor:0, viscosity:6,timing:10,swell:4,lift:7,integrity:1, neutral:6, versatility:3,price:1,total:47},
+  {name:"Saloncare Blue Flash",                dust:8, odor:0, viscosity:9,timing:7, swell:4,lift:7,integrity:0, neutral:6, versatility:5,price:1,total:47},
+];
+
+// Pre-compute
+const bestVal = [...DATA].filter(p=>p.price>=7).sort((a,b)=>b.total-a.total).slice(0,3).map(p=>p.name);
+const colMax  = Object.fromEntries(COLS.map(c=>[c, Math.max(...DATA.map(p=>p[c]))]));
+
+let view   = [...DATA];
+let scol   = 'total';
+let sdir   = -1;
+let tier   = 'all';
+let cmp    = [];
+
+// ── heatmap class
+function hc(v) {
+  return ['h0','h1','h2','h3','h4','h5','h6','h7','h8','h9','h10'][Math.min(Math.max(v,0),10)];
+}
+
+// ── total class
+function tc(v) {
+  if(v>=85) return 't85';
+  if(v>=80) return 't80';
+  if(v>=75) return 't75';
+  if(v>=70) return 't70';
+  if(v>=65) return 't65';
+  if(v>=60) return 't60';
+  return 'tlo';
+}
+
+// ── render
+function render() {
+  const tb    = document.getElementById('tb');
+  const empty = document.getElementById('empty');
+  const cnt   = document.getElementById('cnt');
+  const focus = document.getElementById('hl').value;
+
+  if (!view.length) {
+    tb.innerHTML = '';
+    empty.style.display = 'block';
+    cnt.textContent = '0 products';
+    return;
+  }
+
+  empty.style.display = 'none';
+  cnt.textContent = `${view.length} product${view.length!==1?'s':''}`;
+
+  tb.innerHTML = view.map((p, i) => {
+    const gi  = DATA.indexOf(p);                              // global rank for colour
+    const rkC = gi===0?'r1':gi===1?'r2':gi===2?'r3':'rn';
+    const inC = cmp.includes(p.name);
+
+    const cells = COLS.map(c => {
+      const v    = p[c];
+      const dim  = focus && focus !== c ? ' dim' : '';
+      const best = v === colMax[c] ? ' best' : '';
+      return `<td><span class="sc ${hc(v)}${dim}${best}">${v}</span></td>`;
+    }).join('');
+
+    const safe = p.name.replace(/'/g, "\\'");
+    return `<tr>
+      <td>
+        <div class="prow">
+          <input type="checkbox" class="cb" ${inC?'checked':''} onchange="toggleCmp('${safe}',this)">
+          <span class="rnk ${rkC}">${i+1}</span>
+          <span class="pname">${p.name}</span>
+          ${bestVal.includes(p.name)?'<span class="vtag">Value</span>':''}
+        </div>
+      </td>
+      ${cells}
+      <td><span class="tot ${tc(p.total)}">${p.total}</span></td>
+      <td class="note-cell"><span class="note-txt">${NOTES[p.name]||''}</span></td>
+    </tr>`;
+  }).join('');
+  syncColWidths();
+}
+
+// ── sort
+function sort(col) {
+  if (scol===col) sdir *= -1;
+  else { scol=col; sdir=-1; }
+  document.querySelectorAll('.cht th').forEach(t=>t.classList.remove('on'));
+  const th = document.getElementById(`h-${col}`);
+  if (th) {
+    th.classList.add('on');
+    th.querySelector('.arr').textContent = sdir===-1 ? '↓' : '↑';
+  }
+  run();
+}
+
+// ── filter + sort + render
+function run() {
+  const q  = document.getElementById('search').value.toLowerCase();
+  const ms = +document.getElementById('minScore').value || 0;
+
+  view = DATA.filter(p => {
+    if (q  && !p.name.toLowerCase().includes(q)) return false;
+    if (p.total < ms) return false;
+    if (tier==='top' && p.total<85) return false;
+    if (tier==='val' && !bestVal.includes(p.name)) return false;
+    return true;
+  });
+
+  view.sort((a,b) => {
+    if (scol==='name' || scol==='notes') {
+      const av = scol==='notes' ? (NOTES[a.name]||'') : a.name;
+      const bv = scol==='notes' ? (NOTES[b.name]||'') : b.name;
+      return sdir * av.localeCompare(bv);
+    }
+    return sdir * (b[scol] - a[scol]);
+  });
+
+  render();
+}
+
+function setTier(el, t) {
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  tier = t;
+  run();
+}
+
+// ── compare
+function toggleCmp(name, cb) {
+  if (cb.checked) {
+    if (cmp.length >= 4) { cb.checked = false; return; }
+    if (!cmp.includes(name)) cmp.push(name);
+  } else {
+    cmp = cmp.filter(n=>n!==name);
+  }
+  syncCbar();
+}
+
+function syncCbar() {
+  const bar = document.getElementById('cbar');
+  const slots = document.getElementById('cslots');
+  document.getElementById('cbtn').disabled = cmp.length < 2;
+
+  if (!cmp.length) { bar.classList.remove('show'); return; }
+  bar.classList.add('show');
+
+  slots.innerHTML = cmp.map(n => {
+    const safe = n.replace(/'/g,"\\'");
+    return `<div class="cslot">${n.length>28?n.slice(0,28)+'…':n}<span class="cx" onclick="removeCmp('${safe}')">×</span></div>`;
+  }).join('');
+}
+
+function removeCmp(name) {
+  cmp = cmp.filter(n=>n!==name);
+  syncCbar();
+  render();
+}
+
+function clearCmp() {
+  cmp = [];
+  syncCbar();
+  render();
+}
+
+// ── modal
+function openModal() {
+  const prods = DATA.filter(p=>cmp.includes(p.name));
+
+  // radar
+  const radars = document.getElementById('radars');
+  radars.innerHTML = prods.map((_,i)=>`<canvas class="rc" id="rc${i}" width="196" height="206"></canvas>`).join('');
+  setTimeout(()=>prods.forEach((p,i)=>drawRadar(document.getElementById(`rc${i}`),p)), 20);
+
+  // table
+  const ROWS = [{key:'name',label:'Product'},...COLS.map(c=>({key:c,label:c[0].toUpperCase()+c.slice(1)})),{key:'total',label:'Total'}];
+  const head = `<thead><tr><td class="rlbl"></td>${prods.map(p=>`<td>${p.name.length>22?p.name.slice(0,22)+'…':p.name}</td>`).join('')}</tr></thead>`;
+  const body = ROWS.map(r => {
+    const cells = prods.map(p => {
+      const v = p[r.key];
+      const cls = r.key==='total' ? `big ${tc(v)}` : r.key!=='name' ? hc(v) : '';
+      return `<td class="${cls}">${v}</td>`;
+    }).join('');
+    return `<tr><td class="rlbl">${r.label}</td>${cells}</tr>`;
+  }).join('');
+
+  document.getElementById('ctbl').innerHTML = head + `<tbody>${body}</tbody>`;
+  document.getElementById('overlay').classList.add('open');
+}
+
+function drawRadar(canvas, p) {
+  const ctx = canvas.getContext('2d');
+  const W=196, H=206, cx=W/2, cy=H/2-8, r=72, n=COLS.length;
+  const step = (Math.PI*2)/n;
+  ctx.clearRect(0,0,W,H);
+
+  // grid rings
+  for (let ring=1; ring<=5; ring++) {
+    ctx.beginPath();
+    for (let i=0; i<n; i++) {
+      const a=i*step-Math.PI/2, rr=r*(ring/5);
+      const x=cx+rr*Math.cos(a), y=cy+rr*Math.sin(a);
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle='#e8d8cc'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  // axes
+  for (let i=0; i<n; i++) {
+    const a=i*step-Math.PI/2;
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+r*Math.cos(a), cy+r*Math.sin(a));
+    ctx.strokeStyle='#e8d8cc'; ctx.lineWidth=1; ctx.stroke();
+  }
+
+  // data shape
+  ctx.beginPath();
+  for (let i=0; i<n; i++) {
+    const a=i*step-Math.PI/2, rv=r*(p[COLS[i]]/10);
+    i===0 ? ctx.moveTo(cx+rv*Math.cos(a), cy+rv*Math.sin(a))
+          : ctx.lineTo(cx+rv*Math.cos(a), cy+rv*Math.sin(a));
+  }
+  ctx.closePath();
+  ctx.fillStyle='rgba(250,81,133,.18)'; ctx.fill();
+  ctx.strokeStyle='#FA5185'; ctx.lineWidth=2; ctx.stroke();
+
+  // dots
+  COLS.forEach((c,i) => {
+    const a=i*step-Math.PI/2, rv=r*(p[c]/10);
+    ctx.beginPath();
+    ctx.arc(cx+rv*Math.cos(a), cy+rv*Math.sin(a), 3, 0, Math.PI*2);
+    ctx.fillStyle='#FA5185'; ctx.fill();
+  });
+
+  // labels
+  ctx.font = '8px Open Sans,sans-serif';
+  ctx.fillStyle = '#8A5A3E';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  COLS.forEach((c,i) => {
+    const a=i*step-Math.PI/2;
+    ctx.fillText(c.slice(0,4).toUpperCase(), cx+(r+15)*Math.cos(a), cy+(r+15)*Math.sin(a));
+  });
+
+  // name
+  ctx.font = 'bold 9px Open Sans,sans-serif';
+  ctx.fillStyle = '#015A42';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  const sn = p.name.length>22 ? p.name.slice(0,22)+'…' : p.name;
+  ctx.fillText(sn, cx, H-16);
+}
+
+function overlayClick(e) { if(e.target===document.getElementById('overlay')) closeModal(); }
+function closeModal() { document.getElementById('overlay').classList.remove('open'); }
+
+// Measure real ctrl height and set col-head sticky top
+function setStickyTop() {
+  const h = document.querySelector('.ctrl').getBoundingClientRect().height;
+  document.documentElement.style.setProperty('--ctrl-h', h + 'px');
+  document.getElementById('colHead').style.top = h + 'px';
+}
+requestAnimationFrame(setStickyTop);
+window.addEventListener('resize', () => { setStickyTop(); syncColWidths(); });
+document.fonts.ready.then(() => { setStickyTop(); syncColWidths(); });
+
+// Sync .cht header column widths to the actual rendered data table columns
+function syncColWidths() {
+  requestAnimationFrame(() => {
+    const firstRow = document.querySelector('#tb tr');
+    const cht = document.getElementById('chtTable');
+    if (!firstRow || !cht) return;
+    const tds = firstRow.querySelectorAll('td');
+    const ths = cht.querySelectorAll('th');
+    // Match total width
+    const dataTable = document.getElementById('dataTable');
+    cht.style.width = dataTable.offsetWidth + 'px';
+    // Match each column width
+    tds.forEach((td, i) => {
+      if (ths[i]) ths[i].style.width = td.getBoundingClientRect().width + 'px';
+    });
+    // Sync horizontal scroll position in case table was already scrolled
+    const tblOuter = document.getElementById('tblOuter');
+    document.getElementById('colHeadTrack').style.transform =
+      `translateX(-${tblOuter.scrollLeft}px)`;
+  });
+}
+
+// Horizontal scroll sync: slides the .cht header track to match tbl-outer scroll
+document.getElementById('tblOuter').addEventListener('scroll', function() {
+  document.getElementById('colHeadTrack').style.transform =
+    `translateX(-${this.scrollLeft}px)`;
+});
+
+// init
+run();
+</script>
+</body>
+</html>
