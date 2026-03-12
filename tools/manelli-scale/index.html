@@ -215,6 +215,7 @@ tbody tr:last-child td:last-child       { border-radius: 0 0 10px 0; }
   top: var(--ctrl-h);
   z-index: 20;
   overflow: visible;
+  background: var(--green); /* fills any gap between .cht columns */
 }
 
 /* Track that slides left via JS translateX to mirror horizontal scroll of tbl-outer */
@@ -432,8 +433,15 @@ input.cb {
 
 .cht th#h-notes {
   text-align: left;
-  min-width: 200px;
-  cursor: default;
+}
+
+/* Notes sort arrow is always hot pink — stands out from other column arrows */
+#h-notes .arr {
+  color: var(--pink);
+  opacity: 1;
+}
+#h-notes.on .arr {
+  color: var(--pink);
 }
 
 /* no results */
@@ -698,7 +706,7 @@ canvas.rc {
             <th onclick="sort('versatility')" id="h-versatility" data-tip="Works across many techniques">Verst <span class="arr">↕</span></th>
             <th onclick="sort('price')"       id="h-price"       data-tip="Value for money — 10 = best value">Price <span class="arr">↕</span></th>
             <th onclick="sort('total')"       id="h-total" class="on">Total <span class="arr">↓</span></th>
-            <th id="h-notes">Notes</th>
+            <th onclick="sort('notes')" id="h-notes">Notes <span class="arr">↕</span></th>
           </tr>
         </tbody>
       </table>
@@ -938,7 +946,11 @@ function run() {
   });
 
   view.sort((a,b) => {
-    if (scol==='name') return sdir * a.name.localeCompare(b.name);
+    if (scol==='name' || scol==='notes') {
+      const av = scol==='notes' ? (NOTES[a.name]||'') : a.name;
+      const bv = scol==='notes' ? (NOTES[b.name]||'') : b.name;
+      return sdir * av.localeCompare(bv);
+    }
     return sdir * (b[scol] - a[scol]);
   });
 
