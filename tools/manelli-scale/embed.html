@@ -27,6 +27,48 @@ body {
   color: var(--txt);
 }
 
+/* ── HERO HEADER (not sticky — scrolls away) ── */
+.hero {
+  background: var(--green);
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-logo {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+
+.brand-sub {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pink-lt);
+  margin-top: 3px;
+}
+
+.hero-right {
+  text-align: right;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.hero-meta {
+  font-size: 10px;
+  color: rgba(255,184,181,0.7);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
 /* ── CONTROLS BAR (sticky) ── */
 .ctrl {
   position: sticky;
@@ -586,41 +628,46 @@ canvas.rc {
 .big { font-size: 20px; font-weight: 800; }
 
 /* ── EMBED OVERRIDES ── */
-html, body { height: 100%; overflow: hidden; }
-
+/* Slim hero replaces full-size header */
 .embed-hero {
   background: var(--green);
-  padding: 10px 20px;
+  padding: 8px 20px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-shrink: 0;
 }
-
 .embed-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 15px;
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
   font-weight: 700;
-  color: var(--white);
+  color: #fff;
   white-space: nowrap;
 }
-
-.embed-meta {
+.embed-by {
   font-size: 9px;
-  color: rgba(255,184,181,0.8);
+  color: rgba(255,184,181,0.85);
   letter-spacing: 0.06em;
 }
 
-.ctrl { padding: 0 20px; gap: 8px; }
-.wrap { padding: 12px 20px 60px; }
+/* Tighter controls */
+.ctrl { padding: 0 16px; gap: 8px; height: auto; min-height: 44px; }
+.search-wrap { width: 160px; }
+
+/* Compact table wrapper */
+.wrap { padding: 10px 16px 60px; }
+
+/* Slightly smaller product name */
+.pname { font-size: 10.5px; }
 
 </style>
 </head>
 <body>
 
-<!-- EMBED HEADER (compact) -->
+<!-- EMBED HEADER -->
 <header class="embed-hero">
   <span class="embed-title">The Manelli Scale</span>
-  <span class="embed-meta">50 bleaches · 10 criteria · rated by Mirella Manelli</span>
+  <span class="embed-by">by Mirella Manelli · 50 bleaches · 10 criteria</span>
 </header>
 
 <!-- CONTROLS (sticky) -->
