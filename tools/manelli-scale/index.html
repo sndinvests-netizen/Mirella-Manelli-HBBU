@@ -186,10 +186,10 @@ select:focus { border-color: var(--pink); }
   /* no overflow — any overflow value breaks position:sticky on descendants */
 }
 
-/* visual border-radius container — overflow:clip doesn't create scroll context */
+/* clip-path gives rounded corners WITHOUT creating a scroll container
+   (overflow:clip/hidden both break position:sticky in Safari) */
 .tbl-outer {
-  border-radius: 10px;
-  overflow: clip;
+  clip-path: inset(0 round 10px);
   box-shadow: 0 2px 16px rgba(1,90,66,.07);
 }
 
@@ -969,15 +969,17 @@ function drawRadar(canvas, p) {
 function overlayClick(e) { if(e.target===document.getElementById('overlay')) closeModal(); }
 function closeModal() { document.getElementById('overlay').classList.remove('open'); }
 
-// Measure real ctrl height and apply to thead sticky top
-// (CSS variable fallback of 52px may differ from actual rendered height)
+// Measure real ctrl height and stamp it directly onto every thead th
+// Must run after fonts/layout settle — requestAnimationFrame ensures paint is done
 function setStickyTop() {
   const h = document.querySelector('.ctrl').getBoundingClientRect().height;
   document.documentElement.style.setProperty('--ctrl-h', h + 'px');
   document.querySelectorAll('thead th').forEach(th => th.style.top = h + 'px');
 }
-setStickyTop();
+requestAnimationFrame(setStickyTop);
 window.addEventListener('resize', setStickyTop);
+// Re-run once fonts are fully loaded in case they shifted layout
+document.fonts.ready.then(setStickyTop);
 
 // init
 run();
