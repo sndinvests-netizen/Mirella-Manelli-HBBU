@@ -186,10 +186,9 @@ select:focus { border-color: var(--pink); }
   /* no overflow — any overflow value breaks position:sticky on descendants */
 }
 
-/* clip-path gives rounded corners WITHOUT creating a scroll container
-   (overflow:clip/hidden both break position:sticky in Safari) */
+/* No overflow or clip-path here — both break position:sticky in Safari.
+   Rounded corners applied directly to corner cells instead. */
 .tbl-outer {
-  clip-path: inset(0 round 10px);
   box-shadow: 0 2px 16px rgba(1,90,66,.07);
 }
 
@@ -198,8 +197,13 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   background: var(--white);
-  /* no overflow or border-radius here — moved to .tbl-outer */
 }
+
+/* Rounded corners on the four corner cells — no overflow needed */
+thead th:first-child                    { border-radius: 10px 0 0 0; }
+thead th:last-child                     { border-radius: 0 10px 0 0; }
+tbody tr:last-child td:first-child      { border-radius: 0 0 0 10px; }
+tbody tr:last-child td:last-child       { border-radius: 0 0 10px 0; }
 
 /* thead sticky below ctrl bar — top set dynamically by JS */
 thead th {
@@ -222,7 +226,9 @@ thead th {
 
 thead th:first-child {
   text-align: left;
-  padding-left: 16px;
+  /* 16px base + 13px checkbox + 8px gap + 20px rank badge + 8px gap = 65px
+     aligns header text with the product name in each row */
+  padding-left: 65px;
   min-width: 220px;
 }
 
