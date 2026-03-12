@@ -194,22 +194,34 @@ select:focus { border-color: var(--pink); }
 
 table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--white);
 }
 
-/* Rounded corners on the four corner cells — no overflow needed */
-thead th:first-child                    { border-radius: 10px 0 0 0; }
-thead th:last-child                     { border-radius: 0 10px 0 0; }
+/* Rounded corners on corner cells */
+.cht th:first-child                     { border-radius: 10px 0 0 0; }
+.cht th:last-child                      { border-radius: 0 10px 0 0; }
 tbody tr:last-child td:first-child      { border-radius: 0 0 0 10px; }
 tbody tr:last-child td:last-child       { border-radius: 0 0 10px 0; }
 
-/* thead sticky below ctrl bar — top set dynamically by JS */
-thead th {
+/* Sticky column header — separate element avoids per-cell sticky split bugs */
+.col-head {
   position: sticky;
   top: var(--ctrl-h);
   z-index: 20;
+}
+
+/* Header mirror-table — table-layout:fixed + matching colgroup keeps columns aligned */
+.cht {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.cht th {
   background: var(--green);
   padding: 11px 10px;
   font-size: 9px;
@@ -224,16 +236,14 @@ thead th {
   transition: color .15s, background .15s;
 }
 
-thead th:first-child {
+.cht th:first-child {
   text-align: left;
-  /* 16px base + 13px checkbox + 8px gap + 20px rank badge + 8px gap = 65px
-     aligns header text with the product name in each row */
+  /* 16px base + 13px checkbox + 8px gap + 20px rank badge + 8px gap = 65px */
   padding-left: 65px;
-  min-width: 220px;
 }
 
-thead th:hover { color: var(--white); }
-thead th.on { color: var(--white); background: rgba(255,255,255,.14); }
+.cht th:hover { color: var(--white); }
+.cht th.on { color: var(--white); background: rgba(255,255,255,.14); }
 
 .arr { margin-left: 3px; font-size: 8px; opacity: .4; }
 th.on .arr { opacity: 1; }
@@ -640,23 +650,42 @@ canvas.rc {
 <!-- TABLE -->
 <div class="wrap">
   <div class="tbl-outer">
+  <!-- Sticky column headers in separate element — avoids position:sticky split bug on <th> in <tr> -->
+  <div class="col-head" id="colHead">
+    <table class="cht">
+      <colgroup>
+        <col><!-- product — fills remaining width -->
+        <col style="width:56px"><col style="width:56px"><col style="width:56px"><col style="width:56px">
+        <col style="width:56px"><col style="width:56px"><col style="width:56px"><col style="width:56px">
+        <col style="width:56px"><col style="width:56px"><!-- 10 score cols -->
+        <col style="width:70px"><!-- total -->
+      </colgroup>
+      <tbody>
+        <tr>
+          <th onclick="sort('name')"        id="h-name">Product <span class="arr">↕</span></th>
+          <th onclick="sort('dust')"        id="h-dust"        data-tip="Mess when mixing — 10 = no dust">Dust <span class="arr">↕</span></th>
+          <th onclick="sort('odor')"        id="h-odor"        data-tip="Scent during processing — 10 = pleasant">Odor <span class="arr">↕</span></th>
+          <th onclick="sort('viscosity')"   id="h-viscosity"   data-tip="Texture &amp; spreadability — 10 = ideal">Visc <span class="arr">↕</span></th>
+          <th onclick="sort('timing')"      id="h-timing"      data-tip="Consistency of processing time — 10 = predictable">Time <span class="arr">↕</span></th>
+          <th onclick="sort('swell')"       id="h-swell"       data-tip="How much product expands on hair">Swell <span class="arr">↕</span></th>
+          <th onclick="sort('lift')"        id="h-lift"        data-tip="Levels of lift achieved — 10 = maximum">Lift <span class="arr">↕</span></th>
+          <th onclick="sort('integrity')"   id="h-integrity"   data-tip="Hair condition post-bleach — 10 = least damage">Integ <span class="arr">↕</span></th>
+          <th onclick="sort('neutral')"     id="h-neutral"     data-tip="Tone neutrality — 10 = no unwanted warmth">Neut <span class="arr">↕</span></th>
+          <th onclick="sort('versatility')" id="h-versatility" data-tip="Works across many techniques">Verst <span class="arr">↕</span></th>
+          <th onclick="sort('price')"       id="h-price"       data-tip="Value for money — 10 = best value">Price <span class="arr">↕</span></th>
+          <th onclick="sort('total')"       id="h-total" class="on">Total <span class="arr">↓</span></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <table>
-    <thead>
-      <tr>
-        <th onclick="sort('name')"        id="h-name">Product <span class="arr">↕</span></th>
-        <th onclick="sort('dust')"        id="h-dust"        data-tip="Mess when mixing — 10 = no dust">Dust <span class="arr">↕</span></th>
-        <th onclick="sort('odor')"        id="h-odor"        data-tip="Scent during processing — 10 = pleasant">Odor <span class="arr">↕</span></th>
-        <th onclick="sort('viscosity')"   id="h-viscosity"   data-tip="Texture &amp; spreadability — 10 = ideal">Visc <span class="arr">↕</span></th>
-        <th onclick="sort('timing')"      id="h-timing"      data-tip="Consistency of processing time — 10 = predictable">Time <span class="arr">↕</span></th>
-        <th onclick="sort('swell')"       id="h-swell"       data-tip="How much product expands on hair">Swell <span class="arr">↕</span></th>
-        <th onclick="sort('lift')"        id="h-lift"        data-tip="Levels of lift achieved — 10 = maximum">Lift <span class="arr">↕</span></th>
-        <th onclick="sort('integrity')"   id="h-integrity"   data-tip="Hair condition post-bleach — 10 = least damage">Integ <span class="arr">↕</span></th>
-        <th onclick="sort('neutral')"     id="h-neutral"     data-tip="Tone neutrality — 10 = no unwanted warmth">Neut <span class="arr">↕</span></th>
-        <th onclick="sort('versatility')" id="h-versatility" data-tip="Works across many techniques">Verst <span class="arr">↕</span></th>
-        <th onclick="sort('price')"       id="h-price"       data-tip="Value for money — 10 = best value">Price <span class="arr">↕</span></th>
-        <th onclick="sort('total')"       id="h-total" class="on">Total <span class="arr">↓</span></th>
-      </tr>
-    </thead>
+    <colgroup>
+      <col><!-- product -->
+      <col style="width:56px"><col style="width:56px"><col style="width:56px"><col style="width:56px">
+      <col style="width:56px"><col style="width:56px"><col style="width:56px"><col style="width:56px">
+      <col style="width:56px"><col style="width:56px"><!-- 10 score cols -->
+      <col style="width:70px"><!-- total -->
+    </colgroup>
     <tbody id="tb"></tbody>
   </table>
   </div><!-- /.tbl-outer -->
@@ -811,7 +840,7 @@ function render() {
 function sort(col) {
   if (scol===col) sdir *= -1;
   else { scol=col; sdir=-1; }
-  document.querySelectorAll('thead th').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.cht th').forEach(t=>t.classList.remove('on'));
   const th = document.getElementById(`h-${col}`);
   if (th) {
     th.classList.add('on');
@@ -975,12 +1004,12 @@ function drawRadar(canvas, p) {
 function overlayClick(e) { if(e.target===document.getElementById('overlay')) closeModal(); }
 function closeModal() { document.getElementById('overlay').classList.remove('open'); }
 
-// Measure real ctrl height and stamp it directly onto every thead th
+// Measure real ctrl height and set col-head sticky top
 // Must run after fonts/layout settle — requestAnimationFrame ensures paint is done
 function setStickyTop() {
   const h = document.querySelector('.ctrl').getBoundingClientRect().height;
   document.documentElement.style.setProperty('--ctrl-h', h + 'px');
-  document.querySelectorAll('thead th').forEach(th => th.style.top = h + 'px');
+  document.getElementById('colHead').style.top = h + 'px';
 }
 requestAnimationFrame(setStickyTop);
 window.addEventListener('resize', setStickyTop);
