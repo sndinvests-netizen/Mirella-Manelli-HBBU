@@ -183,18 +183,21 @@ select:focus { border-color: var(--pink); }
 /* ── TABLE ── */
 .wrap {
   padding: 20px 40px 72px;
-  /* no overflow — any overflow value breaks position:sticky on descendants */
+  /* overflow-x:clip clips the .cht header track without creating a scroll container
+     (unlike overflow:hidden which breaks position:sticky) */
+  overflow-x: clip;
 }
 
-/* No overflow or clip-path here — both break position:sticky in Safari.
-   Rounded corners applied directly to corner cells instead. */
+/* overflow-x:auto for horizontal scroll on data table only.
+   .col-head lives OUTSIDE this div so sticky is not broken. */
 .tbl-outer {
+  overflow-x: auto;
   box-shadow: 0 2px 16px rgba(1,90,66,.07);
 }
 
+/* Data table — auto layout so product column naturally expands */
 table {
   width: 100%;
-  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--white);
@@ -206,19 +209,27 @@ table {
 tbody tr:last-child td:first-child      { border-radius: 0 0 0 10px; }
 tbody tr:last-child td:last-child       { border-radius: 0 0 10px 0; }
 
-/* Sticky column header — separate element avoids per-cell sticky split bugs */
+/* Sticky column header — sits ABOVE tbl-outer, outside the overflow-x:auto container */
 .col-head {
   position: sticky;
   top: var(--ctrl-h);
   z-index: 20;
+  overflow: visible;
 }
 
-/* Header mirror-table — table-layout:fixed + matching colgroup keeps columns aligned */
+/* Track that slides left via JS translateX to mirror horizontal scroll of tbl-outer */
+.col-head-track {
+  will-change: transform;
+  display: inline-block;
+  min-width: 100%;
+}
+
+/* Header mirror-table — table-layout:fixed, column widths set by JS after render */
 .cht {
-  width: 100%;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
+  min-width: 100%;
 }
 
 .cht th {
@@ -403,6 +414,26 @@ input.cb {
   border-bottom-color: var(--green);
   z-index: 999;
   pointer-events: none;
+}
+
+/* notes column */
+.note-cell {
+  text-align: left !important;
+  min-width: 200px;
+  padding: 8px 14px !important;
+}
+
+.note-txt {
+  font-size: 10px;
+  color: var(--txt-dim);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.cht th#h-notes {
+  text-align: left;
+  min-width: 200px;
+  cursor: default;
 }
 
 /* no results */
@@ -649,46 +680,35 @@ canvas.rc {
 
 <!-- TABLE -->
 <div class="wrap">
-  <div class="tbl-outer">
-  <!-- Sticky column headers in separate element — avoids position:sticky split bug on <th> in <tr> -->
+  <!-- col-head is OUTSIDE tbl-outer so overflow-x:auto on tbl-outer doesn't clip sticky -->
   <div class="col-head" id="colHead">
-    <table class="cht">
-      <colgroup>
-        <col><!-- product — fills remaining width -->
-        <col style="width:56px"><col style="width:56px"><col style="width:56px"><col style="width:56px">
-        <col style="width:56px"><col style="width:56px"><col style="width:56px"><col style="width:56px">
-        <col style="width:56px"><col style="width:56px"><!-- 10 score cols -->
-        <col style="width:70px"><!-- total -->
-      </colgroup>
-      <tbody>
-        <tr>
-          <th onclick="sort('name')"        id="h-name">Product <span class="arr">↕</span></th>
-          <th onclick="sort('dust')"        id="h-dust"        data-tip="Mess when mixing — 10 = no dust">Dust <span class="arr">↕</span></th>
-          <th onclick="sort('odor')"        id="h-odor"        data-tip="Scent during processing — 10 = pleasant">Odor <span class="arr">↕</span></th>
-          <th onclick="sort('viscosity')"   id="h-viscosity"   data-tip="Texture &amp; spreadability — 10 = ideal">Visc <span class="arr">↕</span></th>
-          <th onclick="sort('timing')"      id="h-timing"      data-tip="Consistency of processing time — 10 = predictable">Time <span class="arr">↕</span></th>
-          <th onclick="sort('swell')"       id="h-swell"       data-tip="How much product expands on hair">Swell <span class="arr">↕</span></th>
-          <th onclick="sort('lift')"        id="h-lift"        data-tip="Levels of lift achieved — 10 = maximum">Lift <span class="arr">↕</span></th>
-          <th onclick="sort('integrity')"   id="h-integrity"   data-tip="Hair condition post-bleach — 10 = least damage">Integ <span class="arr">↕</span></th>
-          <th onclick="sort('neutral')"     id="h-neutral"     data-tip="Tone neutrality — 10 = no unwanted warmth">Neut <span class="arr">↕</span></th>
-          <th onclick="sort('versatility')" id="h-versatility" data-tip="Works across many techniques">Verst <span class="arr">↕</span></th>
-          <th onclick="sort('price')"       id="h-price"       data-tip="Value for money — 10 = best value">Price <span class="arr">↕</span></th>
-          <th onclick="sort('total')"       id="h-total" class="on">Total <span class="arr">↓</span></th>
-        </tr>
-      </tbody>
+    <div class="col-head-track" id="colHeadTrack">
+      <table class="cht" id="chtTable">
+        <tbody>
+          <tr>
+            <th onclick="sort('name')"        id="h-name">Product <span class="arr">↕</span></th>
+            <th onclick="sort('dust')"        id="h-dust"        data-tip="Mess when mixing — 10 = no dust">Dust <span class="arr">↕</span></th>
+            <th onclick="sort('odor')"        id="h-odor"        data-tip="Scent during processing — 10 = pleasant">Odor <span class="arr">↕</span></th>
+            <th onclick="sort('viscosity')"   id="h-viscosity"   data-tip="Texture &amp; spreadability — 10 = ideal">Visc <span class="arr">↕</span></th>
+            <th onclick="sort('timing')"      id="h-timing"      data-tip="Consistency of processing time — 10 = predictable">Time <span class="arr">↕</span></th>
+            <th onclick="sort('swell')"       id="h-swell"       data-tip="How much product expands on hair">Swell <span class="arr">↕</span></th>
+            <th onclick="sort('lift')"        id="h-lift"        data-tip="Levels of lift achieved — 10 = maximum">Lift <span class="arr">↕</span></th>
+            <th onclick="sort('integrity')"   id="h-integrity"   data-tip="Hair condition post-bleach — 10 = least damage">Integ <span class="arr">↕</span></th>
+            <th onclick="sort('neutral')"     id="h-neutral"     data-tip="Tone neutrality — 10 = no unwanted warmth">Neut <span class="arr">↕</span></th>
+            <th onclick="sort('versatility')" id="h-versatility" data-tip="Works across many techniques">Verst <span class="arr">↕</span></th>
+            <th onclick="sort('price')"       id="h-price"       data-tip="Value for money — 10 = best value">Price <span class="arr">↕</span></th>
+            <th onclick="sort('total')"       id="h-total" class="on">Total <span class="arr">↓</span></th>
+            <th id="h-notes">Notes</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tbl-outer" id="tblOuter">
+    <table id="dataTable">
+      <tbody id="tb"></tbody>
     </table>
   </div>
-  <table>
-    <colgroup>
-      <col><!-- product -->
-      <col style="width:56px"><col style="width:56px"><col style="width:56px"><col style="width:56px">
-      <col style="width:56px"><col style="width:56px"><col style="width:56px"><col style="width:56px">
-      <col style="width:56px"><col style="width:56px"><!-- 10 score cols -->
-      <col style="width:70px"><!-- total -->
-    </colgroup>
-    <tbody id="tb"></tbody>
-  </table>
-  </div><!-- /.tbl-outer -->
   <div class="empty" id="empty">No products match.</div>
 </div>
 
@@ -712,6 +732,59 @@ canvas.rc {
 
 <script>
 const COLS = ['dust','odor','viscosity','timing','swell','lift','integrity','neutral','versatility','price'];
+
+// Short attribute notes for each bleach — sourced from Mirella's reviews & product research
+const NOTES = {
+  "Alterego Blondego Ultra 9 Lightener": "Zero dust, odorless, exceptional integrity. The cleanest high-performance lightener on the market.",
+  "Framesi Decolor B Infinity+": "Dust-free Italian formula with built-in bond protection. Gentle, consistent, professional standard.",
+  "Blonde Solutions": "Exceptional lift and perfect neutrality. Very predictable timing — great for controlled blonding.",
+  "Danger Jones": "Outstanding neutrality and strong lift. Ideal for true platinum results without brassiness.",
+  "Wella Blondor Plex9": "Industry staple with Plex technology. Zero dust, reliable integrity, familiar performance.",
+  "Davines Century": "Luxurious Italian formula — smooth consistency, excellent integrity, eco-conscious brand.",
+  "Joico Silverlight": "Extremely versatile across techniques. Consistent timing and good hair condition post-lift.",
+  "Matrix Light Master": "Clean mixing, pleasant smell, solid all-around performer with strong versatility.",
+  "Lanza Healing Color": "Maximum integrity — designed to protect hair health during aggressive lightening sessions.",
+  "L'Oreal Blonde St. 9": "Creamy consistency, easy to apply. Solid lift with good neutrality from a trusted brand.",
+  "Oligo Backlight": "Highly versatile bond-protecting formula. Creamy texture, reliable timing.",
+  "Redken Flashlift": "Fast and efficient. Clean mixing and pleasant scent — a salon workhorse for quick appointments.",
+  "Trionics XO 40": "Zero dust formula with excellent swell. Great for off-scalp techniques and foils.",
+  "Trionics KO 20": "Low-dust with very predictable timing. Ideal for precision color work and balayage.",
+  "R+Co": "Impressive integrity preservation. Works beautifully for high-end salon clientele with fine hair.",
+  "Kenra Blue Powder": "Toned blue formula reduces brassiness during lift. Reliable all-purpose lightener.",
+  "Paul Mitchell Synchrolift+": "Virtually odorless — a must for scent-sensitive clients. Smooth application and good integrity.",
+  "Bond Bar": "Exceptional integrity with very high versatility. Bond-building formula minimizes damage.",
+  "Evo BB": "Completely odorless, creamy formula. Pleasant to use but lower lift capacity than premium options.",
+  "Goldwell Oxycur": "Excellent integrity and zero dust. Classic Goldwell quality with consistent professional results.",
+  "Schwarzkoph Blonde Me": "Clean mixing, smooth consistency. Dependable lift for mainstream salon use.",
+  "Lanza Healing Blonde": "Good overall performer with strong timing predictability and solid versatility.",
+  "Generic Value Products": "Best-in-class dust/odor/viscosity scores at minimal cost — surprisingly high performance.",
+  "Kenra Beyond Blonde": "Clean mixing and creamy formula. Solid versatility for everyday blonding services.",
+  "Joico Blondelife": "Very versatile across multiple techniques. Note: noticeably stronger odor than Joico siblings.",
+  "Chi Bleach & Shine": "Versatile clay-based formula. Good integrity, easy to use, reliable for high-volume salons.",
+  "Joico Verolight": "Best timing consistency in the Joico line. Watch integrity — better for healthy hair.",
+  "Rusk Deepshine": "Clean mixing and excellent odor profile. Best for straightforward single-process lifting.",
+  "Pulp Riot Blonde AF": "Pleasant scent, good neutrality and versatility. Instagram-friendly brand with solid results.",
+  "Moonlights": "Best value in its tier. Decent all-rounder with strong pricing relative to performance.",
+  "Guy Tang Mydentity": "Clean mixing and good odor. Neutrality and integrity lag — best for healthy, thick hair.",
+  "GK Juvexin": "Unique Juvexin protein formula. Very predictable timing and excellent lift. Limited versatility.",
+  "Goldwell Silklift": "Reliable Goldwell consistency. Moderate lift and integrity — better for maintenance sessions.",
+  "Pravana Purelight": "Decent integrity for mid-tier. Good versatility; lower lift performance compared to premium.",
+  "Scruples": "Balanced mid-range performer. No standout strengths but consistent across criteria.",
+  "Aloxxi": "Clean creamy formula. Lower swell reduces saturation — watch results on very thick hair.",
+  "Milbon": "Salon-quality Japanese formula. Low swell limits performance; premium price for niche market.",
+  "Wella Color Charm": "Consumer-facing Wella line. Strong dust/odor/viscosity but very poor neutrality — watch warmth.",
+  "Moroccanoil": "High dust and messy mixing are the dealbreakers here. Limited lifting capacity for the price.",
+  "JKS": "Best value/price scoring in mid-tier but very poor viscosity — runny and difficult to control.",
+  "BW2": "Classic drugstore staple. Very accessible but poor integrity and neutrality — expect damage and brass.",
+  "Ageful Ultra Blonde": "Low cost option. Harsh odor, low swell, poor viscosity — best avoided for client work.",
+  "Ion Bright White": "Cheap and widely available. Extremely poor integrity — high damage risk, especially on fine hair.",
+  "L'Oreal Super Blanc": "Ultra-fast processing but terrible odor and neutrality. Budget-only, heavy brass outcome.",
+  "Quick White": "Affordable but pungent. Low versatility and poor neutrality — use only for rough pre-lightening.",
+  "Blonde Brilliance": "Low cost, easy access. Thin consistency and poor integrity limit professional suitability.",
+  "Quick Blue": "Extremely dusty, harsh chemical odor. Very limited technique versatility — basic pre-lightener only.",
+  "Light Fast Bleach Kit": "Completely odorless powder but near-zero integrity — highest damage risk on this list.",
+  "Saloncare Blue Flash": "No detectable odor (score: 0). Zero integrity rating — do not use on compromised hair.",
+};
 
 const DATA = [
   {name:"Alterego Blondego Ultra 9 Lightener", dust:10,odor:10,viscosity:9,timing:9,swell:8,lift:8,integrity:10,neutral:8,versatility:8,price:5,total:85},
@@ -832,8 +905,10 @@ function render() {
       </td>
       ${cells}
       <td><span class="tot ${tc(p.total)}">${p.total}</span></td>
+      <td class="note-cell"><span class="note-txt">${NOTES[p.name]||''}</span></td>
     </tr>`;
   }).join('');
+  syncColWidths();
 }
 
 // ── sort
@@ -1005,16 +1080,42 @@ function overlayClick(e) { if(e.target===document.getElementById('overlay')) clo
 function closeModal() { document.getElementById('overlay').classList.remove('open'); }
 
 // Measure real ctrl height and set col-head sticky top
-// Must run after fonts/layout settle — requestAnimationFrame ensures paint is done
 function setStickyTop() {
   const h = document.querySelector('.ctrl').getBoundingClientRect().height;
   document.documentElement.style.setProperty('--ctrl-h', h + 'px');
   document.getElementById('colHead').style.top = h + 'px';
 }
 requestAnimationFrame(setStickyTop);
-window.addEventListener('resize', setStickyTop);
-// Re-run once fonts are fully loaded in case they shifted layout
-document.fonts.ready.then(setStickyTop);
+window.addEventListener('resize', () => { setStickyTop(); syncColWidths(); });
+document.fonts.ready.then(() => { setStickyTop(); syncColWidths(); });
+
+// Sync .cht header column widths to the actual rendered data table columns
+function syncColWidths() {
+  requestAnimationFrame(() => {
+    const firstRow = document.querySelector('#tb tr');
+    const cht = document.getElementById('chtTable');
+    if (!firstRow || !cht) return;
+    const tds = firstRow.querySelectorAll('td');
+    const ths = cht.querySelectorAll('th');
+    // Match total width
+    const dataTable = document.getElementById('dataTable');
+    cht.style.width = dataTable.offsetWidth + 'px';
+    // Match each column width
+    tds.forEach((td, i) => {
+      if (ths[i]) ths[i].style.width = td.getBoundingClientRect().width + 'px';
+    });
+    // Sync horizontal scroll position in case table was already scrolled
+    const tblOuter = document.getElementById('tblOuter');
+    document.getElementById('colHeadTrack').style.transform =
+      `translateX(-${tblOuter.scrollLeft}px)`;
+  });
+}
+
+// Horizontal scroll sync: slides the .cht header track to match tbl-outer scroll
+document.getElementById('tblOuter').addEventListener('scroll', function() {
+  document.getElementById('colHeadTrack').style.transform =
+    `translateX(-${this.scrollLeft}px)`;
+});
 
 // init
 run();
