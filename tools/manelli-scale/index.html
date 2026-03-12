@@ -183,7 +183,14 @@ select:focus { border-color: var(--pink); }
 /* ── TABLE ── */
 .wrap {
   padding: 20px 40px 72px;
-  overflow-x: clip; /* clip ≠ scroll container — keeps sticky thead working */
+  /* no overflow — any overflow value breaks position:sticky on descendants */
+}
+
+/* visual border-radius container — overflow:clip doesn't create scroll context */
+.tbl-outer {
+  border-radius: 10px;
+  overflow: clip;
+  box-shadow: 0 2px 16px rgba(1,90,66,.07);
 }
 
 table {
@@ -191,12 +198,10 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   background: var(--white);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(1,90,66,.07);
+  /* no overflow or border-radius here — moved to .tbl-outer */
 }
 
-/* thead sticky below ctrl bar */
+/* thead sticky below ctrl bar — top set dynamically by JS */
 thead th {
   position: sticky;
   top: var(--ctrl-h);
@@ -628,6 +633,7 @@ canvas.rc {
 
 <!-- TABLE -->
 <div class="wrap">
+  <div class="tbl-outer">
   <table>
     <thead>
       <tr>
@@ -647,6 +653,7 @@ canvas.rc {
     </thead>
     <tbody id="tb"></tbody>
   </table>
+  </div><!-- /.tbl-outer -->
   <div class="empty" id="empty">No products match.</div>
 </div>
 
@@ -961,6 +968,16 @@ function drawRadar(canvas, p) {
 
 function overlayClick(e) { if(e.target===document.getElementById('overlay')) closeModal(); }
 function closeModal() { document.getElementById('overlay').classList.remove('open'); }
+
+// Measure real ctrl height and apply to thead sticky top
+// (CSS variable fallback of 52px may differ from actual rendered height)
+function setStickyTop() {
+  const h = document.querySelector('.ctrl').getBoundingClientRect().height;
+  document.documentElement.style.setProperty('--ctrl-h', h + 'px');
+  document.querySelectorAll('thead th').forEach(th => th.style.top = h + 'px');
+}
+setStickyTop();
+window.addEventListener('resize', setStickyTop);
 
 // init
 run();
