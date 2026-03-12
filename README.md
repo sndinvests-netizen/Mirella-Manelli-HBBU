@@ -1,19 +1,7 @@
-# Mirella Manelli — HBBU (Hair B&B Universe)
+# Mirella Projects
 
-This folder contains all brand and content assets for the **HBBU** project.
+A backup and version history repository for all future projects.
 
-## Structure
+## Projects
 
-| Folder | Contents |
-|--------|----------|
-| `brand-assets/logos/` | Logo files (PNG, SVG, etc.) |
-| `brand-assets/typography/` | Font files and type guidelines |
-| `brand-assets/colors/` | Color palettes and swatches |
-| `brand-assets/photography/` | Brand photography |
-| `brand-assets/templates/` | Design templates |
-| `content/` | Written content — blog, scripts, copy |
-| `social/` | Social media assets and captions |
-
-## Brand Guide
-
-See `brand-assets/HBBU-brand-guide.md` for full brand guidelines.
+_Projects will be added here as they are created._
