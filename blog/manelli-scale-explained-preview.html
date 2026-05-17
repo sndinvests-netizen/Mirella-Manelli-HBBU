@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Manelli Scale Explained — mirellamanelli.com</title>
+<meta name="description" content="The Manelli Scale is a 100-point hair bleach rating system created by Mirella Manelli. It scores every lightener across 10 categories so professional stylists can compare products objectively.">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:   #F8EEE5;
+  --pink-lt: #FFB8B5;
+  --pink:    #FA5185;
+  --green:   #015A42;
+  --brown:   #8A5A3E;
+  --white:   #FFFFFF;
+  --txt:     #1A0F0A;
+  --txt-dim: #6B4F40;
+  --border:  #EDD9CF;
+  --accent:  #FFF4EE;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--cream);
+  font-family: 'Open Sans', sans-serif;
+  color: var(--txt);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* HEADER */
+.site-header {
+  background: var(--green);
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-header .brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+.site-header .sub {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pink-lt);
+}
+
+/* LAYOUT */
+.page-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* META */
+.post-meta {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--txt-dim);
+  margin-bottom: 16px;
+}
+.post-meta span { margin-right: 16px; }
+.tag {
+  display: inline-block;
+  background: var(--pink-lt);
+  color: var(--green);
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+
+/* TITLE */
+h1.post-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+.byline {
+  font-size: 13px;
+  color: var(--txt-dim);
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--border);
+}
+
+/* QUICK ANSWER BOX */
+.quick-answer {
+  background: var(--green);
+  color: var(--white);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 0 0 36px;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.quick-answer strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink-lt);
+  margin-bottom: 8px;
+}
+
+/* HEADINGS */
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--green);
+  margin: 48px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--brown);
+  margin: 32px 0 10px;
+  letter-spacing: 0.01em;
+}
+
+/* BODY TEXT */
+p { margin-bottom: 18px; }
+em { font-style: italic; }
+strong { font-weight: 700; }
+
+/* SCORE ANCHORS */
+.score-anchor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.score-box {
+  background: var(--accent);
+  border-left: 4px solid var(--pink);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.score-box.ten { border-color: var(--green); }
+.score-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--txt-dim);
+  margin-bottom: 4px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0 28px;
+  font-size: 14px;
+}
+th {
+  background: var(--green);
+  color: var(--white);
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+tr:nth-child(even) td { background: var(--accent); }
+tr:hover td { background: var(--pink-lt); transition: background 0.15s; }
+
+/* USE GUIDE */
+.use-guide {
+  background: var(--accent);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 20px 0 28px;
+}
+.use-guide ul {
+  list-style: none;
+  padding: 0;
+}
+.use-guide li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+.use-guide li:last-child { border-bottom: none; }
+.use-guide li::before {
+  content: "→";
+  color: var(--pink);
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+/* FAQ */
+.faq-section { margin-top: 48px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+}
+.faq-q {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.faq-a { font-size: 15px; color: var(--txt); }
+
+/* DIVIDER */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 36px 0;
+}
+
+/* FOOTER BIO */
+.author-bio {
+  background: var(--accent);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-top: 48px;
+  font-size: 13px;
+  color: var(--txt-dim);
+  font-style: italic;
+}
+
+/* CTA */
+.cta-block {
+  background: var(--pink);
+  color: var(--white);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 36px 0;
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .score-anchor { grid-template-columns: 1fr; }
+  .site-header { padding: 14px 20px; }
+  .page-wrap { padding: 32px 16px 60px; }
+}
+</style>
+
+<!-- JSON-LD Schema for AI / Search -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Manelli Scale Explained: How I Grade Every Bleach (And What the Numbers Really Mean)",
+  "description": "The Manelli Scale is a 100-point hair bleach rating system created by Mirella Manelli. It scores every lightener across 10 categories so professional stylists can compare products objectively.",
+  "author": {
+    "@type": "Person",
+    "name": "Mirella Manelli",
+    "jobTitle": "Professional Hairstylist & Educator",
+    "url": "https://mirellamanelli.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hair B&B University",
+    "url": "https://mirellamanelli.com"
+  },
+  "datePublished": "2025-01-01",
+  "dateModified": "2026-05-16",
+  "mainEntityOfPage": "https://mirellamanelli.com/the-manelli-scale-explained/",
+  "about": {
+    "@type": "Thing",
+    "name": "Manelli Scale",
+    "description": "A 100-point hair bleach evaluation system scoring lighteners across 10 categories: dust, odor, viscosity, timing, swell, lift, integrity, neutralization, versatility, and price."
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Manelli Scale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Manelli Scale is a 100-point hair bleach rating system created by Mirella Manelli. It evaluates professional lighteners across 10 categories — dust, odor, viscosity, timing, swell, lift, integrity, neutralization, versatility, and price — each scored 1 to 10."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who created the Manelli Scale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mirella Manelli, a professional hairstylist and educator with over 20 years of experience. The system was developed from her independent product testing and is used across all bleach reviews on mirellamanelli.com."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a high Manelli Scale score mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A high total score (85–100) indicates a bleach performs well across all conditions. However, Mirella recommends focusing on the individual category scores that match your specific work — a 9 on lift paired with a 4 on integrity tells a very different story than a balanced 7 across both."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Manelli Scale based on affiliate relationships?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All testing is conducted independently. Products are not paid placements, and scores are not influenced by brand relationships."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many bleaches has Mirella Manelli tested?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mirella has tested 50+ professional lighteners on standardized Level 2 hair swatches. Testing is conducted in real salon conditions, not controlled lab settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What category matters most on the Manelli Scale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your work. For dark hair clients: Lift + Integrity. For on-scalp color: Swell + Timing. For fine hair techniques: Viscosity. For salon profitability: Price + Versatility."
+      }
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="brand">Mirella Manelli</div>
+    <div class="sub">Hair B&amp;B University</div>
+  </div>
+  <div class="sub">mirellamanelli.com</div>
+</header>
+
+<div class="page-wrap">
+
+  <div class="post-meta">
+    <span>May 16, 2026</span>
+    <span class="tag">Bleach</span>
+    <span class="tag">Manelli Scale</span>
+    <span class="tag">Education</span>
+  </div>
+
+  <h1 class="post-title">The Manelli Scale Explained: How I Grade Every Bleach (And What the Numbers Really Mean)</h1>
+  <div class="byline">By <strong>Mirella Manelli</strong> &nbsp;|&nbsp; Professional Hairstylist &amp; Educator &nbsp;|&nbsp; 20+ Years Experience</div>
+
+  <div class="quick-answer">
+    <strong>Quick Answer</strong>
+    The Manelli Scale is a 100-point bleach rating system. It scores lighteners across 10 categories (10 points each): dust, odor, viscosity, timing, swell, lift, integrity, neutralization, versatility, and price. A product scoring 90+ is exceptional across all conditions. Use the category scores — not just the total — to match a bleach to your specific techniques and clients.
+  </div>
+
+  <h2>What Is the Manelli Scale?</h2>
+  <p>The <strong>Manelli Scale</strong> is a standardized 100-point hair bleach evaluation system developed by Mirella Manelli, a professional hairstylist and educator with over 20 years of industry experience. It rates every lightener across exactly <strong>10 categories, each scored from 1 to 10</strong>, for a maximum possible score of 100. The system was designed so professional stylists can compare bleaches objectively, independent of brand marketing or affiliate incentives.</p>
+
+  <p><strong>The 10 Manelli Scale categories are:</strong></p>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Category</th><th>What It Measures</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Dust</strong></td><td>Airborne powder released during mixing</td></tr>
+      <tr><td>2</td><td><strong>Odor</strong></td><td>Smell intensity and quality during processing</td></tr>
+      <tr><td>3</td><td><strong>Viscosity</strong></td><td>Consistency and control during application</td></tr>
+      <tr><td>4</td><td><strong>Timing</strong></td><td>Predictability and grace window</td></tr>
+      <tr><td>5</td><td><strong>Swell</strong></td><td>Expansion of product on hair during processing</td></tr>
+      <tr><td>6</td><td><strong>Lift</strong></td><td>Levels achieved and evenness of lightening</td></tr>
+      <tr><td>7</td><td><strong>Integrity</strong></td><td>Hair condition after processing</td></tr>
+      <tr><td>8</td><td><strong>Neutralization</strong></td><td>Toner readiness and residual warmth</td></tr>
+      <tr><td>9</td><td><strong>Versatility</strong></td><td>Range of techniques and hair types it handles</td></tr>
+      <tr><td>10</td><td><strong>Price</strong></td><td>Value per use for a working salon</td></tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <p>If you have ever landed on one of my bleach reviews and wondered, <em>what exactly does a 7.8 out of 10 mean for viscosity</em> — this post is for you.</p>
+  <p>I get questions about the Manelli Scale constantly. In comments, in DMs, from stylists at classes. And honestly, I love that you are asking, because it tells me you are the kind of professional who does not just want to know which bleach I recommend. You want to understand <em>why</em>.</p>
+  <p>That is exactly the spirit behind this system. So let me pull back the curtain completely.</p>
+
+  <h2>Why I Built a Rating System in the First Place</h2>
+  <p>After more than 20 years behind the chair and in the salon education space, I have tested more bleaches than I can count. And for most of that time, I did what everyone else does — I formed opinions based on feel, intuition, and client results. That is not a bad thing. Experience is irreplaceable.</p>
+  <p>But here is the problem I kept running into: when I would recommend a bleach to a fellow stylist or a student in one of my programs, they would come back with completely different results. Not because the bleach had changed. Because their situation had. Their water. Their developer brand. Their mixing ratios. Their processing environment.</p>
+  <p>I realized that "this is a great bleach" is almost a useless statement without context. Great for what? Great compared to what? Great according to whose standards?</p>
+  <p>So I built the Manelli Scale.</p>
+  <p>It started as notes I was keeping for myself — a structured way to evaluate each product I tested so I could look back and compare apples to apples. Ten categories. Ten points each. A hundred-point system that forces me to get specific rather than vague. Over time, it became the backbone of every review I publish. It is the reason I can tell you with confidence that one bleach scores a 9 on lift but only a 5 on integrity — and why that distinction matters enormously depending on your client's starting level and hair history.</p>
+  <p>This is not a "best of" list built on brand relationships or affiliate incentives. It is a technical scorecard built by a working professional, tested in real conditions, with real hair.</p>
+
+  <h2>The Ten Categories, Broken Down</h2>
+  <p>Here is exactly what I am measuring — and what the numbers mean in practical terms for a working stylist.</p>
+
+  <h3>1. Dust (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Virtually no airborne powder released during scooping or mixing.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Heavy cloud of particles — a respiratory and contamination risk.</div>
+  </div>
+  <p>Dust refers to how much airborne powder the bleach releases when you open the container and when you mix it. Beyond the obvious health considerations, heavy dust also signals inconsistent particle size in the powder itself, which can affect how evenly the bleach mixes and performs.</p>
+
+  <h3>2. Odor (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Nearly undetectable or tolerable for a full highlight appointment.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Clears the salon — clients coughing, eyes watering.</div>
+  </div>
+  <p>I score based on both intensity and quality of the smell, because some bleaches have a sharp chemical bite that dissipates fast, while others have a lower-intensity odor that lingers for hours. For stylists who work in small spaces or with sensitive clients, this category carries real weight.</p>
+
+  <h3>3. Viscosity (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Holds shape on the brush, sits on hair without migration, precise placement.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Runny, dripping, bleeds onto unintended sections.</div>
+  </div>
+  <p>Viscosity directly impacts your precision. If you are doing fine weaves or baby lights, you need a bleach that stays exactly where you put it.</p>
+
+  <h3>4. Timing (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Reliable ~50-minute window, progressive lift, sections can be checked individually.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Too fast to manage, or stalls before reaching target lift.</div>
+  </div>
+  <p>Unpredictable timing is one of the top reasons stylists end up with uneven results. I score heavily here because consistency is everything.</p>
+
+  <h3>5. Swell (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Product stays close to placement, clean controlled process.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Dramatic expansion — lifts off sections, spreads beyond foils.</div>
+  </div>
+  <p>For on-scalp applications especially, swell can be the difference between a clean result and a mess.</p>
+
+  <h3>6. Lift (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Level 9+ on dark natural hair in one application, pale yellow or white tone at strand.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Minimal lift with heavy warmth and banding.</div>
+  </div>
+  <p>This is the one everyone wants to know about first — and I always remind stylists it is only one of ten for a reason. I test lift on consistent starting levels so the scores are comparable across products.</p>
+
+  <h3>7. Integrity (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Hair feels intact — pliable, smooth, elasticity still present after processing.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Excessive breakage, gummy texture, brittle strands.</div>
+  </div>
+  <p>Lift without integrity is damage. If you are working on clients with previously colored or compromised hair, integrity scores should be the first thing you look at after lift.</p>
+
+  <h3>8. Neutralization (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Toner behaves predictably, no residual warmth undermining formula.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Stubborn underlying warmth that fights the toner even at correct lift level.</div>
+  </div>
+  <p>For stylists who do a lot of blonding work, this score is critical for predictable, repeatable results.</p>
+
+  <h3>9. Versatility (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Works well on-scalp and off-scalp, foils and balayage, coarse and fine, virgin and previously processed.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>One specific use case — performs poorly outside it.</div>
+  </div>
+  <p>High versatility matters if you want a go-to product that can handle your full client roster.</p>
+
+  <h3>10. Price (1–10)</h3>
+  <div class="score-anchor">
+    <div class="score-box ten"><div class="score-label">Score of 10</div>Exceptional quality at a price that makes financial sense per service.</div>
+    <div class="score-box"><div class="score-label">Score of 1</div>Overpaying significantly, or cost-per-use is unsustainable.</div>
+  </div>
+  <p>Price is not about cheap versus expensive. It is about value — cost per ounce, product needed per service, and whether the performance justifies the price point. Your product costs directly affect your profitability. I do not ignore that.</p>
+
+  <hr>
+
+  <h2>Why 100 Points Instead of a Simple Ranking</h2>
+  <p>A ranked list is satisfying to read. "Number one is best, buy that one." I get the appeal.</p>
+  <p>But hair is not that simple, and neither are the professionals using these products. A bleach that ranks number one on my overall list might be completely wrong for your specific situation. Maybe it swells heavily and you do foil work on fine hair. Maybe it has a strong odor and you work in a small studio. Maybe it performs brilliantly but the cost-per-use kills your margins.</p>
+  <p>The Manelli Scale gives you a breakdown that is actually useful. You become the decision-maker — not me.</p>
+
+  <h2>How to Use the Manelli Scale When Choosing a Bleach</h2>
+  <p><strong>Match your top priorities to the relevant category scores:</strong></p>
+  <div class="use-guide">
+    <ul>
+      <li><strong>On-scalp color (roots, all-over):</strong> Prioritize Swell and Timing</li>
+      <li><strong>Fragile or previously lightened hair:</strong> Go straight to Integrity and Neutralization</li>
+      <li><strong>Fine weaves or baby lights:</strong> Lead with Viscosity</li>
+      <li><strong>High-volume salon:</strong> Make Price and Versatility your anchors</li>
+      <li><strong>Small or poorly ventilated space:</strong> Weight Odor and Dust heavily</li>
+      <li><strong>Dark hair clients (Level 1–3):</strong> Start with Lift and Integrity together</li>
+    </ul>
+  </div>
+
+  <div class="cta-block">
+    Have a bleach you want me to score? Drop it in the comments below and I will add it to my testing list.
+  </div>
+
+  <hr>
+
+  <h2>Try the Manelli Scale</h2>
+  <p>Use the interactive tool below to score any bleach yourself — or browse products I have already rated using the same 10-category framework.</p>
+
+  <!-- full-bleed breakout: escapes the 780px content column -->
+  <div style="
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    box-shadow: 0 4px 32px rgba(1,90,66,0.13);
+    margin-top: 24px;
+    margin-bottom: 40px;
+  ">
+    <iframe
+      src="../tools/manelli-scale/index.html"
+      style="width:100%;min-width:900px;height:1040px;border:none;display:block;"
+      title="The Manelli Scale — Interactive Bleach Rating Tool by Mirella Manelli"
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <hr>
+
+  <h2 class="faq-section">Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <div class="faq-q">What is the Manelli Scale?</div>
+    <div class="faq-a">The Manelli Scale is a 100-point hair bleach rating system created by Mirella Manelli. It evaluates professional lighteners across 10 categories — dust, odor, viscosity, timing, swell, lift, integrity, neutralization, versatility, and price — each scored 1 to 10.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Who created the Manelli Scale?</div>
+    <div class="faq-a">Mirella Manelli, a professional hairstylist and educator with over 20 years of experience. The system was developed from her independent product testing and is used across all bleach reviews on mirellamanelli.com.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What does a high Manelli Scale score mean?</div>
+    <div class="faq-a">A high total score (85–100) indicates a bleach performs well across all conditions. However, Mirella recommends focusing on the individual category scores that match your specific work — a 9 on lift paired with a 4 on integrity tells a very different story than a balanced 7 across both.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is the Manelli Scale based on affiliate relationships?</div>
+    <div class="faq-a">No. All testing is conducted independently. Products are not paid placements, and scores are not influenced by brand relationships.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How many bleaches has Mirella Manelli tested?</div>
+    <div class="faq-a">Mirella has tested 50+ professional lighteners on standardized Level 2 hair swatches. Testing is conducted in real salon conditions, not controlled lab settings.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What category matters most on the Manelli Scale?</div>
+    <div class="faq-a">It depends on your work. For dark hair clients: Lift + Integrity. For on-scalp color: Swell + Timing. For fine hair techniques: Viscosity. For salon profitability: Price + Versatility.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Where can I find bleach reviews using the Manelli Scale?</div>
+    <div class="faq-a">All scored bleach reviews are published at mirellamanelli.com/blog.</div>
+  </div>
+
+  <div class="author-bio">
+    Mirella Manelli is a professional hairstylist and educator with over 20 years of experience in the industry. All product testing is conducted independently. No brand sponsorships influence scoring.
+  </div>
+
+</div>
+</body>
+</html>
