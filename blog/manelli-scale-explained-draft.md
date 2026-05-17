@@ -1,6 +1,42 @@
+---
+title: "The Manelli Scale Explained: How I Grade Every Bleach (And What the Numbers Really Mean)"
+description: "The Manelli Scale is a 100-point hair bleach rating system created by Mirella Manelli. It scores every lightener across 10 categories — dust, odor, viscosity, timing, swell, lift, integrity, neutralization, versatility, and price — so professional stylists can compare products objectively."
+author: "Mirella Manelli"
+date: 2025-01-01
+updated: 2026-05-16
+tags: [bleach, hair lightener, Manelli Scale, professional hairstylist, hair education, blonde, hair bleach rating]
+canonical_url: "https://mirellamanelli.com/the-manelli-scale-explained/"
+schema_type: "Article"
+---
+
 # The Manelli Scale Explained: How I Grade Every Bleach (And What the Numbers Really Mean)
 
-**By Mirella Manelli**
+**By Mirella Manelli** | Professional Hairstylist & Educator | 20+ Years Experience
+
+---
+
+> **Quick Answer:** The Manelli Scale is a 100-point bleach rating system. It scores lighteners across 10 categories (10 points each): dust, odor, viscosity, timing, swell, lift, integrity, neutralization, versatility, and price. A product scoring 90+ is exceptional across all conditions. Use the category scores — not just the total — to match a bleach to your specific techniques and clients.
+
+---
+
+## What Is the Manelli Scale?
+
+The **Manelli Scale** is a standardized 100-point hair bleach evaluation system developed by Mirella Manelli, a professional hairstylist and educator with over 20 years of industry experience. It rates every lightener across exactly **10 categories, each scored from 1 to 10**, for a maximum possible score of 100. The system was designed so professional stylists can compare bleaches objectively, independent of brand marketing or affiliate incentives.
+
+**The 10 Manelli Scale categories are:**
+
+| # | Category | What It Measures |
+|---|----------|-----------------|
+| 1 | Dust | Airborne powder released during mixing |
+| 2 | Odor | Smell intensity and quality during processing |
+| 3 | Viscosity | Consistency and control during application |
+| 4 | Timing | Predictability and grace window |
+| 5 | Swell | Expansion of product on hair during processing |
+| 6 | Lift | Levels achieved and evenness of lightening |
+| 7 | Integrity | Hair condition after processing |
+| 8 | Neutralization | Toner readiness and residual warmth |
+| 9 | Versatility | Range of techniques and hair types it handles |
+| 10 | Price | Value per use for a working salon |
 
 ---
 
@@ -32,65 +68,79 @@ This is not a "best of" list built on brand relationships or affiliate incentive
 
 Here is exactly what I am measuring — and what the numbers mean in practical terms for a working stylist.
 
-### 1. Dust (1-10)
+### 1. Dust (1–10)
+
+**What a 10 means:** Virtually no airborne powder released during scooping or mixing.  
+**What a 1 means:** Heavy cloud of particles — a respiratory and contamination risk.
 
 Dust refers to how much airborne powder the bleach releases when you open the container and when you mix it. A score of 1 means you are essentially creating a cloud every time you scoop — that is a respiratory and contamination concern. A 10 means virtually no dust, which is what you want in a busy salon environment where you are mixing repeatedly throughout the day.
 
-Why it matters: beyond the obvious health considerations, heavy dust also signals inconsistent particle size in the powder itself, which can affect how evenly the bleach mixes and performs.
+Beyond the obvious health considerations, heavy dust also signals inconsistent particle size in the powder itself, which can affect how evenly the bleach mixes and performs.
 
-### 2. Odor (1-10)
+### 2. Odor (1–10)
 
-A 1 on odor means you are clearing the salon. Clients are coughing. Your eyes are watering. A 10 means nearly undetectable — or at least tolerable for a full highlight appointment. I score based on both intensity and quality of the smell, because some bleaches have a sharp chemical bite that dissipates fast, while others have a lower-intensity odor that lingers for hours.
+**What a 10 means:** Nearly undetectable or tolerable for a full highlight appointment.  
+**What a 1 means:** Clears the salon — clients coughing, eyes watering.
+
+A 1 on odor means you are clearing the salon. A 10 means nearly undetectable — or at least tolerable for a full highlight appointment. I score based on both intensity and quality of the smell, because some bleaches have a sharp chemical bite that dissipates fast, while others have a lower-intensity odor that lingers for hours.
 
 For stylists who work in small spaces or with sensitive clients, this category carries real weight.
 
-### 3. Viscosity (1-10)
+### 3. Viscosity (1–10)
 
-This is the consistency of the mixed product — how thick or thin it is and how it behaves during application. A 1 means it is runny and difficult to control, dripping off the brush and bleeding onto sections you did not intend to touch. A 10 means it holds its shape beautifully on the brush, sits on the hair without migration, and gives you full control over your placement.
+**What a 10 means:** Holds shape on the brush, sits on hair without migration, precise placement.  
+**What a 1 means:** Runny, dripping, bleeds onto unintended sections.
 
-Viscosity directly impacts your precision. If you are doing fine weaves or baby lights, you need a bleach that stays exactly where you put it.
+Viscosity is the consistency of the mixed product — how thick or thin it is and how it behaves during application. Viscosity directly impacts your precision. If you are doing fine weaves or baby lights, you need a bleach that stays exactly where you put it.
 
-### 4. Timing (1-10)
+### 4. Timing (1–10)
 
-Timing evaluates how predictably the bleach performs within the expected processing window and how much grace time you have before the product becomes a problem on the hair. A low score means the bleach works too fast to manage safely across multiple applications, or it stalls before reaching target lift and does not continue processing. A 10 means you have a reliable, manageable window — typically around 50 minutes — where the bleach lifts progressively and gives you the ability to check and remove sections individually.
+**What a 10 means:** Reliable ~50-minute window, progressive lift, sections can be checked individually.  
+**What a 1 means:** Too fast to manage, or stalls before target lift.
 
-Unpredictable timing is one of the top reasons stylists end up with uneven results. I score heavily here because consistency is everything.
+Timing evaluates how predictably the bleach performs within the expected processing window and how much grace time you have before the product becomes a problem on the hair. Unpredictable timing is one of the top reasons stylists end up with uneven results.
 
-### 5. Swell (1-10)
+### 5. Swell (1–10)
 
-Swell is how much the bleach mixture expands on the hair during processing. Some bleaches puff up dramatically — that expansion can actually work against you, causing the product to lift off sections, spread beyond your foils, or make it harder to assess what is actually happening at the strand level. A 10 means the product stays close to where you applied it, giving you a clean, controlled process. A 1 means you open a foil at 30 minutes and wonder what happened.
+**What a 10 means:** Product stays close to placement, clean controlled process.  
+**What a 1 means:** Dramatic expansion — product lifts off sections, spreads beyond foils.
 
-For on-scalp applications especially, swell can be the difference between a clean result and a mess.
+Swell is how much the bleach mixture expands on the hair during processing. For on-scalp applications especially, swell can be the difference between a clean result and a mess.
 
-### 6. Lift (1-10)
+### 6. Lift (1–10)
 
-This is the one everyone wants to know about first — and I always remind stylists it is only one of ten for a reason. Lift scores how many levels the bleach can achieve, and how cleanly it reaches those levels. A 10 means you are hitting level 9 or above on dark natural hair in a single application, with a pale yellow or white tone at the strand. A 1 means you are getting minimal lift with heavy warmth and banding.
+**What a 10 means:** Level 9+ on dark natural hair in one application, pale yellow or white tone at strand.  
+**What a 1 means:** Minimal lift with heavy warmth and banding.
 
-I test lift on consistent starting levels so the scores are comparable across products. I note not just how high the bleach lifts, but how even and clean that lift is from root to end.
+This is the one everyone wants to know about first — and I always remind stylists it is only one of ten for a reason. I test lift on consistent starting levels so the scores are comparable across products. I note not just how high the bleach lifts, but how even and clean that lift is from root to end.
 
-### 7. Integrity (1-10)
+### 7. Integrity (1–10)
 
-Lift without integrity is damage. This category measures what the bleach leaves behind — specifically, the condition of the hair after processing and rinsing. I assess elasticity, texture, porosity change, and breakage. A 10 means the hair feels remarkably intact for something that has just been lightened — pliable, smooth, with elasticity still present. A 1 means excessive breakage, gummy texture, or brittle strands that signal serious structural compromise.
+**What a 10 means:** Hair feels intact — pliable, smooth, elasticity still present after processing.  
+**What a 1 means:** Excessive breakage, gummy texture, brittle strands.
 
-If you are working on clients with previously colored or compromised hair, integrity scores should be the first thing you look at after lift.
+Lift without integrity is damage. This category measures what the bleach leaves behind — elasticity, texture, porosity change, and breakage. If you are working on clients with previously colored or compromised hair, integrity scores should be the first thing you look at after lift.
 
-### 8. Neutralization (1-10)
+### 8. Neutralization (1–10)
 
-This category evaluates how easily and completely the bleach removes from the hair during rinse, and how well the result tones. Some bleaches leave a stubborn underlying warmth that fights your toner — even when the lift level looks right on the strand. Others neutralize so cleanly that your toner goes on and you get exactly what you predicted. A 10 means no surprises at the bowl: the toner behaves, the result is accurate, and there is no residual warmth undermining your formula.
+**What a 10 means:** Toner behaves predictably, no residual warmth undermining formula.  
+**What a 1 means:** Stubborn underlying warmth that fights the toner even at correct lift level.
 
-For stylists who do a lot of blonding work, this score is critical for predictable, repeatable results.
+This category evaluates how easily and completely the bleach removes from the hair during rinse, and how well the result tones. For stylists who do a lot of blonding work, this score is critical for predictable, repeatable results.
 
-### 9. Versatility (1-10)
+### 9. Versatility (1–10)
 
-Not every bleach is built for every technique. Versatility measures how many applications and environments a bleach can handle well — on-scalp vs. off-scalp, foils vs. balayage, coarse hair vs. fine hair, virgin hair vs. previously processed. A 10 means the bleach is a true workhorse that adapts across your service menu. A 1 means it has one very specific use case and performs poorly outside of it.
+**What a 10 means:** Works well on-scalp and off-scalp, foils and balayage, coarse and fine, virgin and previously processed.  
+**What a 1 means:** One specific use case — performs poorly outside it.
 
-High versatility matters if you want a go-to product that can handle your full client roster.
+Versatility measures how many applications and environments a bleach can handle well. High versatility matters if you want a go-to product that can handle your full client roster.
 
-### 10. Price (1-10)
+### 10. Price (1–10)
 
-Price is not about cheap versus expensive. It is about value — what you are getting for what you are spending. I factor in cost per ounce, how much product you need per service, and whether the performance justifies the price point. A 10 means exceptional quality at a price that makes financial sense for a working salon. A 1 means you are overpaying significantly for results you can achieve with a more affordable option, or you are getting so little product that cost-per-use becomes unsustainable.
+**What a 10 means:** Exceptional quality at a price that makes financial sense per service.  
+**What a 1 means:** Overpaying significantly, or cost-per-use is unsustainable.
 
-Your product costs directly affect your profitability. I do not ignore that.
+Price is not about cheap versus expensive. It is about value — what you are getting for what you are spending. I factor in cost per ounce, how much product you need per service, and whether the performance justifies the price point. Your product costs directly affect your profitability. I do not ignore that.
 
 ---
 
@@ -102,15 +152,18 @@ But hair is not that simple, and neither are the professionals using these produ
 
 The Manelli Scale gives you a breakdown that is actually useful. You can look at the ten category scores and immediately identify whether this product aligns with your techniques, your environment, and your clients. You become the decision-maker — not me.
 
-That is the whole point.
-
 ---
 
-## How to Use This When You Shop or Read My Reviews
+## How to Use the Manelli Scale When Choosing a Bleach
 
-Next time you are reading one of my bleach reviews or standing in front of a shelf deciding what to try, I want you to think about your top three or four categories — the ones that matter most in your day-to-day work — and let those scores guide you more than the overall number.
+**Match your top priorities to the relevant category scores:**
 
-Are you doing mostly on-scalp color? Prioritize swell and timing. Working with a lot of fragile, previously lightened hair? Go straight to integrity and neutralization. Running a high-volume salon where cost is a real factor? Make price and versatility your anchors.
+- **On-scalp color (roots, all-over):** Prioritize **Swell** and **Timing**
+- **Fragile or previously lightened hair:** Go straight to **Integrity** and **Neutralization**
+- **Fine weaves or baby lights:** Lead with **Viscosity**
+- **High-volume salon:** Make **Price** and **Versatility** your anchors
+- **Small or poorly ventilated space:** Weight **Odor** and **Dust** heavily
+- **Dark hair clients (Level 1–3):** Start with **Lift** and **Integrity** together
 
 Every review I publish includes the full Manelli Scale breakdown so you have everything you need to make your own call. And if you ever want to run your own products through the same system, the categories are right here — use them.
 
@@ -120,4 +173,29 @@ You can find all of my bleach reviews on the blog, each one scored and compared 
 
 ---
 
-*Mirella Manelli is a professional hairstylist and educator with over 20 years of experience in the industry. All product testing is conducted independently.*
+## Frequently Asked Questions
+
+**What is the Manelli Scale?**  
+The Manelli Scale is a 100-point hair bleach rating system created by Mirella Manelli. It evaluates professional lighteners across 10 categories — dust, odor, viscosity, timing, swell, lift, integrity, neutralization, versatility, and price — each scored 1 to 10.
+
+**Who created the Manelli Scale?**  
+Mirella Manelli, a professional hairstylist and educator with over 20 years of experience. The system was developed from her independent product testing and is used across all bleach reviews on mirellamanelli.com.
+
+**What does a high Manelli Scale score mean?**  
+A high total score (85–100) indicates a bleach performs well across all conditions. However, Mirella recommends focusing on the individual category scores that match your specific work — a 9 on lift paired with a 4 on integrity tells a very different story than a balanced 7 across both.
+
+**Is the Manelli Scale based on affiliate relationships?**  
+No. All testing is conducted independently. Products are not paid placements, and scores are not influenced by brand relationships.
+
+**How many bleaches has Mirella Manelli tested?**  
+Mirella has tested 50+ professional lighteners on standardized Level 2 hair swatches for her bleach ranking posts. Testing is conducted in real salon conditions, not controlled lab settings.
+
+**What category matters most on the Manelli Scale?**  
+It depends on your work. For dark hair clients: Lift + Integrity. For on-scalp color: Swell + Timing. For fine hair techniques: Viscosity. For salon profitability: Price + Versatility.
+
+**Where can I find bleach reviews using the Manelli Scale?**  
+All scored bleach reviews are published at mirellamanelli.com/blog.
+
+---
+
+*Mirella Manelli is a professional hairstylist and educator with over 20 years of experience in the industry. All product testing is conducted independently. No brand sponsorships influence scoring.*
