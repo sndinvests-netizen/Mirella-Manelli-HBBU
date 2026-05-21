@@ -50,6 +50,16 @@
 #bt-blog-wrap .cta-block{background:#FA5185;color:#fff;border-radius:10px;padding:20px 24px;margin:32px 0;font-weight:600;font-size:15px;text-align:center;}
 #bt-blog-wrap .cta-block a{color:#fff;text-decoration:underline;}
 #bt-blog-wrap a{color:#FA5185;font-weight:600;}
+#bt-blog-wrap .jump-nav{margin:0 0 28px;border:2px solid #EDD9CF;border-radius:10px;overflow:hidden;background:#fff;}
+#bt-blog-wrap .jump-nav summary{list-style:none;padding:12px 18px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#015A42;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;}
+#bt-blog-wrap .jump-nav summary::-webkit-details-marker{display:none;}
+#bt-blog-wrap .jump-nav summary::after{content:"▾";font-size:16px;color:#FA5185;transition:transform .2s;}
+#bt-blog-wrap .jump-nav[open] summary::after{transform:rotate(180deg);}
+#bt-blog-wrap .jump-nav ul{list-style:none;padding:0;margin:0;border-top:1px solid #EDD9CF;}
+#bt-blog-wrap .jump-nav li{border-bottom:1px solid #EDD9CF;}
+#bt-blog-wrap .jump-nav li:last-child{border-bottom:none;}
+#bt-blog-wrap .jump-nav li a{display:block;padding:10px 18px;font-size:14px;color:#1A0F0A;text-decoration:none;font-weight:400;}
+#bt-blog-wrap .jump-nav li a:hover{background:#FFF4EE;color:#015A42;}
 @media(max-width:560px){#bt-blog-wrap .pros-cons{grid-template-columns:1fr;}#bt-blog-wrap .watch-card{flex-direction:column;align-items:flex-start;}}
 </style>
 
@@ -90,7 +100,21 @@
     </div>
   </a>
 
-  <h2>The Rule That Changes Everything</h2>
+  <details class="jump-nav">
+    <summary>Jump to section</summary>
+    <ul>
+      <li><a href="#bt-rule">The Rule That Changes Everything</a></li>
+      <li><a href="#bt-blue">Blue Toner: The Orange Neutralizer</a></li>
+      <li><a href="#bt-purple">Purple Toner: The Yellow Fighter</a></li>
+      <li><a href="#bt-ash">Ash Toner: The All-Rounder</a></li>
+      <li><a href="#bt-gloss">Glosses and Glazes: The Shine Solution</a></li>
+      <li><a href="#bt-method">The Manelli Method</a></li>
+      <li><a href="#bt-bottom">The Bottom Line</a></li>
+      <li><a href="#bt-faq">Frequently Asked Questions</a></li>
+    </ul>
+  </details>
+
+  <h2 id="bt-rule">The Rule That Changes Everything</h2>
   <p>You made it through the bleach. Your hair is lifted, your nerves are shot, and now you're staring at a head full of warm, brassy, or patchy color wondering what comes next.</p>
   <p>Here's the mistake most people make: they choose a toner based on the color they <em>want</em> to end up with. The right approach is the opposite. Instead, choose based on the color you <em>actually have right now</em>.</p>
   <p>The toner you need is determined by what's sitting on your hair today. Ultimately, it all comes down to your lift level, not your goal.</p>
@@ -107,7 +131,7 @@
     </tbody>
   </table>
 
-  <h2>Blue Toner: The Orange Neutralizer</h2>
+  <h2 id="bt-blue">Blue Toner: The Orange Neutralizer</h2>
   <div class="toner-card">
     <div class="toner-title">Blue Toner</div>
     <div class="toner-best">Best for: Hair lifted to Level 5–7 reading orange, copper, or red-orange</div>
@@ -133,7 +157,7 @@
     <div class="toner-verdict">Honest take: Blue toner is a corrector, not a finisher. If you still look patchy after blue toner, you need to address the lift level first. In that case, adding more toner on top won't fix it.</div>
   </div>
 
-  <h2>Purple Toner: The Yellow Fighter</h2>
+  <h2 id="bt-purple">Purple Toner: The Yellow Fighter</h2>
   <div class="toner-card green">
     <div class="toner-title">Purple Toner &amp; Purple Shampoo</div>
     <div class="toner-best">Best for: Hair lifted to Level 8+ reading yellow or pale yellow</div>
@@ -159,7 +183,7 @@
     <div class="toner-verdict">Honest take: Purple toner belongs at the end of the journey, not the beginning. If your hair's still pulling gold or orange, purple shampoo won't save you. It's a maintenance tool.</div>
   </div>
 
-  <h2>Ash Toner: The All-Rounder</h2>
+  <h2 id="bt-ash">Ash Toner: The All-Rounder</h2>
   <div class="toner-card pink">
     <div class="toner-title">Ash Toner</div>
     <div class="toner-best">Best for: Hair lifted evenly to Level 7–9, pulling gold or yellow-gold</div>
@@ -185,7 +209,7 @@
     <div class="toner-verdict">Honest take: Ash toners reward preparation. Know exactly where your lift landed, specifically the Lift and Integrity scores on the Manelli Scale, before you reach for ash.</div>
   </div>
 
-  <h2>Glosses and Glazes: The Shine Solution</h2>
+  <h2 id="bt-gloss">Glosses and Glazes: The Shine Solution</h2>
   <div class="toner-card">
     <div class="toner-title">Glosses &amp; Glazes</div>
     <div class="toner-best">Best for: Hair close to target tone that needs vibrancy, shine, and maintenance between appointments</div>
@@ -211,7 +235,7 @@
     <div class="toner-verdict">If your hair's close to your goal and just needs some refinement and conditioning, gloss delivers. However, if your hair is still orange, a gloss will give you shiny orange hair. That's it.</div>
   </div>
 
-  <h2>The Manelli Method: Tone to the Level, Not the Goal</h2>
+  <h2 id="bt-method">The Manelli Method: Tone to the Level, Not the Goal</h2>
   <p>This is the approach I teach inside Hair B&amp;B University, and it changes the way stylists and clients think about toning entirely.</p>
   <p>Most people choose a toner based on the color they want to end up with. The Manelli Method, however, starts with the color you actually have and works from there.</p>
   <p>Before applying any toner, I evaluate where the hair landed using the <a href="https://mirellamanelli.com/the-manelli-scale-explained/" rel="noopener">Manelli Scale</a>, paying particular attention to <strong>Lift</strong>, <strong>Neutralization readiness</strong>, and <strong>Integrity</strong>. Together, those three categories tell you not just what toner to use, but whether the hair is even in a condition to receive toner effectively at all.</p>
@@ -221,7 +245,7 @@
     <strong>Toning under-lifted hair doesn't fix the lift. It masks it temporarily and often makes the next session harder.</strong> For example, if the underlying pigment is still orange and you apply a cool toner, you're fighting the warmth with pigment rather than eliminating it. As a result, the color fades fast and leaves you right back where you started.
   </div>
 
-  <h2>The Bottom Line</h2>
+  <h2 id="bt-bottom">The Bottom Line</h2>
   <p>Toning dark hair after bleaching isn't a one-product solution. Instead, it's a decision based on where your hair actually is. Not where you want it to be.</p>
   <ul>
     <li><strong>Blue</strong> for orange</li>
@@ -234,7 +258,7 @@
 
   <hr>
 
-  <h2>Frequently Asked Questions</h2>
+  <h2 id="bt-faq">Frequently Asked Questions</h2>
 
   <div class="faq-item">
     <div class="faq-q">What toner should I use after bleaching dark hair?</div>
