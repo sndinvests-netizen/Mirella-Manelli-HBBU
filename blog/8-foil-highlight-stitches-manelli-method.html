@@ -1,0 +1,330 @@
+<!-- 8 Foil Highlight Stitches Every Stylist Should Know — And the One You've Probably Never Tried
+     WordPress Custom HTML Block — paste this entire block as-is -->
+
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+#fs-blog-wrap{width:100%;max-width:860px;margin:0 auto;font-family:'Open Sans',sans-serif;color:#171411;font-size:18px;line-height:1.83;}
+#fs-blog-wrap *{box-sizing:border-box;}
+#fs-blog-wrap .post-meta{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B4F40;margin-bottom:16px;}
+#fs-blog-wrap .tag{display:inline-block;background:#FFB6BA;color:#015A42;border-radius:4px;padding:1px 8px;font-size:11px;font-weight:700;letter-spacing:.08em;margin-right:6px;text-transform:uppercase;text-decoration:none;}
+#fs-blog-wrap a.tag:hover{background:#FA5185;color:#fff;}
+#fs-blog-wrap h1.post-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);font-weight:700;line-height:1.2;color:#015A42;margin:16px 0 10px;}
+#fs-blog-wrap .post-subtitle{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,2.2vw,20px);color:#8A5A3E;line-height:1.5;margin-bottom:16px;}
+#fs-blog-wrap .byline{font-size:13px;color:#6B4F40;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #EDD9CF;}
+#fs-blog-wrap .watch-card{display:flex;align-items:center;gap:16px;background:#fff;border:2px solid #EDD9CF;border-left:5px solid #FA5185;border-radius:10px;padding:16px 20px;margin:0 0 32px;text-decoration:none;color:#1A0F0A;}
+#fs-blog-wrap .watch-card:hover{box-shadow:0 4px 16px rgba(250,81,133,.15);}
+#fs-blog-wrap .watch-icon{flex-shrink:0;width:44px;height:44px;background:#FF0000;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+#fs-blog-wrap .watch-icon svg{width:22px;height:22px;fill:#fff;}
+#fs-blog-wrap .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin:0 0 32px;box-shadow:0 4px 24px rgba(1,90,66,0.15);}
+#fs-blog-wrap .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:10px;}
+#fs-blog-wrap .video-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#6B4F40;margin-bottom:10px;}
+#fs-blog-wrap .quick-answer{background:#015A42;color:#fff;border-radius:10px;padding:20px 24px;margin:0 0 36px;font-size:15px;line-height:1.65;}
+#fs-blog-wrap .quick-answer strong{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#FFB6BA;margin-bottom:8px;}
+#fs-blog-wrap h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#015A42;margin:44px 0 14px;padding-bottom:8px;border-bottom:2px solid #EDD9CF;}
+#fs-blog-wrap h3{font-size:16px;font-weight:700;color:#8A5A3E;margin:28px 0 10px;}
+#fs-blog-wrap p{margin-bottom:16px;}
+#fs-blog-wrap em{font-style:italic;}
+#fs-blog-wrap strong{font-weight:700;}
+#fs-blog-wrap ul,#fs-blog-wrap ol{padding-left:20px;margin-bottom:16px;}
+#fs-blog-wrap li{margin-bottom:8px;}
+#fs-blog-wrap .callout{background:#FFF4EE;border-left:5px solid #FA5185;border-radius:6px;padding:16px 20px;margin:20px 0 28px;font-size:15px;}
+#fs-blog-wrap .callout-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6B4F40;margin-bottom:6px;}
+#fs-blog-wrap .stitch-card{background:#fff;border:2px solid #EDD9CF;border-radius:10px;padding:20px 24px;margin:20px 0 28px;}
+#fs-blog-wrap .stitch-card h3{margin-top:0;color:#015A42;font-family:'Playfair Display',serif;font-size:18px;}
+#fs-blog-wrap .stitch-number{display:inline-block;background:#FA5185;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;border-radius:4px;padding:2px 10px;margin-bottom:10px;text-transform:uppercase;}
+#fs-blog-wrap .stitch-card .best-for{font-size:13px;background:#FFF4EE;border-radius:6px;padding:10px 14px;margin-top:12px;}
+#fs-blog-wrap .stitch-card .best-for span{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6B4F40;display:block;margin-bottom:4px;}
+#fs-blog-wrap .hero-stitch{border-color:#015A42;border-width:3px;}
+#fs-blog-wrap .hero-stitch .stitch-number{background:#015A42;}
+#fs-blog-wrap table{width:100%;border-collapse:collapse;margin:20px 0 28px;font-size:14px;}
+#fs-blog-wrap th{background:#015A42;color:#fff;text-align:left;padding:10px 14px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+#fs-blog-wrap td{padding:10px 14px;border-bottom:1px solid #EDD9CF;}
+#fs-blog-wrap tr:nth-child(even) td{background:#FFF4EE;}
+#fs-blog-wrap .related-posts{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin:36px 0;}
+#fs-blog-wrap .related-posts p.rp-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6B4F40;margin-bottom:12px;}
+#fs-blog-wrap .related-posts ul{list-style:none;padding:0;margin:0;}
+#fs-blog-wrap .related-posts li{padding:10px 0;border-bottom:1px solid #EDD9CF;}
+#fs-blog-wrap .related-posts li:last-child{border-bottom:none;}
+#fs-blog-wrap .related-posts a{color:#015A42;font-weight:600;text-decoration:none;font-size:15px;}
+#fs-blog-wrap .related-posts a:hover{color:#FA5185;}
+#fs-blog-wrap .related-posts a::before{content:"→ ";color:#FA5185;}
+#fs-blog-wrap .use-guide{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin:20px 0 28px;}
+#fs-blog-wrap .use-guide ul{list-style:none;padding:0;}
+#fs-blog-wrap .use-guide li{padding:8px 0;border-bottom:1px solid #EDD9CF;font-size:15px;}
+#fs-blog-wrap .use-guide li:last-child{border-bottom:none;}
+#fs-blog-wrap .use-guide li::before{content:"→";color:#FA5185;font-weight:700;margin-right:10px;}
+#fs-blog-wrap .faq-item{border-bottom:1px solid #EDD9CF;padding:18px 0;}
+#fs-blog-wrap .faq-q{font-weight:700;font-size:15px;color:#015A42;margin:0 0 8px;}
+#fs-blog-wrap .faq-a{font-size:15px;}
+#fs-blog-wrap hr{border:none;border-top:1px solid #EDD9CF;margin:32px 0;}
+#fs-blog-wrap .author-bio{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin-top:40px;font-size:13px;color:#6B4F40;font-style:italic;}
+#fs-blog-wrap .cta-block{background:#FA5185;color:#fff;border-radius:10px;padding:20px 24px;margin:32px 0;font-weight:600;font-size:15px;text-align:center;}
+#fs-blog-wrap .cta-block a{color:#fff;text-decoration:underline;}
+#fs-blog-wrap a{color:#FA5185;font-weight:600;}
+#fs-blog-wrap .toc{background:#fff;border:2px solid #EDD9CF;border-radius:10px;padding:20px 24px;margin:0 0 36px;}
+#fs-blog-wrap .toc p.toc-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6B4F40;margin-bottom:10px;}
+#fs-blog-wrap .toc ol{margin:0;padding-left:18px;}
+#fs-blog-wrap .toc li{margin-bottom:6px;font-size:15px;}
+#fs-blog-wrap .toc a{color:#015A42;text-decoration:none;font-weight:600;}
+#fs-blog-wrap .toc a:hover{color:#FA5185;}
+#fs-blog-wrap .stitch-img{width:100%;height:auto;display:block;border-radius:8px;margin-bottom:16px;}
+@media(max-width:560px){#fs-blog-wrap .watch-card{flex-direction:column;align-items:flex-start;}}
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"8 Foil Highlight Stitches Every Stylist Should Know — And the One You've Probably Never Tried","description":"Learn all 8 foil highlight stitch methods — slice, chunky, babylights, zigzag, and more — plus the Manelli Method: the signature technique that changes how you approach every highlight service.","author":{"@type":"Person","name":"Mirella Manelli","jobTitle":"Professional Hairstylist & Educator","url":"https://mirellamanelli.com"},"publisher":{"@type":"Organization","name":"Hair B&B University","url":"https://mirellamanelli.com"},"datePublished":"2026-05-24","dateModified":"2026-05-24","mainEntityOfPage":"https://mirellamanelli.com/8-foil-highlight-stitch-techniques/"}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the most natural-looking foil highlight technique?","acceptedAnswer":{"@type":"Answer","text":"For fine, delicate results, babylights and microlights produce the most natural look. For lived-in, root-diffused results, the Manelli Method produces the most natural result — especially on darker hair."}},{"@type":"Question","name":"What is the difference between babylights and microlights?","acceptedAnswer":{"@type":"Answer","text":"Babylights are the finest possible weave — one to three strands into the foil. Microlights are slightly thicker, two to five strands, creating more coverage while still producing a fine, soft result."}},{"@type":"Question","name":"What technique should I use for color correction?","acceptedAnswer":{"@type":"Answer","text":"The Manelli Method is the primary technique for color correction with banding and spotty color. The double zigzag interrupts the geometric pattern of the banding, making it visually disappear into the new color result."}},{"@type":"Question","name":"Can I combine techniques in the same service?","acceptedAnswer":{"@type":"Answer","text":"Yes — this is called a combination technique. Combining methods such as slices at the face frame and fine weaves through the interior produces the most customized, complex results."}},{"@type":"Question","name":"What foil technique is best for dark hair?","acceptedAnswer":{"@type":"Answer","text":"The Manelli Method — a double zigzag foil technique — is best for dark hair because it uses foils for controlled lift and creates root diffusion through parting geometry rather than freehand application."}}]}
+</script>
+
+<div id="fs-blog-wrap">
+
+  <div class="post-meta">
+    <span>May 24, 2026</span>
+    <a class="tag" href="https://mirellamanelli.com/tag/highlights/" target="_blank" rel="noopener">Highlights</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/technique/" target="_blank" rel="noopener">Technique</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/color-education/" target="_blank" rel="noopener">Color Education</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/manelli-method/" target="_blank" rel="noopener">Manelli Method</a>
+  </div>
+
+  <h1 class="post-title">8 Foil Highlight Stitches Every Stylist Should Know — And the One You've Probably Never Tried</h1>
+  <p class="post-subtitle">From the basic slice to the signature double zigzag — your complete reference guide to every foil technique in the toolkit, and when to reach for each one.</p>
+  <div class="byline">By <strong>Mirella Manelli</strong> &nbsp;|&nbsp; Professional Hairstylist &amp; Educator &nbsp;|&nbsp; 20+ Years Experience &nbsp;|&nbsp; Founder, Hair B&amp;B University</div>
+
+  <div class="quick-answer">
+    <strong>Quick Answer</strong>
+    There are 8 distinct foil highlight stitch methods: the Slice, Chunky Weave, Traditional Weave, Babylights, Microlights, Combination, Zigzag, and the Manelli Method. Each produces a different root diffusion, coverage level, and texture. Understanding all 8 means knowing which one to reach for when a specific client sits down — not just defaulting to the two or three you've always used.
+  </div>
+
+  <p class="video-label">▶ Watch: 8 Ways to Foil Highlights — All 8 Stitches Demonstrated Live by Mirella Manelli</p>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/fyOs3ghnX-I?start=2" title="8 Ways to Foil Highlights — Mirella Manelli" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <div class="toc">
+    <p class="toc-label">In This Post</p>
+    <ol>
+      <li><a href="#why-technique">Why Your Foil Technique Matters More Than Your Product</a></li>
+      <li><a href="#slice">Stitch 1: The Slice</a></li>
+      <li><a href="#chunky">Stitch 2: The Chunky Weave</a></li>
+      <li><a href="#traditional">Stitch 3: The Traditional Weave</a></li>
+      <li><a href="#babylights">Stitch 4: Babylights</a></li>
+      <li><a href="#microlights">Stitch 5: Microlights</a></li>
+      <li><a href="#combination">Stitch 6: The Combination Technique</a></li>
+      <li><a href="#zigzag">Stitch 7: The Zigzag</a></li>
+      <li><a href="#manelli-method">Stitch 8: The Manelli Method ★</a></li>
+      <li><a href="#choosing">How to Choose the Right Technique for Each Client</a></li>
+      <li><a href="#faq">Frequently Asked Questions</a></li>
+    </ol>
+  </div>
+
+  <p>Here's a question I ask every student who comes through Hair B&B University: how many foil techniques do you actually use on a regular basis?</p>
+  <p>Most stylists answer honestly. Two, maybe three. A slice when they want something clean. A weave for fullness. A zigzag when they want a softer root. And they've been cycling through the same rotation since cosmetology school, because nobody ever sat them down and showed them the full picture.</p>
+  <p>There are <strong>eight distinct foil highlight stitch methods</strong> that belong in every professional colorist's vocabulary. Understanding all eight doesn't mean you'll use all eight every week. It means you'll know which one to reach for when a specific client sits down with a specific goal.</p>
+
+  <div class="related-posts">
+    <p class="rp-label">Related Reading</p>
+    <ul>
+      <li><a href="https://mirellamanelli.com/manelli-method-highlights/" target="_blank" rel="noopener">The Manelli Method: The Highlight Technique I Created So You Never Have to Tease Again</a></li>
+      <li><a href="https://mirellamanelli.com/manelli-method-color-correction/" target="_blank" rel="noopener">How to Fix Banding and Spotty Color With One Foil Technique</a></li>
+      <li><a href="https://mirellamanelli.com/manelli-method-dark-hair-balayage/" target="_blank" rel="noopener">The Best Highlight Technique for Dark Hair in 2026</a></li>
+      <li><a href="https://mirellamanelli.com/level-2-to-blonde-one-session/" target="_blank" rel="noopener">Level 2 to Blonde in One Session: What 50+ Bleach Tests Taught Me</a></li>
+      <li><a href="https://mirellamanelli.com/best-toners-dark-hair-after-bleaching/" target="_blank" rel="noopener">Best Toners for Dark Hair After Bleaching: Ranked by Results</a></li>
+      <li><a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">The Manelli Scale: How I Grade Every Bleach</a></li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h2 id="why-technique">Why Your Foil Technique Matters More Than Your Product</h2>
+  <p>I hear stylists debate bleach brands constantly. Developer ratios, processing times, integrity scores — and all of that matters. But the truth is, two colorists can use the exact same lightener on the exact same starting level and produce completely different results based solely on how they take their sections and place their foils.</p>
+  <p>The product gets you to the level. The <strong>technique determines what that level looks like</strong> on the hair.</p>
+  <p>A beautifully lifted section placed with a slice will look completely different from the same lifted section placed with a babylight weave — different texture, different root, different movement, different coverage. Same chemistry. The foil placement made the difference. This is why stylists who invest in expanding their foiling vocabulary consistently outperform those who stay in a two-method comfort zone — in results, in the range of clients they can serve, and in the price points they can command.</p>
+
+  <hr>
+
+  <h2 id="slice">Stitch 1: The Slice</h2>
+
+  <div class="stitch-card">
+    <img class="stitch-img" src="https://mirellamanelli.com/wp-content/uploads/2025/02/slice-highlights.jpg" alt="slice foil highlight technique showing high contrast bold highlights on hair" width="860" height="574" loading="lazy">
+    <div class="stitch-number">Stitch 01</div>
+    <h3>The Slice</h3>
+    <p><strong>What it is:</strong> A slice takes every strand of hair within the section into the foil — no weaving. The entire thickness of hair between two partings is isolated and lightened.</p>
+    <p><strong>What it produces:</strong> Maximum coverage and high contrast. Slices are bright, bold, and graphic. They create clean, chunky pieces of color with visible separation from the natural base.</p>
+    <p style="margin-bottom:0;"><strong>What to watch:</strong> Because slices lift every strand, they can look dense and heavy if overused. Best used in targeted placement — face framing, crown panels — rather than as the only technique throughout a full head.</p>
+    <div class="best-for"><span>Best For</span>Clients who want high-impact brightness, dramatic contrast, or an editorial look. Also useful in correction when you need to fully lift a specific section.</div>
+  </div>
+
+  <h2 id="chunky">Stitch 2: The Chunky Weave</h2>
+
+  <div class="stitch-card">
+    <img class="stitch-img" src="https://mirellamanelli.com/wp-content/uploads/2025/02/chunky-highlights.jpg" alt="chunky weave foil highlight technique showing bold visible highlights with dimension" width="860" height="574" loading="lazy">
+    <div class="stitch-number">Stitch 02</div>
+    <h3>The Chunky Weave</h3>
+    <p><strong>What it is:</strong> A weave where the comb picks up larger, thicker sections to go into the foil, leaving thicker sections out. The weave alternates "in" and "out" at a coarser scale than a traditional weave.</p>
+    <p><strong>What it produces:</strong> Bold, visible highlights with clear separation between lighter and darker sections. Less graphic than a slice because some hair is left out, but still high-contrast.</p>
+    <p style="margin-bottom:0;"><strong>What to watch:</strong> Can look dated if not balanced with strong tone or intentional face-framing. Work carefully on fine or thin hair — large patches of lifted color can create the appearance of reduced density.</p>
+    <div class="best-for"><span>Best For</span>Clients who want dimension with visible, chunky brightness. Great for very thick hair where significant lift needs to be distributed throughout the section.</div>
+  </div>
+
+  <h2 id="traditional">Stitch 3: The Traditional Weave</h2>
+
+  <div class="stitch-card">
+    <img class="stitch-img" src="https://mirellamanelli.com/wp-content/uploads/2025/02/traditional-highlights.jpg" alt="traditional weave foil highlight technique showing classic even highlight coverage" width="860" height="574" loading="lazy">
+    <div class="stitch-number">Stitch 03</div>
+    <h3>The Traditional Weave</h3>
+    <p><strong>What it is:</strong> The standard foil weave most stylists learn first. The comb alternates picking up fine-to-medium sections — into the foil, left out, into the foil — creating an even, regular pattern throughout the section.</p>
+    <p><strong>What it produces:</strong> The classic highlight look. Even distribution, consistent coverage, predictable result. What most clients picture when they ask for a "full head of highlights."</p>
+    <p style="margin-bottom:0;"><strong>What to watch:</strong> The regular pattern can read as "done" rather than "grown-in" — especially at the root line. For clients who want a more natural result, this technique benefits from pairing with a softer root approach.</p>
+    <div class="best-for"><span>Best For</span>Clients who want consistent, uniform coverage. The most adaptable technique to different foil densities — more foils equals more coverage.</div>
+  </div>
+
+  <h2 id="babylights">Stitch 4: Babylights</h2>
+
+  <div class="stitch-card">
+    <img class="stitch-img" src="https://mirellamanelli.com/wp-content/uploads/2025/02/babylight-highlights.jpg" alt="babylight foil highlight technique showing ultra-fine natural looking highlights" width="860" height="574" loading="lazy">
+    <div class="stitch-number">Stitch 04</div>
+    <h3>Babylights</h3>
+    <p><strong>What it is:</strong> An ultra-fine weave that takes very small, delicate sections — typically one to three strands — into the foil, leaving the majority of hair out.</p>
+    <p><strong>What it produces:</strong> The finest, most natural highlight possible. Babylights create the effect of natural childhood hair — sunlight that kissed individual strands. Incredibly dimensional, especially on finer hair.</p>
+    <p style="margin-bottom:0;"><strong>What to watch:</strong> Babylights are time-intensive and should be priced accordingly. On very dark or coarse hair, the subtlety may not deliver the lift clients expect. For choosing the right lightener for a babylight service, <a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">use the Manelli Scale viscosity score as your guide →</a></p>
+    <div class="best-for"><span>Best For</span>Clients who want the most natural-looking, barely-there highlights. Excellent as a standalone for fine-haired clients, or combined with other techniques to add dimension.</div>
+  </div>
+
+  <h2 id="microlights">Stitch 5: Microlights</h2>
+
+  <div class="stitch-card">
+    <img class="stitch-img" src="https://mirellamanelli.com/wp-content/uploads/2025/02/microlight-highlights.jpg" alt="microlight foil highlight technique showing fine diffused highlights with soft dimension" width="860" height="574" loading="lazy">
+    <div class="stitch-number">Stitch 05</div>
+    <h3>Microlights</h3>
+    <p><strong>What it is:</strong> A middle ground between babylights and a traditional weave. Sections of two to five strands, leaving small amounts of hair between each section.</p>
+    <p><strong>What it produces:</strong> Fine, diffused highlights with more coverage than babylights but more subtlety than a standard weave. Dimensional and natural-looking without the extreme time investment of true babylights.</p>
+    <p style="margin-bottom:0;"><strong>What to watch:</strong> Like babylights, monitor processing time carefully to avoid over-processing where fine sections are close together.</p>
+    <div class="best-for"><span>Best For</span>Clients who want something more noticeable than babylights but softer than a standard weave. Works beautifully as a base for blending techniques or color correction.</div>
+  </div>
+
+  <h2 id="combination">Stitch 6: The Combination Technique</h2>
+
+  <div class="stitch-card">
+    <img class="stitch-img" src="https://mirellamanelli.com/wp-content/uploads/2025/02/combination-highlights.jpg" alt="combination foil highlight technique using multiple stitch methods for custom dimensional color" width="860" height="574" loading="lazy">
+    <div class="stitch-number">Stitch 06</div>
+    <h3>The Combination Technique</h3>
+    <p><strong>What it is:</strong> Using two or more stitch methods in the same service — most commonly combining slices for face-framing pieces with a fine weave through the body, or pairing babylights with a chunkier weave at the crown.</p>
+    <p><strong>What it produces:</strong> The most customized, complex, and dimensional results possible from foil work. When done well, combination techniques look like no single method was used.</p>
+    <p style="margin-bottom:0;"><strong>What to watch:</strong> Combination services require clear planning before you begin. Map out which technique goes where and why before picking up the first foil — otherwise the result reads as inconsistent rather than intentional.</p>
+    <div class="best-for"><span>Best For</span>High-end clients who want a custom result. Also useful when a client's hair has multiple needs — fine ends requiring delicate weaving, dense roots needing a stronger technique.</div>
+  </div>
+
+  <h2 id="zigzag">Stitch 7: The Zigzag</h2>
+
+  <div class="stitch-card">
+    <img class="stitch-img" src="https://mirellamanelli.com/wp-content/uploads/2025/02/zigzag-highlights.jpg" alt="zigzag foil highlight technique showing soft diffused root line" width="860" height="574" loading="lazy">
+    <div class="stitch-number">Stitch 07</div>
+    <h3>The Zigzag</h3>
+    <p><strong>What it is:</strong> Instead of a straight horizontal parting at the top of the section, you part in a zigzag pattern. The hair included in the foil follows the zigzag line rather than a clean edge.</p>
+    <p><strong>What it produces:</strong> A softer root line than a straight parting creates. The zigzag interrupts the clean edge, creating a slightly diffused transition from natural hair into the lightened section.</p>
+    <p style="margin-bottom:0;"><strong>What to watch:</strong> A standard zigzag softens the root but is still relatively predictable — the parting follows a pattern the eye can eventually trace. For maximum diffusion, you need to go further. That's exactly what the Manelli Method does.</p>
+    <div class="best-for"><span>Best For</span>Clients who want a softer root than a standard highlight but don't need full teasy-light diffusion. Useful for clients with visible previous highlight lines who need a less harsh re-growth look.</div>
+  </div>
+
+  <h2 id="manelli-method">Stitch 8: The Manelli Method ★</h2>
+
+  <div class="stitch-card hero-stitch">
+    <img class="stitch-img" src="https://mirellamanelli.com/wp-content/uploads/2025/02/Manelli-Method-Highlights.jpg" alt="Manelli Method highlights technique showing double zigzag foil placement and lived-in root result" width="860" height="574" loading="lazy">
+    <div class="stitch-number">Stitch 08 — Signature</div>
+    <h3>The Manelli Method</h3>
+    <p><strong>What it is:</strong> My signature technique. The Manelli Method uses a <strong>double zigzag parting</strong> — one at the top of the section and one at the bottom — combined with a <strong>Dream Weaver comb</strong> to separate and weave the mid-lengths and ends before the foil is placed.</p>
+    <p><strong>What it produces:</strong></p>
+    <ul>
+      <li>Soft, broken root line that looks like it grew in that way</li>
+      <li>Dimension through mid-lengths from the weaving step</li>
+      <li>A lived-in finish from day one</li>
+      <li>A grow-out that stays beautiful for four to six months</li>
+      <li>No shadow root required</li>
+      <li>No teasing or backcombing</li>
+    </ul>
+    <p><strong>How it's different from the standard zigzag:</strong> The single zigzag softens only the top edge. The Manelli Method zigzags the <em>bottom</em> edge too — which creates the diffused base. The double geometry means there is no clean starting line anywhere in the section. Add the Dream Weaver step through the body of the hair, and the result is a foil highlight that looks nothing like a foil highlight.</p>
+    <p style="margin-bottom:0;">The Manelli Method is taught in full inside <a href="https://hairbnbuniversity.com" target="_blank" rel="noopener">Hair B&amp;B University</a>, including step-by-step instruction and live application demonstrations.</p>
+    <div class="best-for"><span>Best For</span>Color correction, brunette-to-blonde transformations, lived-in and low-maintenance clients, fine or fragile hair. Any client who wants results that look grown-in rather than applied.</div>
+  </div>
+
+  <hr>
+
+  <h2 id="choosing">How to Choose the Right Technique for Each Client</h2>
+  <p>Now that you know all eight, here's the decision framework I use at every consultation:</p>
+
+  <table>
+    <thead>
+      <tr><th>Client Goal</th><th>Recommended Technique(s)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Bold, graphic, high-contrast brightness</td><td>Slice, Chunky Weave</td></tr>
+      <tr><td>Classic, consistent full coverage</td><td>Traditional Weave</td></tr>
+      <tr><td>Most natural, barely-there highlights</td><td>Babylights, Microlights</td></tr>
+      <tr><td>Lived-in, low-maintenance, long grow-out</td><td>Manelli Method</td></tr>
+      <tr><td>Fully custom, multi-zone result</td><td>Combination</td></tr>
+      <tr><td>Color correction — banding or spottiness</td><td>Manelli Method</td></tr>
+      <tr><td>Dark hair, brunette-to-blonde</td><td>Manelli Method, Traditional Weave</td></tr>
+      <tr><td>Fine or fragile hair</td><td>Babylights, Microlights, Manelli Method</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">The Deeper Framework</div>
+    Ask yourself four questions at every consultation: (1) What is the client's goal? (2) What is their starting level and color history? (3) What are their maintenance habits and budget? (4) What does their hair texture and density allow? Run the client through all four and the right technique usually becomes obvious.
+  </div>
+
+  <p>Once you've chosen your technique, make sure your lightener is matched to the service. Use the <a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">Manelli Scale to compare bleaches across viscosity, integrity, and lift</a> — especially important when technique choice has already narrowed your margin for error. And after the foils come out, pair with the right toner: <a href="https://mirellamanelli.com/best-toners-dark-hair-after-bleaching/" target="_blank" rel="noopener">see the full toner ranking guide →</a></p>
+
+  <div class="cta-block">
+    All 8 stitch methods — including full Manelli Method demonstrations — are taught inside Hair B&amp;B University.<br>
+    <a href="https://hairbnbuniversity.com" target="_blank" rel="noopener">Enroll and add every technique to your menu →</a>
+  </div>
+
+  <hr>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the most natural-looking foil highlight technique?</div>
+    <div class="faq-a">For fine, delicate results, babylights and microlights produce the most natural look. For lived-in, root-diffused results on darker hair, the Manelli Method produces the most natural result.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the Manelli Method?</div>
+    <div class="faq-a">The Manelli Method is a foil highlight technique created by Mirella Manelli that uses a double zigzag parting — at both the top and bottom of each section — plus a Dream Weaver comb through the mids and ends, to create soft, lived-in roots without teasing or backcombing. <a href="https://mirellamanelli.com/manelli-method-highlights/" target="_blank" rel="noopener">Read the full guide →</a></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the difference between babylights and microlights?</div>
+    <div class="faq-a">Babylights are the finest possible weave — one to three strands into the foil. Microlights are slightly thicker, two to five strands, creating more coverage than babylights while still producing a fine, soft result.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What technique should I use for color correction?</div>
+    <div class="faq-a">The Manelli Method is the primary technique for banding and spotty color correction. The double zigzag interrupts the geometric pattern of the banding, making it visually disappear into the new result.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I combine techniques in the same service?</div>
+    <div class="faq-a">Yes — the Combination Technique covers exactly this. Pairing slices at the face frame with fine weaves through the interior produces the most customized, complex results. Plan the zones before you begin.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How many foil techniques should a working stylist know?</div>
+    <div class="faq-a">I recommend being confident in at least four to five: a slice, a traditional weave, babylights, a zigzag variant, and the Manelli Method. That range covers the vast majority of client requests you'll encounter.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What bleach works best for fine foil techniques like babylights?</div>
+    <div class="faq-a">You need a lightener with excellent viscosity — one that stays exactly where you put it without migrating onto sections you didn't intend to touch. Use the <a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">Manelli Scale viscosity score</a> to compare products before you buy.</div>
+  </div>
+
+  <div class="author-bio">
+    <strong>About the Author:</strong> Mirella Manelli is a professional hairstylist and educator with over 20 years of experience behind the chair. She is the founder of <a href="https://hairbnbuniversity.com" target="_blank" rel="noopener" style="color:#FA5185;">Hair B&amp;B University</a>, the founder of <a href="https://manellihair.com" target="_blank" rel="noopener" style="color:#FA5185;">Manelli Hair Extensions</a>, a Modern Salon Top 100 honoree, a five-time Behind the Chair One Shot nominee, and has 430K+ YouTube subscribers.
+  </div>
+
+</div>

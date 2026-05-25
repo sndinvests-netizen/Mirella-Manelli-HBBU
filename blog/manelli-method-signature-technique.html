@@ -1,0 +1,334 @@
+<!-- The Manelli Method: The Highlight Technique I Created So You Never Have to Tease Again
+     WordPress Custom HTML Block - paste this entire block as-is -->
+
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+#mm-blog-wrap{width:100%;max-width:860px;margin:0 auto;font-family:'Open Sans',sans-serif;color:#171411;font-size:18px;line-height:1.83;}
+#mm-blog-wrap *{box-sizing:border-box;}
+#mm-blog-wrap .post-meta{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B4F40;margin-bottom:16px;}
+#mm-blog-wrap .tag{display:inline-block;background:#FFB6BA;color:#015A42;border-radius:4px;padding:1px 8px;font-size:11px;font-weight:700;letter-spacing:.08em;margin-right:6px;text-transform:uppercase;text-decoration:none;}
+#mm-blog-wrap a.tag:hover{background:#FA5185;color:#fff;}
+#mm-blog-wrap h1.post-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);font-weight:700;line-height:1.2;color:#015A42;margin:16px 0 10px;}
+#mm-blog-wrap .post-subtitle{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,2.2vw,20px);color:#8A5A3E;line-height:1.5;margin-bottom:16px;}
+#mm-blog-wrap .byline{font-size:13px;color:#6B4F40;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #EDD9CF;}
+#mm-blog-wrap .video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin:0 0 32px;box-shadow:0 4px 24px rgba(1,90,66,0.15);}
+#mm-blog-wrap .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:10px;}
+#mm-blog-wrap .video-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#6B4F40;margin-bottom:10px;}
+#mm-blog-wrap .quick-answer{background:#015A42;color:#fff;border-radius:10px;padding:20px 24px;margin:0 0 36px;font-size:15px;line-height:1.65;}
+#mm-blog-wrap .quick-answer strong{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#FFB6BA;margin-bottom:8px;}
+#mm-blog-wrap h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#015A42;margin:44px 0 14px;padding-bottom:8px;border-bottom:2px solid #EDD9CF;}
+#mm-blog-wrap h3{font-size:16px;font-weight:700;color:#8A5A3E;margin:28px 0 10px;}
+#mm-blog-wrap p{margin-bottom:16px;}
+#mm-blog-wrap em{font-style:italic;}
+#mm-blog-wrap strong{font-weight:700;}
+#mm-blog-wrap ul,#mm-blog-wrap ol{padding-left:20px;margin-bottom:16px;}
+#mm-blog-wrap li{margin-bottom:8px;}
+#mm-blog-wrap .callout{background:#FFF4EE;border-left:5px solid #FA5185;border-radius:6px;padding:16px 20px;margin:20px 0 28px;font-size:15px;}
+#mm-blog-wrap .callout-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6B4F40;margin-bottom:6px;}
+#mm-blog-wrap .step-block{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin:16px 0 24px;}
+#mm-blog-wrap .step-block h3{margin-top:0;}
+#mm-blog-wrap .step-number{display:inline-block;background:#015A42;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;border-radius:4px;padding:2px 10px;margin-bottom:8px;text-transform:uppercase;}
+#mm-blog-wrap table{width:100%;border-collapse:collapse;margin:20px 0 28px;font-size:14px;}
+#mm-blog-wrap th{background:#015A42;color:#fff;text-align:left;padding:10px 14px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+#mm-blog-wrap td{padding:10px 14px;border-bottom:1px solid #EDD9CF;}
+#mm-blog-wrap tr:nth-child(even) td{background:#FFF4EE;}
+#mm-blog-wrap .related-posts{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin:36px 0;}
+#mm-blog-wrap .related-posts p.rp-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6B4F40;margin-bottom:12px;}
+#mm-blog-wrap .related-posts ul{list-style:none;padding:0;margin:0;}
+#mm-blog-wrap .related-posts li{padding:10px 0;border-bottom:1px solid #EDD9CF;}
+#mm-blog-wrap .related-posts li:last-child{border-bottom:none;}
+#mm-blog-wrap .related-posts a{color:#015A42;font-weight:600;text-decoration:none;font-size:15px;}
+#mm-blog-wrap .related-posts a:hover{color:#FA5185;}
+#mm-blog-wrap .related-posts a::before{content:"→ ";color:#FA5185;}
+#mm-blog-wrap .use-guide{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin:20px 0 28px;}
+#mm-blog-wrap .use-guide ul{list-style:none;padding:0;}
+#mm-blog-wrap .use-guide li{padding:8px 0;border-bottom:1px solid #EDD9CF;font-size:15px;}
+#mm-blog-wrap .use-guide li:last-child{border-bottom:none;}
+#mm-blog-wrap .use-guide li::before{content:"→";color:#FA5185;font-weight:700;margin-right:10px;}
+#mm-blog-wrap .faq-item{border-bottom:1px solid #EDD9CF;padding:18px 0;}
+#mm-blog-wrap .faq-q{font-weight:700;font-size:15px;color:#015A42;margin:0 0 8px;}
+#mm-blog-wrap .faq-a{font-size:15px;}
+#mm-blog-wrap hr{border:none;border-top:1px solid #EDD9CF;margin:32px 0;}
+#mm-blog-wrap .author-bio{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin-top:40px;font-size:13px;color:#6B4F40;font-style:italic;}
+#mm-blog-wrap .cta-block{background:#FA5185;color:#fff;border-radius:10px;padding:20px 24px;margin:32px 0;font-weight:600;font-size:15px;text-align:center;}
+#mm-blog-wrap .cta-block a{color:#fff;text-decoration:underline;}
+#mm-blog-wrap a{color:#FA5185;font-weight:600;}
+#mm-blog-wrap .toc{background:#fff;border:2px solid #EDD9CF;border-radius:10px;padding:20px 24px;margin:0 0 36px;}
+#mm-blog-wrap .toc p.toc-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6B4F40;margin-bottom:10px;}
+#mm-blog-wrap .toc ol{margin:0;padding-left:18px;}
+#mm-blog-wrap .toc li{margin-bottom:6px;font-size:15px;}
+#mm-blog-wrap .toc a{color:#015A42;text-decoration:none;font-weight:600;}
+#mm-blog-wrap .toc a:hover{color:#FA5185;}
+#mm-blog-wrap .post-image{width:100%;margin:28px 0 8px;border-radius:10px;overflow:hidden;}
+#mm-blog-wrap .post-image img{width:100%;height:auto;display:block;border-radius:10px;}
+#mm-blog-wrap .post-image figcaption{font-size:13px;color:#6B4F40;text-align:center;padding:8px 0 20px;font-style:italic;}
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"The Manelli Method: The Highlight Technique I Created So You Never Have to Tease Again","description":"Learn the Manelli Method by Mirella Manelli: the original double zigzag foil technique that creates lived-in highlights without teasing. Step-by-step breakdown for stylists.","author":{"@type":"Person","name":"Mirella Manelli","jobTitle":"Professional Hairstylist & Educator","url":"https://mirellamanelli.com"},"publisher":{"@type":"Organization","name":"Hair B&B University","url":"https://mirellamanelli.com"},"datePublished":"2026-05-24","dateModified":"2026-05-24","mainEntityOfPage":"https://mirellamanelli.com/manelli-method-highlights/"}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the Manelli Method?","acceptedAnswer":{"@type":"Answer","text":"The Manelli Method is a foil highlight technique created by Mirella Manelli that uses a double zigzag parting, covering both the top and bottom of each section, plus a Dream Weaver comb through the mids and ends, to create soft, lived-in roots without any teasing or backcombing."}},{"@type":"Question","name":"Is the Manelli Method the same as teasy lights?","acceptedAnswer":{"@type":"Answer","text":"No. Teasy lights use backcombing to diffuse the root. The Manelli Method achieves the same visual result through the geometry of a double zigzag parting, with no mechanical disruption of the hair required."}},{"@type":"Question","name":"Do I need a shadow root with the Manelli Method?","acceptedAnswer":{"@type":"Answer","text":"Usually not. The double zigzag creates natural diffusion at the root that eliminates the need for a separate shadow root application in most cases."}},{"@type":"Question","name":"What comb do I use for the Manelli Method?","acceptedAnswer":{"@type":"Answer","text":"A Dream Weaver comb is used to separate the mids and ends before foiling. It makes the technique fast, precise, and consistent."}},{"@type":"Question","name":"What clients is the Manelli Method best for?","acceptedAnswer":{"@type":"Answer","text":"It works particularly well for color correction clients, brunette-to-blonde transformations, lived-in and low-maintenance clients, and anyone with fine or fragile hair who shouldn't be exposed to additional mechanical damage from backcombing."}},{"@type":"Question","name":"Where can I learn the Manelli Method?","acceptedAnswer":{"@type":"Answer","text":"The full technique is taught inside Hair B&B University at hairbnbuniversity.com."}}]}
+</script>
+
+<div id="mm-blog-wrap">
+
+  <div class="post-meta">
+    <span>May 24, 2026</span>
+    <a class="tag" href="https://mirellamanelli.com/tag/highlights/" target="_blank" rel="noopener">Highlights</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/technique/" target="_blank" rel="noopener">Technique</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/manelli-method/" target="_blank" rel="noopener">Manelli Method</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/color-education/" target="_blank" rel="noopener">Color Education</a>
+  </div>
+
+  <h1 class="post-title">Manelli Method Highlights: The Foil Technique I Created So You Never Have to Tease Again</h1>
+  <p class="post-subtitle">A double zigzag. A Dream Weaver comb. No backcombing, no shadow root, and a lived-in root that grows out beautifully for months.</p>
+  <div class="byline">By <strong>Mirella Manelli</strong> &nbsp;|&nbsp; Professional Hairstylist &amp; Educator &nbsp;|&nbsp; 20+ Years Experience &nbsp;|&nbsp; Founder, Hair B&amp;B University</div>
+
+  <div class="quick-answer">
+    <strong>Quick Answer</strong>
+    The Manelli Method is a foil highlight technique built on a double zigzag parting: one zigzag at the top of the section, one at the bottom, combined with a Dream Weaver comb through the mids and ends. The result is a soft, diffused root that mimics teasy lights without any backcombing, grows out beautifully for four to six months, and eliminates the need for a shadow root in most cases.
+  </div>
+
+  <p class="video-label">▶ Watch: 8 Ways to Foil Highlights: The Manelli Method Demonstrated Live</p>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/fyOs3ghnX-I?start=2" title="8 Ways to Foil Highlights: The Manelli Method by Mirella Manelli" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <div class="toc">
+    <p class="toc-label">In This Post</p>
+    <ol>
+      <li><a href="#what-is">What Is the Manelli Method?</a></li>
+      <li><a href="#why-i-created">Why I Created It: The Problem With Teasing</a></li>
+      <li><a href="#how-its-different">How It's Different From a Standard Teasy Light</a></li>
+      <li><a href="#step-by-step">The Double Zigzag: Step-by-Step Breakdown</a></li>
+      <li><a href="#dream-weaver">The Dream Weaver Comb: Why It Matters</a></li>
+      <li><a href="#when-to-use">When to Use the Manelli Method</a></li>
+      <li><a href="#no-shadow-root">Why You Don't Need a Shadow Root</a></li>
+      <li><a href="#results">What Results to Expect</a></li>
+      <li><a href="#faq">Frequently Asked Questions</a></li>
+    </ol>
+  </div>
+
+  <!-- INTRO -->
+  <p><strong>Manelli Method highlights</strong> are a foil technique I created after twenty years behind the chair, because I got tired of watching stylists tease every single section just to get a lived-in root. There had to be a faster, cleaner, less damaging way to get the same result. So I built one.</p>
+  <p>The <strong>Manelli Method highlights</strong> technique uses a <strong>double zigzag parting</strong>: one at the top of the section, one at the bottom, combined with a Dream Weaver comb through the mids and ends. The result is a soft, diffused root that mimics teasy lights without any backcombing, no shadow root required, and a grow-out that stays beautiful for four to six months.</p>
+  <p>In this post, I'm breaking down the full technique: how I developed it, the exact mechanics of the double zigzag, and when to use <strong>Manelli Method highlights</strong> on your clients.</p>
+
+  <figure class="post-image">
+    <img src="https://mirellamanelli.com/wp-content/uploads/2025/02/Manelli-Method-Highlights.jpg" alt="Manelli Method highlights result showing soft diffused root and lived-in dimension on brunette hair" width="860" height="574" loading="eager">
+    <figcaption>The Manelli Method highlights result: soft at the root, dimensional through the mid-lengths, beautiful grow-out for months.</figcaption>
+  </figure>
+
+  <hr>
+
+  <h2 id="what-is">What Are Manelli Method Highlights?</h2>
+  <p><strong>Manelli Method highlights</strong> are built around a <strong>double zigzag parting</strong>: one zigzag at the top of the section, one at the bottom, combined with a <strong>Dream Weaver comb</strong> to separate the mids and ends of the hair before the foil goes in.</p>
+  <p>What you get is what I call a <strong>broken zigzag</strong>: an irregular, diffused line of color at the root that mimics the look of teasy lights without any actual teasing. The color melts into the natural hair with a soft, lived-in root that doesn't need a shadow root to look intentional. It grows out beautifully. It saves time in the chair. And it works on nearly every client who walks through your door.</p>
+
+  <div class="callout">
+    <div class="callout-label">Why It Works</div>
+    The double zigzag creates natural diffusion through <em>geometry</em>, not mechanics. Instead of backcombing the hair to break up the root line, the parting itself creates an irregular boundary, so there's no clean edge for the eye to follow from natural into highlighted hair.
+  </div>
+
+  <hr>
+
+  <h2 id="why-i-created">Why I Created It: The Problem With Teasing</h2>
+  <p>Teasy lights became a trend because clients loved the result: soft, dimensional, sun-kissed. The problem was never the result. The problem was the process.</p>
+
+  <h3>Teasing is unpredictable</h3>
+  <p>Two stylists with the same training will tease a section differently every single time. The amount of backcombing, the depth, how much hair gets caught. All of it varies. Even the same stylist teases differently at 9am versus 5pm when their hands are tired.</p>
+
+  <h3>Teasing is time-consuming</h3>
+  <p>A full head of traditional teasy lights takes significantly longer than a standard foil service. You're adding a manipulation step to every single section. On a full highlight client, that adds up fast.</p>
+
+  <h3>Teasing is hard on the hair</h3>
+  <p>Backcombing creates mechanical damage. For clients with fine hair, fragile ends, or already-compromised strands from previous color services, teasing adds stress the hair can't afford, especially when you're about to apply lightener on top.</p>
+
+  <p>I started thinking about what, exactly, the tease was <em>accomplishing</em>. The answer was simple: it was breaking up the clean line where the foil started. It was creating irregular color uptake at the root. It was mimicking natural, grown-in color.</p>
+  <p>Once I understood the <em>function</em> of the tease, I could figure out how to accomplish that function without the tease itself. That's where the double zigzag came from.</p>
+
+  <div class="related-posts">
+    <p class="rp-label">Related Reading</p>
+    <ul>
+      <li><a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">The Manelli Scale Explained: How I Grade Every Bleach (And What the Numbers Really Mean)</a></li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h2 id="how-its-different">How It's Different From a Standard Teasy Light</h2>
+  <figure class="post-image">
+    <img src="https://mirellamanelli.com/wp-content/uploads/2025/02/zigzag-highlights.jpg" alt="zigzag foil highlight technique compared to Manelli Method double zigzag showing root diffusion difference" width="860" height="574" loading="lazy">
+    <figcaption>A standard zigzag softens only the top edge of the section. The Manelli Method zigzags both top and bottom: that's what creates true root diffusion.</figcaption>
+  </figure>
+  <p>In a traditional teasy light, the parting is usually straight or a single simple zigzag, and the diffusion at the root comes entirely from the backcombing. The color goes on hair that has been mechanically disrupted.</p>
+  <p>With the Manelli Method, the diffusion comes from the <strong>geometry of the parting itself</strong>. No backcombing. No mechanical disruption. The double zigzag creates a naturally irregular boundary between what's in the foil and what isn't, so the color graduates into the root in an organic, broken way without any extra steps.</p>
+
+  <table>
+    <thead>
+      <tr><th></th><th>Traditional Teasy Light</th><th>Manelli Method</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Root diffusion created by</strong></td><td>Backcombing</td><td>Double zigzag geometry</td></tr>
+      <tr><td><strong>Processing steps</strong></td><td>Part + tease + foil</td><td>Part + Dream Weaver + foil</td></tr>
+      <tr><td><strong>Consistency</strong></td><td>Variable (hand-dependent)</td><td>Highly consistent</td></tr>
+      <tr><td><strong>Hair stress</strong></td><td>Higher (mechanical damage)</td><td>Lower</td></tr>
+      <tr><td><strong>Time per section</strong></td><td>Longer</td><td>Faster</td></tr>
+      <tr><td><strong>Shadow root needed</strong></td><td>Often</td><td>Rarely</td></tr>
+    </tbody>
+  </table>
+
+  <p>The Manelli Method doesn't just produce a similar result to teasy lights. For a lot of clients, it produces a <em>better</em> result, because the diffusion is more controlled and more consistent from section to section.</p>
+
+  <hr>
+
+  <h2 id="step-by-step">The Double Zigzag: Step-by-Step Breakdown</h2>
+  <p>This is the core mechanic. Read this carefully before you try it on a client.</p>
+
+  <div class="step-block">
+    <div class="step-number">Step 1</div>
+    <h3>Take your section as normal</h3>
+    <p style="margin-bottom:0;">Work in your standard horizontal sections, just as you would for any foil service. Section size will depend on how dense you want the final result.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 2</div>
+    <h3>Create the top zigzag</h3>
+    <p style="margin-bottom:0;">At the top of your section, part with a zigzag rather than a straight line. It doesn't need to be dramatic: a subtle, irregular zigzag is all you need. Think of it as an imperfect line rather than sharp peaks and valleys.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 3</div>
+    <h3>Create the bottom zigzag</h3>
+    <p style="margin-bottom:0;">Here's what makes the Manelli Method different from a standard zigzag part. At the <strong>bottom</strong> of the same section, create a second zigzag. This bottom parting creates the broken base of the highlight, giving you that diffused root without any teasing. The two zigzags do not need to mirror each other. The irregularity between them is what creates the natural, broken look at the root.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 4</div>
+    <h3>Use the Dream Weaver comb on the mids and ends</h3>
+    <p style="margin-bottom:0;">Before the foil goes in, use a <strong>Dream Weaver comb</strong> to separate the mids and ends of the section. This is a weaving step: you're picking up strands rather than taking everything. The comb makes this fast, precise, and consistent in a way that hand weaving simply can't match at the same speed.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 5</div>
+    <h3>Apply the foil as normal</h3>
+    <p style="margin-bottom:0;">Place your foil under the section you've isolated, apply your lightener, and fold. From here, the service continues exactly as any standard foil highlight would. If you want guidance on choosing the right lightener for this technique, <a href="https://mirellamanelli.com/level-2-to-blonde-one-session/" target="_blank" rel="noopener">read my full bleach test results here</a>.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">That's It</div>
+    Five steps. No teasing. No backcombing. A root that grows out beautifully every single time.
+  </div>
+
+  <hr>
+
+  <h2 id="dream-weaver">The Dream Weaver Comb: Why It Matters</h2>
+  <p>The <strong>Dream Weaver comb</strong> is what makes <strong>Manelli Method highlights</strong> scalable. Without it, you'd be hand-weaving every section, and that completely defeats the time-saving purpose of the whole approach.</p>
+  <p>The Dream Weaver comb lets you pick up hair in a consistent, controlled way at speed. You get even color distribution through the mid-lengths and ends that complements the broken root you've built with the double zigzag.</p>
+  <p>If you don't already have one in your kit, get it. It's not just useful for the Manelli Method: it's a tool you'll reach for on almost any weave technique.</p>
+
+  <hr>
+
+  <h2 id="when-to-use">When to Use Manelli Method Highlights</h2>
+  <p>This technique was built to work on almost every client in your chair. Here are the situations where it really shines:</p>
+
+  <div class="use-guide">
+    <ul>
+      <li><strong>Color correction clients:</strong> banding, spottiness, and DIY aftermath all respond beautifully to the irregular parting geometry</li>
+      <li><strong>Brunette-to-blonde transformations:</strong> clients going from dark natural color to lighter results need a natural root built into the technique from session one</li>
+      <li><strong>Lived-in and low-maintenance clients:</strong> if your client can only get in every four to six months, you need a technique that grows out gracefully. This is it.</li>
+      <li><strong>Clients who want to avoid a shadow root:</strong> the broken zigzag creates enough diffusion that a separate shadow root is usually unnecessary</li>
+      <li><strong>Clients with fine or fragile hair:</strong> no backcombing means no additional mechanical stress on compromised strands. <a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">Use the Manelli Scale to choose a lightener with a high integrity score for these clients →</a></li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h2 id="no-shadow-root">Why You Don't Need a Shadow Root With This Technique</h2>
+  <p>A shadow root exists to solve one problem: a highlight with a hard edge at the root looks unnatural. The shadow root softens that edge so the result reads as intentional, not grown-out.</p>
+  <p>The Manelli Method eliminates that hard edge in the <em>parting step itself</em>. Because the top and bottom zigzags create an irregular boundary, there's no clean line for the eye to follow from natural hair into highlighted hair. The transition is already broken up before a single product is applied. That saves you time. And it saves your client money.</p>
+
+  <h3>When a Shadow Root Is Still Worth Adding</h3>
+  <p>This doesn't mean you can never add a shadow root on a Manelli Method client. There are absolutely cases where a deeper root is a creative choice, not a corrective one. The difference is that you're adding it intentionally. And that distinction matters for your process and your pricing.</p>
+  <p>For example, clients who want a moody, high-contrast root look may still request a shadow application. In that case, because you're starting from a clean double-zigzag parting, you have full control over the depth and seamlessness of the shadow placement.</p>
+
+  <hr>
+
+  <h2 id="results">Manelli Method Highlights: What Results to Expect</h2>
+  <p>When the Manelli Method is executed correctly, here's what you and your client should see:</p>
+  <ul>
+    <li>A soft, diffused root line with no hard edges</li>
+    <li>Dimension through the mid-lengths from the Dream Weaver weaving step</li>
+    <li>A result that reads as lived-in and natural from day one</li>
+    <li>A grow-out that looks intentional at the four, six, and even eight-month mark</li>
+    <li>Faster service times compared to traditional teasy lights</li>
+    <li>Consistent results regardless of which stylist in your salon executes it</li>
+  </ul>
+
+  <h3>Why the Results Stay Consistent Over Time</h3>
+  <p>The outcome depends on section size, developer strength, product choice, and starting level, like any technique. But the core mechanic is repeatable, teachable, and scalable in a way that teasing-based techniques just aren't. And because results don't depend on how hard you tease, two different stylists using this method will get nearly identical results every time. That's why it works so well in multi-stylist environments.</p>
+  <p>For a complete breakdown of which lighteners produce the best results for this technique, <a href="https://mirellamanelli.com/level-2-to-blonde-one-session/" target="_blank" rel="noopener">read my 50+ bleach test findings here</a>.</p>
+
+  <div class="cta-block">
+    Ready to add the Manelli Method to your service menu?<br>
+    <a href="https://hairbnbuniversity.com" target="_blank" rel="noopener">Learn the full technique inside Hair B&amp;B University →</a>
+  </div>
+
+  <hr>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <h3>About the Technique</h3>
+
+  <div class="faq-item">
+    <div class="faq-q">What is the Manelli Method?</div>
+    <div class="faq-a">Simply put: the Manelli Method is a foil highlight technique created by Mirella Manelli that uses a double zigzag parting, covering both the top and bottom of each section, plus a Dream Weaver comb through the mids and ends, to create soft, lived-in roots without any teasing or backcombing.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Is the Manelli Method the same as teasy lights?</div>
+    <div class="faq-a">No. Teasy lights use backcombing to diffuse the root. The Manelli Method achieves the same visual result through the geometry of the parting itself, with no mechanical disruption of the hair. That means it's faster, more consistent, and gentler on the hair.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Do I need a shadow root with the Manelli Method?</div>
+    <div class="faq-a">Usually not. The double zigzag parting creates enough root diffusion that, in most cases, a separate shadow root application is unnecessary. When you do add one, it's a creative choice. Not a corrective step.</div>
+  </div>
+
+  <h3>Tools, Products, and Application</h3>
+
+  <div class="faq-item">
+    <div class="faq-q">What comb do I need for the Manelli Method?</div>
+    <div class="faq-a">A Dream Weaver comb is used to separate and weave the mids and ends of each section before the foil goes in. It's what makes the mid-length step fast, precise, and consistent at scale, and it's an essential part of the technique.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What clients is the Manelli Method best for?</div>
+    <div class="faq-a">It works particularly well for color correction clients, brunette-to-blonde transformations, lived-in and low-maintenance clients, and anyone with fine or fragile hair. And because there's no backcombing, it adds zero extra mechanical stress to compromised strands.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What bleach works best with the Manelli Method?</div>
+    <div class="faq-a">Any high-quality professional lightener with good viscosity and a strong integrity score works well. I've tested 50+ lighteners: <a href="https://mirellamanelli.com/level-2-to-blonde-one-session/" target="_blank" rel="noopener">see the full results and rankings here</a>. And if you want to understand how I score bleaches, <a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">read the Manelli Scale breakdown</a>.</div>
+  </div>
+
+  <h3>After the Service and Learning More</h3>
+
+  <div class="faq-item">
+    <div class="faq-q">What toner should I use after a Manelli Method service?</div>
+    <div class="faq-a">It depends on the starting level and the client's goal. For warm underlying tones, a cool-to-neutral toner through the mid-lengths and ends works best. For lighter starting levels, a neutral or warm-leaning toner keeps the result looking natural and sets up the next session beautifully.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where can I learn the Manelli Method?</div>
+    <div class="faq-a">The full technique is taught inside <a href="https://hairbnbuniversity.com" target="_blank" rel="noopener">Hair B&amp;B University</a>, including step-by-step instruction and live application demonstrations. It's the most complete resource I've built for stylists who want to master this method.</div>
+  </div>
+
+  <div class="author-bio">
+    <strong>About the Author:</strong> Mirella Manelli is a professional hairstylist and educator with over 20 years of experience behind the chair. She is the founder of <a href="https://hairbnbuniversity.com" target="_blank" rel="noopener" style="color:#FA5185;">Hair B&amp;B University</a>, the founder of <a href="https://manellihair.com" target="_blank" rel="noopener" style="color:#FA5185;">Manelli Hair Extensions</a>, a Modern Salon Top 100 honoree, a five-time Behind the Chair One Shot nominee, and has 430K+ YouTube subscribers. All techniques and opinions are her own.
+  </div>
+
+</div>

@@ -1,0 +1,312 @@
+<!-- How to Fix Banding and Spotty Color With One Foil Technique
+     WordPress Custom HTML Block — paste this entire block as-is -->
+
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+#cc-blog-wrap{width:100%;max-width:860px;margin:0 auto;font-family:'Open Sans',sans-serif;color:#171411;font-size:18px;line-height:1.83;}
+#cc-blog-wrap *{box-sizing:border-box;}
+#cc-blog-wrap .post-meta{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6B4F40;margin-bottom:16px;}
+#cc-blog-wrap .tag{display:inline-block;background:#FFB6BA;color:#015A42;border-radius:4px;padding:1px 8px;font-size:11px;font-weight:700;letter-spacing:.08em;margin-right:6px;text-transform:uppercase;text-decoration:none;}
+#cc-blog-wrap a.tag:hover{background:#FA5185;color:#fff;}
+#cc-blog-wrap h1.post-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);font-weight:700;line-height:1.2;color:#015A42;margin:16px 0 10px;}
+#cc-blog-wrap .post-subtitle{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,2.2vw,20px);color:#8A5A3E;line-height:1.5;margin-bottom:16px;}
+#cc-blog-wrap .byline{font-size:13px;color:#6B4F40;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #EDD9CF;}
+#cc-blog-wrap .watch-card{display:flex;align-items:center;gap:16px;background:#fff;border:2px solid #EDD9CF;border-left:5px solid #FA5185;border-radius:10px;padding:16px 20px;margin:0 0 32px;text-decoration:none;color:#1A0F0A;}
+#cc-blog-wrap .watch-card:hover{box-shadow:0 4px 16px rgba(250,81,133,.15);}
+#cc-blog-wrap .watch-icon{flex-shrink:0;width:44px;height:44px;background:#FF0000;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+#cc-blog-wrap .watch-icon svg{width:22px;height:22px;fill:#fff;}
+#cc-blog-wrap .watch-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#6B4F40;margin-bottom:4px;}
+#cc-blog-wrap .watch-title{font-size:14px;font-weight:600;line-height:1.4;}
+#cc-blog-wrap .quick-answer{background:#015A42;color:#fff;border-radius:10px;padding:20px 24px;margin:0 0 36px;font-size:15px;line-height:1.65;}
+#cc-blog-wrap .quick-answer strong{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#FFB6BA;margin-bottom:8px;}
+#cc-blog-wrap h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#015A42;margin:44px 0 14px;padding-bottom:8px;border-bottom:2px solid #EDD9CF;}
+#cc-blog-wrap h3{font-size:16px;font-weight:700;color:#8A5A3E;margin:28px 0 10px;}
+#cc-blog-wrap p{margin-bottom:16px;}
+#cc-blog-wrap em{font-style:italic;}
+#cc-blog-wrap strong{font-weight:700;}
+#cc-blog-wrap ul,#cc-blog-wrap ol{padding-left:20px;margin-bottom:16px;}
+#cc-blog-wrap li{margin-bottom:8px;}
+#cc-blog-wrap .callout{background:#FFF4EE;border-left:5px solid #FA5185;border-radius:6px;padding:16px 20px;margin:20px 0 28px;font-size:15px;}
+#cc-blog-wrap .callout-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6B4F40;margin-bottom:6px;}
+#cc-blog-wrap .step-block{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin:16px 0 24px;}
+#cc-blog-wrap .step-block h3{margin-top:0;}
+#cc-blog-wrap .step-number{display:inline-block;background:#015A42;color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;border-radius:4px;padding:2px 10px;margin-bottom:8px;text-transform:uppercase;}
+#cc-blog-wrap table{width:100%;border-collapse:collapse;margin:20px 0 28px;font-size:14px;}
+#cc-blog-wrap th{background:#015A42;color:#fff;text-align:left;padding:10px 14px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+#cc-blog-wrap td{padding:10px 14px;border-bottom:1px solid #EDD9CF;}
+#cc-blog-wrap tr:nth-child(even) td{background:#FFF4EE;}
+#cc-blog-wrap .related-posts{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin:36px 0;}
+#cc-blog-wrap .related-posts p.rp-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6B4F40;margin-bottom:12px;}
+#cc-blog-wrap .related-posts ul{list-style:none;padding:0;margin:0;}
+#cc-blog-wrap .related-posts li{padding:10px 0;border-bottom:1px solid #EDD9CF;}
+#cc-blog-wrap .related-posts li:last-child{border-bottom:none;}
+#cc-blog-wrap .related-posts a{color:#015A42;font-weight:600;text-decoration:none;font-size:15px;}
+#cc-blog-wrap .related-posts a:hover{color:#FA5185;}
+#cc-blog-wrap .related-posts a::before{content:"→ ";color:#FA5185;}
+#cc-blog-wrap .use-guide{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin:20px 0 28px;}
+#cc-blog-wrap .use-guide ul{list-style:none;padding:0;}
+#cc-blog-wrap .use-guide li{padding:8px 0;border-bottom:1px solid #EDD9CF;font-size:15px;}
+#cc-blog-wrap .use-guide li:last-child{border-bottom:none;}
+#cc-blog-wrap .use-guide li::before{content:"→";color:#FA5185;font-weight:700;margin-right:10px;}
+#cc-blog-wrap .faq-item{border-bottom:1px solid #EDD9CF;padding:18px 0;}
+#cc-blog-wrap .faq-q{font-weight:700;font-size:15px;color:#015A42;margin:0 0 8px;}
+#cc-blog-wrap .faq-a{font-size:15px;}
+#cc-blog-wrap hr{border:none;border-top:1px solid #EDD9CF;margin:32px 0;}
+#cc-blog-wrap .author-bio{background:#FFF4EE;border-radius:10px;padding:20px 24px;margin-top:40px;font-size:13px;color:#6B4F40;font-style:italic;}
+#cc-blog-wrap .cta-block{background:#FA5185;color:#fff;border-radius:10px;padding:20px 24px;margin:32px 0;font-weight:600;font-size:15px;text-align:center;}
+#cc-blog-wrap .cta-block a{color:#fff;text-decoration:underline;}
+#cc-blog-wrap a{color:#FA5185;font-weight:600;}
+#cc-blog-wrap .toc{background:#fff;border:2px solid #EDD9CF;border-radius:10px;padding:20px 24px;margin:0 0 36px;}
+#cc-blog-wrap .toc p.toc-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6B4F40;margin-bottom:10px;}
+#cc-blog-wrap .toc ol{margin:0;padding-left:18px;}
+#cc-blog-wrap .toc li{margin-bottom:6px;font-size:15px;}
+#cc-blog-wrap .toc a{color:#015A42;text-decoration:none;font-weight:600;}
+#cc-blog-wrap .toc a:hover{color:#FA5185;}
+@media(max-width:560px){#cc-blog-wrap .watch-card{flex-direction:column;align-items:flex-start;}}
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"How to Fix Banding and Spotty Color With One Foil Technique (No Re-doing the Whole Head)","description":"Fix banding and spotty hair color with the Manelli Method — a double zigzag foil technique that diffuses uneven color without redoing the whole head. Step-by-step guide for stylists.","author":{"@type":"Person","name":"Mirella Manelli","jobTitle":"Professional Hairstylist & Educator","url":"https://mirellamanelli.com"},"publisher":{"@type":"Organization","name":"Hair B&B University","url":"https://mirellamanelli.com"},"datePublished":"2026-05-24","dateModified":"2026-05-24","mainEntityOfPage":"https://mirellamanelli.com/manelli-method-color-correction/"}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can the Manelli Method fix banding in one session?","acceptedAnswer":{"@type":"Answer","text":"In many cases yes — the banding becomes visually diffused rather than chemically fixed. Severe level differences within banded sections may require multiple sessions."}},{"@type":"Question","name":"Do I need to remove existing color before using this technique?","acceptedAnswer":{"@type":"Answer","text":"Usually not. The Manelli Method works with the existing color by adding visual complexity around and through problem areas. Heavy buildup or a deposit that won't lift may need a targeted removal service first."}},{"@type":"Question","name":"How is this different from just doing a full-head highlight?","acceptedAnswer":{"@type":"Answer","text":"A full-head highlight on a banded client can make banding more obvious by adding contrast around the problem areas. The Manelli Method uses irregular parting geometry to visually interrupt the banding rather than frame it."}},{"@type":"Question","name":"How many sessions will a color correction client need?","acceptedAnswer":{"@type":"Answer","text":"It depends on the severity and the goal. Mild banding at a similar tone level may resolve in one session. A client going from dark multi-colored hair to clean blonde will likely need two to four sessions."}},{"@type":"Question","name":"What toner should I use after a Manelli Method correction?","acceptedAnswer":{"@type":"Answer","text":"It depends on the lift achieved and underlying warmth. See the full toner guide at mirellamanelli.com/best-toners-dark-hair-after-bleaching/"}}]}
+</script>
+
+<div id="cc-blog-wrap">
+
+  <div class="post-meta">
+    <span>May 24, 2026</span>
+    <a class="tag" href="https://mirellamanelli.com/tag/color-correction/" target="_blank" rel="noopener">Color Correction</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/highlights/" target="_blank" rel="noopener">Highlights</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/manelli-method/" target="_blank" rel="noopener">Manelli Method</a>
+    <a class="tag" href="https://mirellamanelli.com/tag/banding/" target="_blank" rel="noopener">Banding</a>
+  </div>
+
+  <h1 class="post-title">How to Fix Banding and Spotty Color With One Foil Technique (No Re-doing the Whole Head)</h1>
+  <p class="post-subtitle">The color correction appointment doesn't have to mean starting from scratch. The Manelli Method uses double zigzag foil placement to visually dissolve banding — without aggressive chemical work.</p>
+  <div class="byline">By <strong>Mirella Manelli</strong> &nbsp;|&nbsp; Professional Hairstylist &amp; Educator &nbsp;|&nbsp; 20+ Years Experience &nbsp;|&nbsp; Founder, Hair B&amp;B University</div>
+
+  <div class="quick-answer">
+    <strong>Quick Answer</strong>
+    The Manelli Method — a double zigzag foil technique — is one of the most effective approaches for color correction clients with banding or spotty hair. The irregular parting geometry breaks up the visual line of the band without needing to reapply color over the whole head. It's faster, less damaging, and produces a result that actually looks intentional.
+  </div>
+
+  <a class="watch-card" href="https://www.youtube.com/@MirellaManelli" target="_blank" rel="noopener">
+    <div class="watch-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+    </div>
+    <div>
+      <div class="watch-label">Watch on YouTube</div>
+      <div class="watch-title">8 Ways to Foil Highlights — Including the Manelli Method Live Demo</div>
+    </div>
+  </a>
+
+  <div class="toc">
+    <p class="toc-label">In This Post</p>
+    <ol>
+      <li><a href="#understanding-banding">Understanding Banding and Spotty Color</a></li>
+      <li><a href="#why-traditional-fails">Why Traditional Highlights Make Banding Worse</a></li>
+      <li><a href="#the-method">The Manelli Method: How the Double Zigzag Diffuses Lines</a></li>
+      <li><a href="#step-by-step">Step-by-Step Application on a Color Correction Client</a></li>
+      <li><a href="#expectations">Before/After Expectations: What It Can and Can't Fix</a></li>
+      <li><a href="#toner-pairing">Pairing It With the Right Toner</a></li>
+      <li><a href="#pricing">Pricing Your Color Correction Service</a></li>
+      <li><a href="#faq">Frequently Asked Questions</a></li>
+    </ol>
+  </div>
+
+  <p>The color correction appointment is the one that separates stylists who are good from stylists who are great. When a client sits down with banding, patchiness, or the aftermath of a box color disaster, there's no hiding behind a pretty formula. You have to look at the hair, understand what went wrong, and build a plan that makes it right — without making it worse.</p>
+  <p>Here is the honest truth about color correction that nobody says out loud: most of the time, a full reapplication is not the answer. Putting more chemicals on already-stressed hair, trying to lift through previous color deposits, fighting the underlying warmth layer by layer — this approach costs your client money, costs you time, and often produces inconsistent results you'll be fixing again in six weeks.</p>
+  <p>After twenty years of color correction work, I started approaching banding and spotty color very differently. Instead of fighting the existing color, I use strategic highlight placement to visually break up the problem areas. The technique I reach for almost every time is the <strong>Manelli Method</strong>.</p>
+
+  <hr>
+
+  <h2 id="understanding-banding">Understanding Banding and Spotty Color: What Went Wrong</h2>
+  <p>Before you can fix a color problem, you need to understand what caused it. Banding and spotty color are not the same issue, even though they often appear together.</p>
+
+  <h3>What is banding?</h3>
+  <p><strong>Banding</strong> is a horizontal line or stripe across the hair shaft where one color stops and another begins. It's most visible when the hair is pulled back or worn straight. It usually happens because multiple applications of color or lightener were applied over time without consistent overlap, or because a lightener processed unevenly due to heat, application speed, or section thickness.</p>
+
+  <h3>What is spotty color?</h3>
+  <p><strong>Spotty color</strong> is more random — patches of hair that are lighter, darker, or a different tone than the rest. This is the classic calling card of at-home box color, which is formulated for an average hair type and does something different on everyone's actual hair. It's also common on clients who've had multiple colorists working with different formulas over the years.</p>
+
+  <div class="callout">
+    <div class="callout-label">The Core Problem</div>
+    Both banding and spotty color share the same underlying issue: the color is inconsistent across the hair shaft. Any technique that applies color in a clean, predictable way is going to make that inconsistency <em>more</em> obvious — not less. This is why the standard highlight approach backfires on color correction clients.
+  </div>
+
+  <div class="related-posts">
+    <p class="rp-label">Related Reading</p>
+    <ul>
+      <li><a href="https://mirellamanelli.com/manelli-method-highlights/" target="_blank" rel="noopener">The Manelli Method: The Highlight Technique I Created So You Never Have to Tease Again</a></li>
+      <li><a href="https://mirellamanelli.com/level-2-to-blonde-one-session/" target="_blank" rel="noopener">Level 2 to Blonde in One Session: Is It Possible? (What 50+ Bleach Tests Taught Me)</a></li>
+      <li><a href="https://mirellamanelli.com/best-toners-dark-hair-after-bleaching/" target="_blank" rel="noopener">Best Toners for Dark Hair After Bleaching: Ranked by Results</a></li>
+      <li><a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">The Manelli Scale Explained: How I Grade Every Bleach</a></li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h2 id="why-traditional-fails">Why Traditional Highlights Make Banding Worse</h2>
+  <p>Imagine your client has visible horizontal banding — a darker band of old color sitting between a lighter root and lighter ends. You place a standard slice or weave highlight through that section. The foil goes in clean. The lightener processes perfectly.</p>
+  <p>Now you have clean, bright highlights — running directly through the band. The contrast between the highlights and the banded section is sharper than before. The band is still there. In some cases it's now <em>more</em> visible because the lightened pieces around it draw the eye directly to it.</p>
+  <p>Traditional highlight techniques are linear and predictable by design. That precision is exactly what makes them beautiful on a virgin hair client. On a color-compromised client, that same precision works against you.</p>
+  <p>What you need is a technique that creates <strong>irregular, diffused color placement</strong> — one that visually breaks up the banded area by introducing variation that makes the eye unable to follow a single horizontal line. The Manelli Method does exactly this.</p>
+
+  <hr>
+
+  <h2 id="the-method">The Manelli Method: How the Double Zigzag Diffuses Lines</h2>
+  <p>The <strong>Manelli Method</strong> is a foil highlight technique built on a <strong>double zigzag parting</strong> — one at the top of the section, one at the bottom — combined with a <strong>Dream Weaver comb</strong> through the mids and ends before the foil is placed.</p>
+  <p>On a standard client, this creates beautiful diffused roots. On a <strong>color correction client</strong>, the double zigzag does something even more powerful: it breaks up the predictable horizontal geometry of the banding and replaces it with an irregular, multi-directional color pattern.</p>
+
+  <div class="callout">
+    <div class="callout-label">Why This Works</div>
+    Banding is visible because the eye can follow a clean line. The moment that line is interrupted — by highlights placed above, below, through, and around it at irregular angles — the brain stops registering it as a line and starts registering it as dimension. You're not removing the band. You're making it impossible to see <em>as</em> a band.
+  </div>
+
+  <hr>
+
+  <h2 id="step-by-step">Step-by-Step: Applying the Manelli Method on a Color Correction Client</h2>
+  <p>The core mechanics don't change for a correction — but your strategic decisions need to be informed by the specific problem you're correcting.</p>
+
+  <div class="step-block">
+    <div class="step-number">Step 1</div>
+    <h3>Assess the pattern before you section</h3>
+    <p style="margin-bottom:0;">Before picking up a comb, look at where the banding or spotty color sits. Is it predominantly at the mid-lengths? At a specific growth period? Randomized throughout? Map the problem areas so you can plan foil placement intentionally.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 2</div>
+    <h3>Increase foil density through problem areas</h3>
+    <p style="margin-bottom:0;">For correction clients, I typically work with more foils through zones where color inconsistency is most visible. You don't need to foil every section — you need to foil <em>strategically</em> through the ones that need the most visual interruption.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 3</div>
+    <h3>Execute the double zigzag</h3>
+    <p style="margin-bottom:0;">At the top of each section, create your first zigzag. At the bottom of the same section, create a second, different zigzag. The two do not need to match — the more irregular the bottom zigzag, the more natural the root diffusion will be.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 4</div>
+    <h3>Dream Weaver through the mids and ends</h3>
+    <p style="margin-bottom:0;">Use a Dream Weaver comb to pick up strands through the mid-lengths and ends. On a correction client, varying your weave slightly — more strands in some spots, fewer in others — adds to the overall visual irregularity that helps camouflage banding.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 5</div>
+    <h3>Apply your lightener and process</h3>
+    <p style="margin-bottom:0;">Choose a lightener appropriate for the starting level and the amount of lift you need. For choosing the right product, <a href="https://mirellamanelli.com/level-2-to-blonde-one-session/" target="_blank" rel="noopener">see my full bleach test results</a> and use the <a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">Manelli Scale integrity scores</a> as your guide for compromised hair.</p>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">Step 6</div>
+    <h3>Evaluate at the bowl before toning</h3>
+    <p style="margin-bottom:0;">When you rinse, look at the dry result with fresh eyes before applying toner. The banding may be significantly less visible already — or additional sessions may be needed depending on how deep the inconsistency runs.</p>
+  </div>
+
+  <hr>
+
+  <h2 id="expectations">Before/After Expectations: What This Technique Can and Can't Fix</h2>
+  <p>Being honest with your clients — and yourself — about outcomes is the mark of a professional.</p>
+
+  <h3>What the Manelli Method can do for correction clients</h3>
+  <ul>
+    <li>Visually diffuse banding so it's no longer the first thing the eye goes to</li>
+    <li>Add dimension through spotty, flat color so the result reads as intentional</li>
+    <li>Create a natural, multi-tonal result that masks inconsistency</li>
+    <li>Set up a gorgeous base for future sessions that build toward the client's goal</li>
+    <li>Significantly reduce the need for full reapplication or aggressive chemical correction</li>
+  </ul>
+
+  <h3>What it can't do</h3>
+  <ul>
+    <li>Remove a significant level difference between banded areas in a single session</li>
+    <li>Fix extreme inconsistency where some sections are a level 3 and others are a level 7</li>
+    <li>Replace a targeted corrective service when there's active damage or a specific deposit that must be addressed first</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-label">Set the Right Expectation</div>
+    For many correction clients, a Manelli Method service is a beautiful first step — not a magic one-appointment solution. Set that expectation clearly at consultation, and you'll have a client who books back for the next session instead of leaving disappointed.
+  </div>
+
+  <hr>
+
+  <h2 id="toner-pairing">Pairing It With the Right Toner</h2>
+  <p>The Manelli Method gives you a lifted, multi-dimensional base. What you do at the bowl is what closes the service. On a color correction client, toner choice matters more than usual because you're often working with more warmth variation than a straightforward virgin hair client.</p>
+
+  <div class="use-guide">
+    <ul>
+      <li><strong>Banded clients with warm residual tones:</strong> A cool-to-neutral toner through the mid-lengths and ends unifies the result and draws attention away from warmth inconsistency. Avoid anything too ashy on a first-session correction — it can look muddy when underlying warmth isn't fully addressed.</li>
+      <li><strong>Spotty clients with flat color:</strong> A multi-dimensional toner with both cool and warm tones adds to the dimensional effect the highlights created — making the whole result look more alive and less "corrected."</li>
+      <li><strong>Clients going dark to light:</strong> A neutral or warm-leaning toner is usually right on session one. It honors the natural warmth at this stage and sets up the next session for a cleaner lift.</li>
+    </ul>
+  </div>
+
+  <p>For a full breakdown of which toners perform best on dark hair after bleaching, <a href="https://mirellamanelli.com/best-toners-dark-hair-after-bleaching/" target="_blank" rel="noopener">read my toner ranking guide here →</a></p>
+
+  <hr>
+
+  <h2 id="pricing">Pricing Your Color Correction Service</h2>
+  <p>Color correction is a premium service and should be priced accordingly. The Manelli Method approach — strategic foiling rather than full reapplication — is faster than many traditional correction methods, but it still requires advanced skill, consultation time, and often multiple appointments.</p>
+
+  <div class="use-guide">
+    <ul>
+      <li><strong>Charge for your consultation</strong> if it's in-depth (30+ minutes). A correction client needs a roadmap, and building that plan has value.</li>
+      <li><strong>Price based on time and product</strong>, not just the final outcome.</li>
+      <li><strong>Set clear session expectations upfront</strong> — two to three sessions to reach the goal is not unusual. A client who understands this from the start is far easier to retain than one who expected one-appointment results.</li>
+    </ul>
+  </div>
+
+  <div class="cta-block">
+    Want to master color correction with the Manelli Method?<br>
+    <a href="https://hairbnbuniversity.com" target="_blank" rel="noopener">Learn inside Hair B&amp;B University →</a>
+  </div>
+
+  <hr>
+
+  <h2 id="faq">Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Can the Manelli Method fix banding in one session?</div>
+    <div class="faq-a">In many cases yes — the banding becomes visually diffused rather than chemically removed. Severe level differences within banded sections may require multiple sessions to fully resolve.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Do I need to remove the existing color before using this technique?</div>
+    <div class="faq-a">Usually not. The Manelli Method works with the existing color by adding visual complexity around and through the problem areas. In cases of heavy color buildup or a deposit that won't lift, a targeted removal service may be needed first.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What if the banding involves both lighter and darker bands?</div>
+    <div class="faq-a">Assess each band individually. You may need to foil more heavily through darker bands (to lift them) while using a different weave pattern through lighter areas. The Manelli Method is adaptable — your formula and foil density can vary section by section.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How is this different from just doing a full-head highlight?</div>
+    <div class="faq-a">A full-head highlight on a banded client can make banding more obvious by adding contrast around the problem areas. The Manelli Method uses irregular parting geometry to visually interrupt the banding rather than frame it.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How many sessions will a color correction client need?</div>
+    <div class="faq-a">It depends on the severity of the starting condition and the goal. Mild banding at a similar tone level may resolve in one session. A client going from dark multi-colored hair to clean blonde will typically need two to four sessions.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What toner should I use after a Manelli Method correction?</div>
+    <div class="faq-a">It depends on your lift level and the underlying warmth you're working with. <a href="https://mirellamanelli.com/best-toners-dark-hair-after-bleaching/" target="_blank" rel="noopener">Read my full toner ranking guide for dark hair →</a></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Which bleach is best for color correction work?</div>
+    <div class="faq-a">Look for a lightener that scores high in integrity and viscosity on the <a href="https://mirellamanelli.com/the-manelli-scale-explained/" target="_blank" rel="noopener">Manelli Scale</a> — compromised hair needs controlled lift and a formula that won't push it over the edge. <a href="https://mirellamanelli.com/level-2-to-blonde-one-session/" target="_blank" rel="noopener">See my full bleach test results here →</a></div>
+  </div>
+
+  <div class="author-bio">
+    <strong>About the Author:</strong> Mirella Manelli is a professional hairstylist and educator with over 20 years of experience behind the chair. She is the founder of <a href="https://hairbnbuniversity.com" target="_blank" rel="noopener" style="color:#FA5185;">Hair B&amp;B University</a>, the founder of <a href="https://manellihair.com" target="_blank" rel="noopener" style="color:#FA5185;">Manelli Hair Extensions</a>, a Modern Salon Top 100 honoree, a five-time Behind the Chair One Shot nominee, and has 430K+ YouTube subscribers.
+  </div>
+
+</div>
